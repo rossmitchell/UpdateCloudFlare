@@ -23,7 +23,8 @@ namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
-use RossMitchell\UpdateCloudFlare\Model\Requests\GetIpAddress;
+use RossMitchell\UpdateCloudFlare\Model\Requests\GetSubDomainInfo;
+use Symfony\Component\Console\Exception\LogicException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -34,28 +35,32 @@ class TestCommand extends Command
      */
     private $config;
     /**
-     * @var GetIpAddress
+     * @var GetSubDomainInfo
      */
     private $ipAddress;
 
     /**
      * TestCommand constructor.
      *
-     * @param Config       $config
-     * @param GetIpAddress $ipAddress
-     * @param string|null  $name
+     * @param Config           $config
+     * @param GetSubDomainInfo $ipAddress
+     * @param string|null      $name
+     *
+     * @throws LogicException
      */
-    public function __construct(Config $config, GetIpAddress $ipAddress, string $name = null)
+    public function __construct(Config $config, GetSubDomainInfo $ipAddress, string $name = null)
     {
         parent::__construct($name);
-        $this->config = $config;
+        $this->config    = $config;
         $this->ipAddress = $ipAddress;
     }
 
     public function runCommand(InputInterface $input, OutputInterface $output)
     {
-        $ipAddress = $this->ipAddress->getIpAddress();
-        $output->writeln($ipAddress);
+        $ipAddress = $this->ipAddress->getSubDomainIpAddress();
+        $id = $this->ipAddress->getSubDomainId();
+        $output->writeln('IP Address: ' . $ipAddress);
+        $output->writeln('CloudFlare ID: ' . $id);
         $output->writeln($this->config->getEmailAddress());
     }
 }
