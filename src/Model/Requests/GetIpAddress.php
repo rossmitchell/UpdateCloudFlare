@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -23,6 +24,10 @@ namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 
+/**
+ * Class GetIpAddress
+ * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ */
 class GetIpAddress extends Curl
 {
 

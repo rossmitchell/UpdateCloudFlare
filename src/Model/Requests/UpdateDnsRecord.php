@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -26,6 +27,10 @@ use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class UpdateDnsRecord
+ * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ */
 class UpdateDnsRecord extends Curl
 {
     /**

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -28,6 +29,10 @@ use RossMitchell\UpdateCloudFlare\Model\Requests\GetSubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Model\Requests\UpdateDnsRecord;
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class UpdateSubDomain
+ * @package RossMitchell\UpdateCloudFlare\Model
+ */
 class UpdateSubDomain
 {
     /**

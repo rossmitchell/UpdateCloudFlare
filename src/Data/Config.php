@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -21,6 +22,10 @@
 
 namespace RossMitchell\UpdateCloudFlare\Data;
 
+/**
+ * Class Config
+ * @package RossMitchell\UpdateCloudFlare\Data
+ */
 class Config
 {
     const API_KEY = 'api.credentials.key';

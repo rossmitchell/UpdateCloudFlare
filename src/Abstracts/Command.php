@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -25,6 +26,10 @@ use Silly\Command\Command as SillyCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
+/**
+ * Class Command
+ * @package RossMitchell\UpdateCloudFlare\Abstracts
+ */
 abstract class Command extends SillyCommand
 {
     /**
@@ -39,5 +44,11 @@ abstract class Command extends SillyCommand
         $this->runCommand($input, $output);
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @return mixed
+     */
     abstract public function runCommand(InputInterface $input, OutputInterface $output);
 }

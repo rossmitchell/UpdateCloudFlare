@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -26,6 +27,10 @@ use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class GetSubDomainInfo
+ * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ */
 class GetSubDomainInfo extends Curl
 {
     /**
@@ -115,7 +120,7 @@ class GetSubDomainInfo extends Curl
      */
     public function getSubDomain(): string
     {
-        if (null === $this->subDomain) {
+        if ($this->subDomain === null) {
             throw new LogicException('You must set the sub domain');
         }
 

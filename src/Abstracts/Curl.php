@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -23,6 +24,10 @@ namespace RossMitchell\UpdateCloudFlare\Abstracts;
 
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class Curl
+ * @package RossMitchell\UpdateCloudFlare\Abstracts
+ */
 abstract class Curl
 {
     /**
