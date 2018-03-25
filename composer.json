@@ -1,0 +1,10 @@
+{
+    "require": {
+        "symfony/console": "^4.0",
+        "mnapoli/silly-php-di": "^1.1",
+        "phlak/config": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {"RossMitchell\\UpdateCloudFlare\\": "src/"}
+    }
+}
