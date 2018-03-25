@@ -67,6 +67,12 @@ class GetSubDomainInfo extends Curl
         $this->dnsZones = $dnsZones;
     }
 
+    /**
+     * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
+     * @throws CloudFlareException
+     */
     public function getSubDomainId(): string
     {
         if ($this->subDomainId === null) {
@@ -76,6 +82,12 @@ class GetSubDomainInfo extends Curl
         return $this->subDomainId;
     }
 
+    /**
+     * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
+     * @throws CloudFlareException
+     */
     public function getSubDomainIpAddress(): string
     {
         if ($this->subDomainIpAddress === null) {
@@ -127,7 +139,7 @@ class GetSubDomainInfo extends Curl
      */
     public function getRequestType(): string
     {
-        return "GET";
+        return 'GET';
     }
 
     /**
@@ -144,6 +156,7 @@ class GetSubDomainInfo extends Curl
      * Return the URL that the request should be made to
      *
      * @return string
+     * @throws \RuntimeException
      * @throws LogicException
      * @throws CloudFlareException
      */
@@ -161,6 +174,8 @@ class GetSubDomainInfo extends Curl
     }
 
     /**
+     * @throws LogicException
+     * @throws \RuntimeException
      * @throws CloudFlareException
      */
     private function collectionInformation()

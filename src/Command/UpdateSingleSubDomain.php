@@ -25,6 +25,7 @@ use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Exception\LogicException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -46,6 +47,8 @@ class UpdateSingleSubDomain extends Command
      * @param UpdateSubDomain $subDomain
      * @param Config          $config
      * @param string|null     $name
+     *
+     * @throws LogicException
      */
     public function __construct(UpdateSubDomain $subDomain, Config $config, string $name = null)
     {
@@ -58,6 +61,9 @@ class UpdateSingleSubDomain extends Command
      * @param InputInterface  $input
      * @param OutputInterface $output
      *
+     * @throws \RuntimeException
+     * @throws InvalidArgumentException
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function runCommand(InputInterface $input, OutputInterface $output)

@@ -59,9 +59,11 @@ class GetDnsZones extends Curl
 
     /**
      * @return string
+     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws \RuntimeException
      * @throws CloudFlareException
      */
-    public function getZoneInformation()
+    public function getZoneInformation(): string
     {
         $result = \json_decode($this->makeRequest());
 

@@ -77,6 +77,8 @@ class UpdateSubDomain
 
     /**
      * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
      */
     public function getIpAddress(): string
     {
@@ -129,6 +131,8 @@ class UpdateSubDomain
 
     /**
      * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
      * @throws CloudFlareException
      */
     public function updateSubDomain(): string
@@ -144,6 +148,10 @@ class UpdateSubDomain
         return "IP Address for $subDomain did not need to be updated";
     }
 
+    /**
+     * @return string
+     * @throws LogicException
+     */
     private function getFullDomain(): string
     {
         return $this->getSubDomain().'.'.$this->config->getBaseUrl();

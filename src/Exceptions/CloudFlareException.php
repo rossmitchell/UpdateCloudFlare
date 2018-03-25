@@ -23,13 +23,27 @@ namespace RossMitchell\UpdateCloudFlare\Exceptions;
 
 class CloudFlareException extends \Exception
 {
-    public function setDetails($details, $call)
+    /**
+     * This will parse the result from Cloud Flare and try to produce a meaningful error message
+     *
+     * @param \stdClass $details
+     * @param string    $call
+     */
+    public function setDetails(\stdClass $details, string $call)
     {
         $errorDetail = $this->collectionErrors($details);
         $message = "There was an error making the $call:" . \PHP_EOL . $errorDetail;
+        $this->message = $message;
     }
 
-    private function collectionErrors($details)
+    /**
+     * This actually loops over the response and fetches the errors
+     *
+     * @param \stdClass $details
+     *
+     * @return string
+     */
+    private function collectionErrors(\stdClass $details): string
     {
         $errorMessages = [];
         if (!\property_exists($details, 'errors')) {

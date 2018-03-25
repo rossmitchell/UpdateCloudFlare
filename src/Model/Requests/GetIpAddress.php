@@ -30,6 +30,8 @@ class GetIpAddress extends Curl
      * This will make the request and return the current external IP address.
      *
      * @return string
+     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws \RuntimeException
      */
     public function getIpAddress(): string
     {

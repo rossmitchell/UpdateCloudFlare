@@ -125,6 +125,8 @@ class UpdateDnsRecord extends Curl
 
     /**
      * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
      * @throws CloudFlareException
      */
     public function changeIpAddress(): string
@@ -160,7 +162,7 @@ class UpdateDnsRecord extends Curl
      */
     public function getRequestType(): string
     {
-        return "PUT";
+        return 'PUT';
     }
 
     /**
@@ -188,6 +190,8 @@ class UpdateDnsRecord extends Curl
      * Return the URL that the request should be made to
      *
      * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
      * @throws CloudFlareException
      */
     public function getUrl(): string

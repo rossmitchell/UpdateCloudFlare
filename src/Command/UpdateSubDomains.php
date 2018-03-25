@@ -23,7 +23,10 @@ namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;
+use Symfony\Component\Console\Exception\InvalidArgumentException;
+use Symfony\Component\Console\Exception\LogicException;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -44,6 +47,8 @@ class UpdateSubDomains extends Command
      * @param UpdateSubDomain $subDomain
      * @param Config          $config
      * @param string|null     $name
+     *
+     * @throws LogicException
      */
     public function __construct(UpdateSubDomain $subDomain, Config $config, string $name = null)
     {
@@ -52,6 +57,15 @@ class UpdateSubDomains extends Command
         $this->config = $config;
     }
 
+    /**
+     * @param InputInterface  $input
+     * @param OutputInterface $output
+     *
+     * @throws LogicException
+     * @throws \RuntimeException
+     * @throws InvalidArgumentException
+     * @throws CloudFlareException
+     */
     public function runCommand(InputInterface $input, OutputInterface $output)
     {
         $newIpAddress = $input->getOption('ip-address');

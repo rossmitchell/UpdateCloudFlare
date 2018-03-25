@@ -29,6 +29,7 @@ abstract class Curl
      * Used to make the request
      *
      * @return mixed
+     * @throws \Symfony\Component\Console\Exception\LogicException
      * @throws \RuntimeException
      */
     final public function makeRequest()
@@ -82,6 +83,8 @@ abstract class Curl
 
     /**
      * @param $curl
+     *
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     private function setOptionalCurlOptions($curl): void
     {
@@ -121,6 +124,7 @@ abstract class Curl
      * @param array $fields
      *
      * @return string
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     private function getFieldsString(array $fields): string
     {
