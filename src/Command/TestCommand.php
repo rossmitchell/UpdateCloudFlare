@@ -23,6 +23,7 @@ namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
+use RossMitchell\UpdateCloudFlare\Model\Requests\GetIpAddress;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -32,15 +33,29 @@ class TestCommand extends Command
      * @var Config
      */
     private $config;
+    /**
+     * @var GetIpAddress
+     */
+    private $ipAddress;
 
-    public function __construct(Config $config, string $name = null)
+    /**
+     * TestCommand constructor.
+     *
+     * @param Config       $config
+     * @param GetIpAddress $ipAddress
+     * @param string|null  $name
+     */
+    public function __construct(Config $config, GetIpAddress $ipAddress, string $name = null)
     {
         parent::__construct($name);
         $this->config = $config;
+        $this->ipAddress = $ipAddress;
     }
 
     public function runCommand(InputInterface $input, OutputInterface $output)
     {
+        $ipAddress = $this->ipAddress->getIpAddress();
+        $output->writeln($ipAddress);
         $output->writeln($this->config->getEmailAddress());
     }
 }

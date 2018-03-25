@@ -28,14 +28,17 @@ use Silly\Edition\PhpDi\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
 $containerBuilder = new ContainerBuilder();
-$configFile = 'app/config.json';
+$configFile       = $_ENV['config.file'] ?? 'app/config.json';
 $containerBuilder->addDefinitions(
     [
-
-        Config::class => DI\create()->constructor(DI\get(ConfigReader::class), $configFile),
+        'config.file' => $configFile,
+        Config::class => DI\create()->constructor(DI\get(ConfigReader::class), DI\get('config.file')),
     ]
 );
 $container = $containerBuilder->build();
-$app = new Application('CloudFlare CLI Tool', 'v0.1.0', $container);
-$app->command('test', TestCommand::class);
+$app       = new Application('CloudFlare CLI Tool', 'v0.1.0', $container);
+$app->command('test', TestCommand::class)
+    ->descriptions(
+        'A Test Command'
+    );
 $app->run();
