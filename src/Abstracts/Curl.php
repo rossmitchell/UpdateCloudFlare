@@ -21,6 +21,8 @@
 
 namespace RossMitchell\UpdateCloudFlare\Abstracts;
 
+use Symfony\Component\Console\Exception\LogicException;
+
 abstract class Curl
 {
     /**
@@ -122,11 +124,10 @@ abstract class Curl
      */
     private function getFieldsString(array $fields): string
     {
-        $fieldsString = '';
-        foreach ($fields as $key => $value) {
-            $fieldsString .= $key.'='.$value.'&';
+        $fieldsString = \json_encode($fields);
+        if ($fieldsString === false) {
+            throw new LogicException('Unable to encode the fields');
         }
-        rtrim($fieldsString, '&');
 
         return $fieldsString;
     }
