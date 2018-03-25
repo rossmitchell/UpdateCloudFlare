@@ -23,44 +23,47 @@ namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
-use RossMitchell\UpdateCloudFlare\Model\Requests\GetSubDomainInfo;
-use Symfony\Component\Console\Exception\LogicException;
+use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class TestCommand extends Command
+class UpdateSubDomains extends Command
 {
+    /**
+     * @var UpdateSubDomain
+     */
+    private $subDomain;
     /**
      * @var Config
      */
     private $config;
-    /**
-     * @var GetSubDomainInfo
-     */
-    private $ipAddress;
 
     /**
-     * TestCommand constructor.
+     * UpdateSubDomains constructor.
      *
-     * @param Config           $config
-     * @param GetSubDomainInfo $ipAddress
-     * @param string|null      $name
-     *
-     * @throws LogicException
+     * @param UpdateSubDomain $subDomain
+     * @param Config          $config
+     * @param string|null     $name
      */
-    public function __construct(Config $config, GetSubDomainInfo $ipAddress, string $name = null)
+    public function __construct(UpdateSubDomain $subDomain, Config $config, string $name = null)
     {
         parent::__construct($name);
-        $this->config    = $config;
-        $this->ipAddress = $ipAddress;
+        $this->subDomain = $subDomain;
+        $this->config = $config;
     }
 
     public function runCommand(InputInterface $input, OutputInterface $output)
     {
-        $ipAddress = $this->ipAddress->getSubDomainIpAddress();
-        $id = $this->ipAddress->getSubDomainId();
-        $output->writeln('IP Address: ' . $ipAddress);
-        $output->writeln('CloudFlare ID: ' . $id);
-        $output->writeln($this->config->getEmailAddress());
+        $newIpAddress = $input->getOption('ip-address');
+        if (!empty($newIpAddress)) {
+            $this->subDomain->setIpAddress($newIpAddress);
+        }
+        $subDomains = $this->config->getSubDomains();
+        foreach ($subDomains as $subDomain) {
+            $this->subDomain->setSubDomain($subDomain);
+            $message = $this->subDomain->updateSubDomain();
+            $output->writeln($message);
+        }
+        $output->writeln('All sub domains have been updated');
     }
 }

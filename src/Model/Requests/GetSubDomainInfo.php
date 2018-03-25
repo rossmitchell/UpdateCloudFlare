@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use Symfony\Component\Console\Exception\LogicException;
 
 class GetSubDomainInfo extends Curl
 {
@@ -47,6 +48,10 @@ class GetSubDomainInfo extends Curl
      * @var string
      */
     private $subDomainIpAddress;
+    /**
+     * @var string
+     */
+    private $subDomain;
 
     /**
      * GetSubDomainInfo constructor.
@@ -62,7 +67,7 @@ class GetSubDomainInfo extends Curl
         $this->dnsZones = $dnsZones;
     }
 
-    public function getSubDomainId()
+    public function getSubDomainId(): string
     {
         if ($this->subDomainId === null) {
             $this->collectionInformation();
@@ -71,13 +76,38 @@ class GetSubDomainInfo extends Curl
         return $this->subDomainId;
     }
 
-    public function getSubDomainIpAddress()
+    public function getSubDomainIpAddress(): string
     {
         if ($this->subDomainIpAddress === null) {
             $this->collectionInformation();
         }
 
         return $this->subDomainIpAddress;
+    }
+
+    /**
+     * @param string $subDomain
+     *
+     * @return GetSubDomainInfo
+     */
+    public function setSubDomain(string $subDomain): GetSubDomainInfo
+    {
+        $this->subDomain = $subDomain;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     * @throws LogicException
+     */
+    public function getSubDomain(): string
+    {
+        if (null === $this->subDomain) {
+            throw new LogicException('You must set the sub domain');
+        }
+
+        return $this->subDomain;
     }
 
     /**
@@ -114,6 +144,7 @@ class GetSubDomainInfo extends Curl
      * Return the URL that the request should be made to
      *
      * @return string
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function getUrl(): string
@@ -121,7 +152,7 @@ class GetSubDomainInfo extends Curl
         $baseUrl     = $this->config->getApiUrl();
         $zoneID      = $this->dnsZones->getZoneInformation();
         $type        = 'A';
-        $subDomain   = $this->config->getSubDomains()[0];
+        $subDomain   = $this->getSubDomain();
         $domain      = $this->config->getBaseUrl();
         $ddnsAddress = "${subDomain}.${domain}";
 

@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use Symfony\Component\Console\Exception\LogicException;
 
 class UpdateDnsRecord extends Curl
 {
@@ -47,6 +48,10 @@ class UpdateDnsRecord extends Curl
      * @var string
      */
     private $ipAddress;
+    /**
+     * @var string
+     */
+    private $subDomain;
 
     /**
      * UpdateDnsRecord constructor.
@@ -68,17 +73,61 @@ class UpdateDnsRecord extends Curl
         $this->dnsZones      = $dnsZones;
     }
 
-    public function setNewIpAddress(string $ipAddress)
+    /**
+     * @param string $ipAddress
+     *
+     * @return UpdateDnsRecord
+     */
+    public function setNewIpAddress(string $ipAddress): UpdateDnsRecord
     {
         $this->ipAddress = $ipAddress;
+
+        return $this;
     }
 
+    /**
+     * @return string
+     * @throws LogicException
+     */
     public function getIpAddress(): string
     {
+        if ($this->ipAddress === null) {
+            throw new LogicException('You must set the new IP Address');
+        }
         return $this->ipAddress;
     }
 
-    public function changeIpAddress()
+    /**
+     * @param string $subDomain
+     *
+     * @return UpdateDnsRecord
+     */
+    public function setSubDomain(string $subDomain): UpdateDnsRecord
+    {
+        $this->subDomain = $subDomain;
+        $this->subDomainInfo->setSubDomain($subDomain);
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     * @throws LogicException
+     */
+    public function getSubDomain(): string
+    {
+        if ($this->subDomain === null) {
+            throw new LogicException('You must set the sub domain');
+        }
+
+        return $this->subDomain;
+    }
+
+    /**
+     * @return string
+     * @throws CloudFlareException
+     */
+    public function changeIpAddress(): string
     {
         $result = \json_decode($this->makeRequest());
         if ($result->success === false) {
@@ -118,10 +167,11 @@ class UpdateDnsRecord extends Curl
      * If the request needs data to be sent though return it here. If not return an empty array
      *
      * @return array
+     * @throws LogicException
      */
     public function getFields(): array
     {
-        $subDomain   = $this->config->getSubDomains()[0];
+        $subDomain   = $this->getSubDomain();
         $domain      = $this->config->getBaseUrl();
         $ddnsAddress = "${subDomain}.${domain}";
         $type        = 'A';

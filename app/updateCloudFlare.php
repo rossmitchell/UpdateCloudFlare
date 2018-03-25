@@ -23,6 +23,8 @@
 use DI\ContainerBuilder;
 use PHLAK\Config\Config as ConfigReader;
 use RossMitchell\UpdateCloudFlare\Command\TestCommand;
+use RossMitchell\UpdateCloudFlare\Command\UpdateSingleSubDomain;
+use RossMitchell\UpdateCloudFlare\Command\UpdateSubDomains;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use Silly\Edition\PhpDi\Application;
 
@@ -37,8 +39,17 @@ $containerBuilder->addDefinitions(
 );
 $container = $containerBuilder->build();
 $app       = new Application('CloudFlare CLI Tool', 'v0.1.0', $container);
-$app->command('test', TestCommand::class)
+$app->command('update:all [--ip-address=]', UpdateSubDomains::class)
     ->descriptions(
-        'A Test Command'
+        'Updates all configured sub domains',
+        ['--ip-address' => 'Force the IP Address to use rather than fetching it']
+    );
+$app->command('update:sub-domain subDomain [--ip-address=]', UpdateSingleSubDomain::class)
+    ->descriptions(
+        'Update a named sub domain',
+        [
+            'subDomain'    => 'The sub domain to update',
+            '--ip-address' => 'Force the IP Address to use rather than fetching it',
+        ]
     );
 $app->run();
