@@ -20,41 +20,41 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
+namespace RossMitchell\UpdateCloudFlare\Factories\Responses\Results;
 
-use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
+use RossMitchell\UpdateCloudFlare\Responses\Results\Plan;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
- * Class Headers
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * Class PlanFactory
+ * @package RossMitchell\UpdateCloudFlare\Factories\Responses\Results
  */
-class Headers implements HeadersInterface
+class PlanFactory
 {
     /**
-     * @var ConfigInterface
+     * @var Hydrator
      */
-    private $config;
+    private $hydrator;
 
     /**
-     * Headers constructor.
+     * PlanFactory constructor.
      *
-     * @param ConfigInterface $config
+     * @param Hydrator $hydrator
      */
-    public function __construct(ConfigInterface $config)
+    public function __construct(Hydrator $hydrator)
     {
-        $this->config = $config;
+        $this->hydrator = $hydrator;
     }
 
     /**
-     * @return array
+     * @param \stdClass $data
+     *
+     * @return Plan
+     * @throws LogicException
      */
-    public function getHeadersArray(): array
+    public function create(\stdClass $data): Plan
     {
-        return [
-            'X-Auth-Email: '.$this->config->getEmailAddress(),
-            'X-Auth-Key: '.$this->config->getApiKey(),
-            'Content-Type: application/json',
-        ];
+        return new Plan($this->hydrator, $data);
     }
 }

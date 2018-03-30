@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -19,17 +20,41 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Interfaces;
+namespace RossMitchell\UpdateCloudFlare\Data;
 
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 
 /**
  * Class Headers
  * @package RossMitchell\UpdateCloudFlare\Data
  */
-interface HeadersInterface
+class Headers implements HeadersInterface
 {
+    /**
+     * @var ConfigInterface
+     */
+    private $config;
+
+    /**
+     * Headers constructor.
+     *
+     * @param ConfigInterface $config
+     */
+    public function __construct(ConfigInterface $config)
+    {
+        $this->config = $config;
+    }
+
     /**
      * @return array
      */
-    public function getHeadersArray(): array;
+    public function getHeadersArray(): array
+    {
+        return [
+            'X-Auth-Email: '.$this->config->getEmailAddress(),
+            'X-Auth-Key: '.$this->config->getApiKey(),
+            'Content-Type: application/json',
+        ];
+    }
 }

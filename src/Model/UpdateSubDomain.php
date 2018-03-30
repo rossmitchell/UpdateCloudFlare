@@ -22,12 +22,11 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model;
 
-use RossMitchell\UpdateCloudFlare\Data\Config;
+use RossMitchell\UpdateCloudFlare\Data\GetIpAddress;
+use RossMitchell\UpdateCloudFlare\Data\GetSubDomainInfo;
+use RossMitchell\UpdateCloudFlare\Data\UpdateDnsRecord;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Model\Requests\GetIpAddress;
-use RossMitchell\UpdateCloudFlare\Model\Requests\GetSubDomainInfo;
-use RossMitchell\UpdateCloudFlare\Model\Requests\UpdateDnsRecord;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**

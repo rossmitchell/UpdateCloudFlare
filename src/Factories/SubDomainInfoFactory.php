@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -19,17 +20,21 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Interfaces;
+namespace RossMitchell\UpdateCloudFlare\Factories;
 
+use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
 
 /**
- * Class Headers
- * @package RossMitchell\UpdateCloudFlare\Data
+ * Class SubDomainInfoFactory
+ * @package RossMitchell\UpdateCloudFlare
  */
-interface HeadersInterface
+class SubDomainInfoFactory
 {
     /**
-     * @return array
+     * @return SubDomainInfo
      */
-    public function getHeadersArray(): array;
+    public function create(): SubDomainInfo
+    {
+        new SubDomainInfo();
+    }
 }

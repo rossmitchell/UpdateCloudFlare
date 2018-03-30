@@ -20,44 +20,48 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
+namespace RossMitchell\UpdateCloudFlare\Requests;
 
-use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 
 /**
- * Class GetIpAddress
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * This is used to get the zone information for the base domain
+ *
+ * @package RossMitchell\UpdateCloudFlare
  */
-class GetIpAddress implements RequestInterface
+class ZoneInfo implements RequestInterface
 {
     /**
-     * @var CurlInterface
+     * @var ConfigInterface
      */
-    private $curl;
+    private $config;
+    /**
+     * @var HeadersInterface
+     */
+    private $headers;
 
     /**
-     * GetIpAddress constructor.
+     * ZoneInfo constructor.
      *
-     * @param CurlInterface $curl
+     * @param ConfigInterface  $config
+     * @param HeadersInterface $headers
      */
-    public function __construct(CurlInterface $curl)
+    public function __construct(ConfigInterface $config, HeadersInterface $headers)
     {
-        $this->curl = $curl;
+        $this->config  = $config;
+        $this->headers = $headers;
     }
 
     /**
-     * This will make the request and return the current external IP address.
+     * If headers need to be sent through then they can be returned with this method. If not return an empty array
      *
-     * @return string
-     * @throws \Symfony\Component\Console\Exception\LogicException
-     * @throws \RuntimeException
+     * @return array
      */
-    public function getIpAddress(): string
+    public function getHeaders(): array
     {
-        $result = $this->curl->makeRequest($this);
-
-        return trim($result);
+        return $this->headers->getHeadersArray();
     }
 
     /**
@@ -87,17 +91,9 @@ class GetIpAddress implements RequestInterface
      */
     public function getUrl(): string
     {
-        return 'http://ifconfig.co';
-    }
+        $baseUrl = $this->config->getApiUrl();
+        $domain  = $this->config->getBaseUrl();
 
-
-    /**
-     * If headers need to be sent through then they can be returned with this method. If not return an empty array
-     *
-     * @return array
-     */
-    public function getHeaders(): array
-    {
-        return [];
+        return "${baseUrl}zones?name=${domain}";
     }
 }

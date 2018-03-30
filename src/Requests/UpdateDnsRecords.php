@@ -20,20 +20,19 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Data;
+namespace RossMitchell\UpdateCloudFlare\Requests;
 
-use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
- * This is used to get the zone information for the base domain
- *
- * @package RossMitchell\UpdateCloudFlare
+ * Class UpdateDnsRecord
+ * @package RossMitchell\UpdateCloudFlare\Data
  */
-class GetDnsZones implements RequestInterface
+class UpdateDnsRecords implements RequestInterface
 {
     /**
      * @var ConfigInterface
@@ -44,47 +43,20 @@ class GetDnsZones implements RequestInterface
      */
     private $headers;
     /**
-     * @var string
+     * @var SubDomainInfo
      */
-    private $zoneId;
-    /**
-     * @var CurlInterface
-     */
-    private $curl;
+    private $subDomainInfo;
 
     /**
-     * GetDnsZones constructor.
+     * UpdateDnsRecord constructor.
      *
      * @param ConfigInterface  $config
      * @param HeadersInterface $headers
-     * @param CurlInterface    $curl
      */
-    public function __construct(ConfigInterface $config, HeadersInterface $headers, CurlInterface $curl)
+    public function __construct(ConfigInterface $config, HeadersInterface $headers)
     {
         $this->config  = $config;
         $this->headers = $headers;
-        $this->curl    = $curl;
-    }
-
-    /**
-     * @return string
-     * @throws \Symfony\Component\Console\Exception\LogicException
-     * @throws \RuntimeException
-     * @throws CloudFlareException
-     */
-    public function getZoneInformation(): string
-    {
-        $result = \json_decode($this->curl->makeRequest($this));
-
-        if ($result->success !== true) {
-            $error = new CloudFlareException();
-            $error->setDetails($result, self::class);
-            throw $error;
-        }
-
-        $this->zoneId = $result->result[0]->id;
-
-        return $this->zoneId;
     }
 
     /**
@@ -104,29 +76,71 @@ class GetDnsZones implements RequestInterface
      */
     public function getRequestType(): string
     {
-        return 'GET';
+        return 'PUT';
     }
 
     /**
      * If the request needs data to be sent though return it here. If not return an empty array
      *
      * @return array
+     * @throws LogicException
      */
     public function getFields(): array
     {
-        return [];
+        $subDomainInfo = $this->getSubDomainInfo();
+        $subDomain     = $subDomainInfo->getSubDomain();
+        $ip            = $subDomainInfo->getIpAddress();
+        $type          = $subDomainInfo->getIpType();
+        $domain        = $this->config->getBaseUrl();
+        $fullDomain    = "${subDomain}.${domain}";
+
+        return [
+            'type'    => $type,
+            'name'    => $fullDomain,
+            'content' => $ip,
+        ];
     }
 
     /**
      * Return the URL that the request should be made to
      *
      * @return string
+     * @throws LogicException
+     * @throws \RuntimeException
      */
     public function getUrl(): string
     {
-        $baseUrl = $this->config->getApiUrl();
-        $domain  = $this->config->getBaseUrl();
+        $baseUrl       = $this->config->getApiUrl();
+        $subDomainInfo = $this->getSubDomainInfo();
+        $zoneID        = $subDomainInfo->getZoneId();
+        $subDomainId   = $subDomainInfo->getSubDomainId();
 
-        return "${baseUrl}zones?name=${domain}";
+        return "${baseUrl}zones/${zoneID}/dns_records/${subDomainId}";
     }
+
+    /**
+     * @return SubDomainInfo
+     * @throws LogicException
+     */
+    public function getSubDomainInfo(): SubDomainInfo
+    {
+        if ($this->subDomainInfo === null) {
+            throw new LogicException('You must set the sub domain info object');
+        }
+
+        return $this->subDomainInfo;
+    }
+
+    /**
+     * @param SubDomainInfo $subDomainInfo
+     *
+     * @return UpdateDnsRecords
+     */
+    public function setSubDomainInfo(SubDomainInfo $subDomainInfo): UpdateDnsRecords
+    {
+        $this->subDomainInfo = $subDomainInfo;
+
+        return $this;
+    }
+
 }

@@ -25,11 +25,11 @@ use PHLAK\Config\Config as ConfigReader;
 use RossMitchell\UpdateCloudFlare\Command\UpdateSingleSubDomain;
 use RossMitchell\UpdateCloudFlare\Command\UpdateSubDomains;
 use RossMitchell\UpdateCloudFlare\Data\Config;
+use RossMitchell\UpdateCloudFlare\Data\Headers;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Model\Curl;
-use RossMitchell\UpdateCloudFlare\Model\Requests\Headers;
 use Silly\Edition\PhpDi\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -37,11 +37,11 @@ $containerBuilder = new ContainerBuilder();
 $configFile       = $_ENV['config.file'] ?? 'app/config.json';
 $containerBuilder->addDefinitions(
     [
-        'config.file'          => $configFile,
-        Config::class          => DI\create()->constructor(DI\get(ConfigReader::class), DI\get('config.file')),
-        CurlInterface::class   => DI\get(Curl::class),
-        ConfigInterface::class => DI\get(Config::class),
-        HeadersInterface::class => DI\get(Headers::class)
+        'config.file'           => $configFile,
+        Config::class           => DI\create()->constructor(DI\get(ConfigReader::class), DI\get('config.file')),
+        CurlInterface::class    => DI\get(Curl::class),
+        ConfigInterface::class  => DI\get(Config::class),
+        HeadersInterface::class => DI\get(Headers::class),
     ]
 );
 $container = $containerBuilder->build();

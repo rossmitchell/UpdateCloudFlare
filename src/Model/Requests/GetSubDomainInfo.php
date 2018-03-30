@@ -20,9 +20,8 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
+namespace RossMitchell\UpdateCloudFlare\Data;
 
-use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
@@ -32,7 +31,7 @@ use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class GetSubDomainInfo
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * @package RossMitchell\UpdateCloudFlare\Data
  */
 class GetSubDomainInfo implements RequestInterface
 {
