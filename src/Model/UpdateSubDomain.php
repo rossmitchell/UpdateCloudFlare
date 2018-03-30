@@ -22,7 +22,6 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model;
 
-use RossMitchell\UpdateCloudFlare\Data\GetIpAddress;
 use RossMitchell\UpdateCloudFlare\Data\GetSubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Data\UpdateDnsRecord;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
@@ -65,7 +64,7 @@ class UpdateSubDomain
      * UpdateSubDomain constructor.
      *
      * @param ConfigInterface  $config
-     * @param CurrentIpAddress     $ipAddress
+     * @param CurrentIpAddress $ipAddress
      * @param GetSubDomainInfo $subDomainInfo
      * @param UpdateDnsRecord  $updateDnsRecord
      */

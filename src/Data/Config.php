@@ -54,7 +54,7 @@ class Config implements ConfigInterface
      */
     public function getEmailAddress(): string
     {
-        return $this->get(self::EMAIL_ADDRESS);
+        return (string) $this->get(self::EMAIL_ADDRESS);
     }
 
     /**
@@ -72,7 +72,7 @@ class Config implements ConfigInterface
      */
     public function getApiKey(): string
     {
-        return $this->get(self::API_KEY);
+        return (string) $this->get(self::API_KEY);
     }
 
     /**
@@ -80,7 +80,7 @@ class Config implements ConfigInterface
      */
     public function getBaseUrl(): string
     {
-        return $this->get(self::BASE_DOMAIN);
+        return (string) $this->get(self::BASE_DOMAIN);
     }
 
     /**
@@ -88,7 +88,7 @@ class Config implements ConfigInterface
      */
     public function getApiUrl(): string
     {
-        return $this->get(self::API_URL);
+        return (string) $this->get(self::API_URL);
     }
 
     /**
