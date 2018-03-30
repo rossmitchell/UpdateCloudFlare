@@ -61,7 +61,7 @@ abstract class CloudFlareResponse
         $this->errors     = $this->getNode($result, 'errors');
         $this->messages   = $this->getNode($result, 'messages');
         $this->resultInfo = $this->getNode($result, 'result_info', false);
-        $this->setResults($this->getNode($result, 'result'));
+        $this->setResult($this->getNode($result, 'result'));
     }
 
     /**

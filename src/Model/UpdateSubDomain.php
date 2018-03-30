@@ -27,6 +27,7 @@ use RossMitchell\UpdateCloudFlare\Data\GetSubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Data\UpdateDnsRecord;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Model\Requests\CurrentIpAddress;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
@@ -36,7 +37,7 @@ use Symfony\Component\Console\Exception\LogicException;
 class UpdateSubDomain
 {
     /**
-     * @var GetIpAddress
+     * @var CurrentIpAddress
      */
     private $ipAddress;
     /**
@@ -64,13 +65,13 @@ class UpdateSubDomain
      * UpdateSubDomain constructor.
      *
      * @param ConfigInterface  $config
-     * @param GetIpAddress     $ipAddress
+     * @param CurrentIpAddress     $ipAddress
      * @param GetSubDomainInfo $subDomainInfo
      * @param UpdateDnsRecord  $updateDnsRecord
      */
     public function __construct(
         ConfigInterface $config,
-        GetIpAddress $ipAddress,
+        CurrentIpAddress $ipAddress,
         GetSubDomainInfo $subDomainInfo,
         UpdateDnsRecord $updateDnsRecord
     ) {
@@ -88,7 +89,7 @@ class UpdateSubDomain
     public function getIpAddress(): string
     {
         if ($this->newIpAddress === null) {
-            $this->setIpAddress($this->ipAddress->getIpAddress());
+            $this->setIpAddress($this->ipAddress->getCurrentIpAddress());
         }
 
         return $this->newIpAddress;

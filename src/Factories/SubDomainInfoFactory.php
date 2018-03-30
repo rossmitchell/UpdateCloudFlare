@@ -35,6 +35,6 @@ class SubDomainInfoFactory
      */
     public function create(): SubDomainInfo
     {
-        new SubDomainInfo();
+        return new SubDomainInfo();
     }
 }
