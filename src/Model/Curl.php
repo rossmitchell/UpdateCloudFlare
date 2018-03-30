@@ -20,81 +20,58 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Abstracts;
+namespace RossMitchell\UpdateCloudFlare\Model;
 
+
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class Curl
- * @package RossMitchell\UpdateCloudFlare\Abstracts
+ * @package RossMitchell\UpdateCloudFlare\Model
  */
-abstract class Curl
+class Curl implements CurlInterface
 {
+
     /**
-     * Used to make the request
+     * @param RequestInterface $request
      *
      * @return mixed
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      * @throws \RuntimeException
      */
-    final public function makeRequest()
+    public function makeRequest(RequestInterface $request)
     {
-
         $curl = \curl_init();
-        $this->setRequiredCurlOptions($curl);
-        $this->setOptionalCurlOptions($curl);
+        $this->setRequiredCurlOptions($request, $curl);
+        $this->setOptionalCurlOptions($request, $curl);
 
         return $this->sendRequest($curl);
     }
 
     /**
-     * If headers need to be sent through then they can be returned with this method. If not return an empty array
-     *
-     * @return array
+     * @param RequestInterface $request
+     * @param                  $curl
      */
-    abstract public function getHeaders(): array;
-
-    /**
-     * They type of request that is going to be made
-     *
-     * @return string
-     */
-    abstract public function getRequestType(): string;
-
-    /**
-     * If the request needs data to be sent though return it here. If not return an empty array
-     *
-     * @return array
-     */
-    abstract public function getFields(): array;
-
-    /**
-     * Return the URL that the request should be made to
-     *
-     * @return string
-     */
-    abstract public function getUrl(): string;
-
-    /**
-     * @param $curl
-     */
-    private function setRequiredCurlOptions($curl): void
+    private function setRequiredCurlOptions(RequestInterface $request, $curl): void
     {
-        \curl_setopt($curl, \CURLOPT_URL, $this->getUrl());
+        \curl_setopt($curl, \CURLOPT_URL, $request->getUrl());
         \curl_setopt($curl, \CURLOPT_USERAGENT, 'curl');
-        \curl_setopt($curl, \CURLOPT_CUSTOMREQUEST, $this->getRequestType());
+        \curl_setopt($curl, \CURLOPT_CUSTOMREQUEST, $request->getRequestType());
         \curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
     }
 
     /**
-     * @param $curl
+     * @param RequestInterface $request
+     * @param                  $curl
      *
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      */
-    private function setOptionalCurlOptions($curl): void
+    private function setOptionalCurlOptions(RequestInterface $request, $curl): void
     {
-        $fields     = $this->getFields();
-        $headers    = $this->getHeaders();
+        $fields     = $request->getFields();
+        $headers    = $request->getHeaders();
         $hasFields  = \count($fields) > 0;
         $hasHeaders = \count($headers) > 0;
         if ($hasFields === true) {
@@ -129,7 +106,7 @@ abstract class Curl
      * @param array $fields
      *
      * @return string
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      */
     private function getFieldsString(array $fields): string
     {

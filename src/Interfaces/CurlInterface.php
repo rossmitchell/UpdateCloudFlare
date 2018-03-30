@@ -20,41 +20,18 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
-
-use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+namespace RossMitchell\UpdateCloudFlare\Interfaces;
 
 /**
- * Class Headers
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * Interface CurlInterface
+ * @package RossMitchell\UpdateCloudFlare\Interfaces
  */
-class Headers implements HeadersInterface
+interface CurlInterface
 {
     /**
-     * @var ConfigInterface
-     */
-    private $config;
-
-    /**
-     * Headers constructor.
+     * @param RequestInterface $request
      *
-     * @param ConfigInterface $config
+     * @return mixed
      */
-    public function __construct(ConfigInterface $config)
-    {
-        $this->config = $config;
-    }
-
-    /**
-     * @return array
-     */
-    public function getHeadersArray(): array
-    {
-        return [
-            'X-Auth-Email: '.$this->config->getEmailAddress(),
-            'X-Auth-Key: '.$this->config->getApiKey(),
-            'Content-Type: application/json',
-        ];
-    }
+    public function makeRequest(RequestInterface $request);
 }

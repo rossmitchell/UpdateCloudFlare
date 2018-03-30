@@ -22,23 +22,26 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
-use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class GetSubDomainInfo
  * @package RossMitchell\UpdateCloudFlare\Model\Requests
  */
-class GetSubDomainInfo extends Curl
+class GetSubDomainInfo implements RequestInterface
 {
     /**
-     * @var Headers
+     * @var HeadersInterface
      */
     private $headers;
     /**
-     * @var Config
+     * @var ConfigInterface
      */
     private $config;
     /**
@@ -57,19 +60,25 @@ class GetSubDomainInfo extends Curl
      * @var string
      */
     private $subDomain;
+    /**
+     * @var CurlInterface
+     */
+    private $curl;
 
     /**
      * GetSubDomainInfo constructor.
      *
-     * @param Headers     $headers
-     * @param Config      $config
-     * @param GetDnsZones $dnsZones
+     * @param HeadersInterface $headers
+     * @param ConfigInterface  $config
+     * @param GetDnsZones      $dnsZones
+     * @param CurlInterface    $curl
      */
-    public function __construct(Headers $headers, Config $config, GetDnsZones $dnsZones)
+    public function __construct(HeadersInterface $headers, ConfigInterface $config, GetDnsZones $dnsZones, CurlInterface $curl)
     {
         $this->headers  = $headers;
         $this->config   = $config;
         $this->dnsZones = $dnsZones;
+        $this->curl     = $curl;
     }
 
     /**
@@ -103,18 +112,6 @@ class GetSubDomainInfo extends Curl
     }
 
     /**
-     * @param string $subDomain
-     *
-     * @return GetSubDomainInfo
-     */
-    public function setSubDomain(string $subDomain): GetSubDomainInfo
-    {
-        $this->subDomain = $subDomain;
-
-        return $this;
-    }
-
-    /**
      * @return string
      * @throws LogicException
      */
@@ -125,6 +122,18 @@ class GetSubDomainInfo extends Curl
         }
 
         return $this->subDomain;
+    }
+
+    /**
+     * @param string $subDomain
+     *
+     * @return GetSubDomainInfo
+     */
+    public function setSubDomain(string $subDomain): GetSubDomainInfo
+    {
+        $this->subDomain = $subDomain;
+
+        return $this;
     }
 
     /**
@@ -185,7 +194,7 @@ class GetSubDomainInfo extends Curl
      */
     private function collectionInformation()
     {
-        $result = \json_decode($this->makeRequest());
+        $result = \json_decode($this->curl->makeRequest($this));
         if ($result->success === false) {
             $error = new CloudFlareException();
             $error->setDetails($result, self::class);

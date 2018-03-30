@@ -22,14 +22,29 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
-use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 
 /**
  * Class GetIpAddress
  * @package RossMitchell\UpdateCloudFlare\Model\Requests
  */
-class GetIpAddress extends Curl
+class GetIpAddress implements RequestInterface
 {
+    /**
+     * @var CurlInterface
+     */
+    private $curl;
+
+    /**
+     * GetIpAddress constructor.
+     *
+     * @param CurlInterface $curl
+     */
+    public function __construct(CurlInterface $curl)
+    {
+        $this->curl = $curl;
+    }
 
     /**
      * This will make the request and return the current external IP address.
@@ -40,7 +55,7 @@ class GetIpAddress extends Curl
      */
     public function getIpAddress(): string
     {
-        $result = $this->makeRequest();
+        $result = $this->curl->makeRequest($this);
 
         return trim($result);
     }

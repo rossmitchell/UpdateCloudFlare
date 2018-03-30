@@ -22,23 +22,26 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
-use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class UpdateDnsRecord
  * @package RossMitchell\UpdateCloudFlare\Model\Requests
  */
-class UpdateDnsRecord extends Curl
+class UpdateDnsRecord implements RequestInterface
 {
     /**
-     * @var Config
+     * @var ConfigInterface
      */
     private $config;
     /**
-     * @var Headers
+     * @var HeadersInterface
      */
     private $headers;
     /**
@@ -57,25 +60,32 @@ class UpdateDnsRecord extends Curl
      * @var string
      */
     private $subDomain;
+    /**
+     * @var CurlInterface
+     */
+    private $curl;
 
     /**
      * UpdateDnsRecord constructor.
      *
-     * @param Config           $config
-     * @param Headers          $headers
+     * @param ConfigInterface  $config
+     * @param HeadersInterface $headers
      * @param GetDnsZones      $dnsZones
      * @param GetSubDomainInfo $subDomainInfo
+     * @param CurlInterface    $curl
      */
     public function __construct(
-        Config $config,
-        Headers $headers,
+        ConfigInterface $config,
+        HeadersInterface $headers,
         GetDnsZones $dnsZones,
-        GetSubDomainInfo $subDomainInfo
+        GetSubDomainInfo $subDomainInfo,
+        CurlInterface $curl
     ) {
         $this->config        = $config;
         $this->headers       = $headers;
         $this->subDomainInfo = $subDomainInfo;
         $this->dnsZones      = $dnsZones;
+        $this->curl          = $curl;
     }
 
     /**
@@ -99,7 +109,21 @@ class UpdateDnsRecord extends Curl
         if ($this->ipAddress === null) {
             throw new LogicException('You must set the new IP Address');
         }
+
         return $this->ipAddress;
+    }
+
+    /**
+     * @return string
+     * @throws LogicException
+     */
+    public function getSubDomain(): string
+    {
+        if ($this->subDomain === null) {
+            throw new LogicException('You must set the sub domain');
+        }
+
+        return $this->subDomain;
     }
 
     /**
@@ -118,25 +142,12 @@ class UpdateDnsRecord extends Curl
     /**
      * @return string
      * @throws LogicException
-     */
-    public function getSubDomain(): string
-    {
-        if ($this->subDomain === null) {
-            throw new LogicException('You must set the sub domain');
-        }
-
-        return $this->subDomain;
-    }
-
-    /**
-     * @return string
-     * @throws LogicException
      * @throws \RuntimeException
      * @throws CloudFlareException
      */
     public function changeIpAddress(): string
     {
-        $result = \json_decode($this->makeRequest());
+        $result = \json_decode($this->curl->makeRequest($this));
         if ($result->success === false) {
             $error = new CloudFlareException();
             $error->setDetails($result, self::class);
@@ -144,8 +155,8 @@ class UpdateDnsRecord extends Curl
         }
 
         $details = $result->result;
-        $host = $details->name;
-        $newIp = $details->content;
+        $host    = $details->name;
+        $newIp   = $details->content;
 
         return "${host} has had its IP address update to ${newIp}";
     }

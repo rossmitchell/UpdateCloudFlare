@@ -20,41 +20,39 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
-
-use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+namespace RossMitchell\UpdateCloudFlare\Interfaces;
 
 /**
- * Class Headers
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * Interface RequestInterface
+ * @package RossMitchell\UpdateCloudFlare\Interfaces
  */
-class Headers implements HeadersInterface
+interface RequestInterface
 {
     /**
-     * @var ConfigInterface
-     */
-    private $config;
-
-    /**
-     * Headers constructor.
+     * If headers need to be sent through then they can be returned with this method. If not return an empty array
      *
-     * @param ConfigInterface $config
-     */
-    public function __construct(ConfigInterface $config)
-    {
-        $this->config = $config;
-    }
-
-    /**
      * @return array
      */
-    public function getHeadersArray(): array
-    {
-        return [
-            'X-Auth-Email: '.$this->config->getEmailAddress(),
-            'X-Auth-Key: '.$this->config->getApiKey(),
-            'Content-Type: application/json',
-        ];
-    }
+    public function getHeaders(): array;
+
+    /**
+     * They type of request that is going to be made
+     *
+     * @return string
+     */
+    public function getRequestType(): string;
+
+    /**
+     * If the request needs data to be sent though return it here. If not return an empty array
+     *
+     * @return array
+     */
+    public function getFields(): array;
+
+    /**
+     * Return the URL that the request should be made to
+     *
+     * @return string
+     */
+    public function getUrl(): string;
 }

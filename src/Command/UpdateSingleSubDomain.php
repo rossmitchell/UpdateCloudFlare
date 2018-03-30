@@ -25,6 +25,7 @@ namespace RossMitchell\UpdateCloudFlare\Command;
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;
 use Symfony\Component\Console\Exception\InvalidArgumentException;
 use Symfony\Component\Console\Exception\LogicException;
@@ -42,7 +43,7 @@ class UpdateSingleSubDomain extends Command
      */
     private $subDomain;
     /**
-     * @var Config
+     * @var ConfigInterface
      */
     private $config;
 
@@ -50,12 +51,12 @@ class UpdateSingleSubDomain extends Command
      * UpdateSubDomains constructor.
      *
      * @param UpdateSubDomain $subDomain
-     * @param Config          $config
+     * @param ConfigInterface $config
      * @param string|null     $name
      *
      * @throws LogicException
      */
-    public function __construct(UpdateSubDomain $subDomain, Config $config, string $name = null)
+    public function __construct(UpdateSubDomain $subDomain, ConfigInterface $config, string $name = null)
     {
         parent::__construct($name);
         $this->subDomain = $subDomain;

@@ -22,17 +22,19 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Data;
 
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+
 /**
  * Class Config
  * @package RossMitchell\UpdateCloudFlare\Data
  */
-class Config
+class Config implements ConfigInterface
 {
-    const API_KEY = 'api.credentials.key';
-    const API_URL = 'api.url';
-    const BASE_DOMAIN = 'domain_details.base_url';
+    const API_KEY       = 'api.credentials.key';
+    const API_URL       = 'api.url';
+    const BASE_DOMAIN   = 'domain_details.base_url';
     const EMAIL_ADDRESS = 'api.credentials.email';
-    const SUB_DOMAINS = 'domain_details.sub_domains';
+    const SUB_DOMAINS   = 'domain_details.sub_domains';
     private $configDetails;
 
     /**

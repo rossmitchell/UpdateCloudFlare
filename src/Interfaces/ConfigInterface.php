@@ -1,5 +1,4 @@
 <?php
-declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -20,41 +19,37 @@ declare(strict_types=1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Model\Requests;
+namespace RossMitchell\UpdateCloudFlare\Interfaces;
 
-use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
-use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 
 /**
- * Class Headers
- * @package RossMitchell\UpdateCloudFlare\Model\Requests
+ * Class Config
+ * @package RossMitchell\UpdateCloudFlare\Data
  */
-class Headers implements HeadersInterface
+interface ConfigInterface
 {
     /**
-     * @var ConfigInterface
+     * @return string
      */
-    private $config;
+    public function getEmailAddress(): string;
 
     /**
-     * Headers constructor.
-     *
-     * @param ConfigInterface $config
+     * @return string
      */
-    public function __construct(ConfigInterface $config)
-    {
-        $this->config = $config;
-    }
+    public function getApiKey(): string;
+
+    /**
+     * @return string
+     */
+    public function getBaseUrl(): string;
+
+    /**
+     * @return string
+     */
+    public function getApiUrl(): string;
 
     /**
      * @return array
      */
-    public function getHeadersArray(): array
-    {
-        return [
-            'X-Auth-Email: '.$this->config->getEmailAddress(),
-            'X-Auth-Key: '.$this->config->getApiKey(),
-            'Content-Type: application/json',
-        ];
-    }
+    public function getSubDomains(): array;
 }

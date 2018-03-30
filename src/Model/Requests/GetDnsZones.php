@@ -22,40 +22,49 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
-use RossMitchell\UpdateCloudFlare\Abstracts\Curl;
 use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 
 /**
  * This is used to get the zone information for the base domain
  *
  * @package RossMitchell\UpdateCloudFlare
  */
-class GetDnsZones extends Curl
+class GetDnsZones implements RequestInterface
 {
     /**
-     * @var Config
+     * @var ConfigInterface
      */
     private $config;
     /**
-     * @var Headers
+     * @var HeadersInterface
      */
     private $headers;
     /**
      * @var string
      */
     private $zoneId;
+    /**
+     * @var CurlInterface
+     */
+    private $curl;
 
     /**
      * GetDnsZones constructor.
      *
-     * @param Config  $config
-     * @param Headers $headers
+     * @param ConfigInterface  $config
+     * @param HeadersInterface $headers
+     * @param CurlInterface    $curl
      */
-    public function __construct(Config $config, Headers $headers)
+    public function __construct(ConfigInterface $config, HeadersInterface $headers, CurlInterface $curl)
     {
         $this->config  = $config;
         $this->headers = $headers;
+        $this->curl    = $curl;
     }
 
     /**
@@ -66,7 +75,7 @@ class GetDnsZones extends Curl
      */
     public function getZoneInformation(): string
     {
-        $result = \json_decode($this->makeRequest());
+        $result = \json_decode($this->curl->makeRequest($this));
 
         if ($result->success !== true) {
             $error = new CloudFlareException();
