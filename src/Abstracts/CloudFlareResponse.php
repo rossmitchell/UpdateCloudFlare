@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -57,7 +57,7 @@ abstract class CloudFlareResponse
         if ($result === false) {
             throw new LogicException('Could not decode the result');
         }
-        $this->success    = (bool)$this->getNode($result, 'success');
+        $this->success    = (bool) $this->getNode($result, 'success');
         $this->errors     = $this->getNode($result, 'errors');
         $this->messages   = $this->getNode($result, 'messages');
         $this->resultInfo = $this->getNode($result, 'result_info', false);

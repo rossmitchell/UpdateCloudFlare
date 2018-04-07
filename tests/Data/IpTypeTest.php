@@ -39,10 +39,10 @@ class IpTypeTest extends AbstractTestClass
      */
     public function canSetIpv4Type()
     {
-       $type = $this->getClass();
-       $ip4 = IpType::IP_V4;
-       $type->setType($ip4);
-       $this->assertEquals($ip4, $type->getType());
+        $type = $this->getClass();
+        $ip4 = IpType::IP_V4;
+        $type->setType($ip4);
+        $this->assertEquals($ip4, $type->getType());
     }
 
     /**
