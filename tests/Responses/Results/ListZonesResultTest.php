@@ -26,6 +26,7 @@ use RossMitchell\UpdateCloudFlare\Responses\Results\ListZonesResult;
 use RossMitchell\UpdateCloudFlare\Responses\Results\Owner;
 use RossMitchell\UpdateCloudFlare\Responses\Results\Plan;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class ListZonesResultTest
@@ -48,18 +49,6 @@ class ListZonesResultTest extends AbstractTestClass
         $class = $this->createClass();
         $this->assertInstanceOf(ListZonesResult::class, $class);
     }
-
-    private function createClass(\stdClass $json = null)
-    {
-        if ($json === null) {
-            $json = $this->getExampleJson();
-        }
-        $results = $json->result;
-        $result  = $results[0];
-
-        return $this->factory->create($result);
-    }
-
 
     /**
      * @test
@@ -193,7 +182,7 @@ class ListZonesResultTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnThePaused()
+    public function canReturnIsPaused()
     {
         $class = $this->createClass();
         $this->assertFalse($class->isPaused());
@@ -224,42 +213,219 @@ class ListZonesResultTest extends AbstractTestClass
     }
 
     /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheIdIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->id);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheNameIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->name);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheDevelopmentModeIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->development_mode);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheOriginalNameServersIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->original_name_servers);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheOriginalRegistrarIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->original_registrar);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheOriginalDnsHostIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->original_dnshost);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheCreatedOnIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->created_on);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheModifiedOnIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->modified_on);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheOwnerIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->owner);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfThePermissionsIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->permissions);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfThePlanIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->plan);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfThePlanPendingIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->plan_pending);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheStatusIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->status);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfIsPausedIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->paused);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheTypeIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->type);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfTheNameServersIsMissing()
+    {
+        $json = $this->getExampleJson();
+        unset($json->name_servers);
+        $this->expectException(LogicException::class);
+        $this->createClass($json);
+    }
+
+    private function createClass(\stdClass $json = null)
+    {
+        if ($json === null) {
+            $json = $this->getExampleJson();
+        }
+
+        return $this->factory->create($json);
+    }
+
+    /**
+     * Taken from here https://api.cloudflare.com/#zone-list-zones
      * @return \stdClass
      */
     private function getExampleJson(): \stdClass
     {
         $data = <<<JSON
 {
-  "success": true,
-  "errors": [
-    {}
-  ],
-  "messages": [
-    {}
-  ],
-  "result": [
-    {
-      "id": "023e105f4ecef8ad9ca31a8372d0c353",
-      "name": "example.com",
-      "development_mode": 7200,
-      "original_name_servers": [
+    "id": "023e105f4ecef8ad9ca31a8372d0c353",
+    "name": "example.com",
+    "development_mode": 7200,
+    "original_name_servers": [
         "ns1.originaldnshost.com",
         "ns2.originaldnshost.com"
-      ],
-      "original_registrar": "GoDaddy",
-      "original_dnshost": "NameCheap",
-      "created_on": "2014-01-01T05:20:00.12345Z",
-      "modified_on": "2014-01-01T05:20:00.12345Z",
-      "owner": {
+    ],
+    "original_registrar": "GoDaddy",
+    "original_dnshost": "NameCheap",
+    "created_on": "2014-01-01T05:20:00.12345Z",
+    "modified_on": "2014-01-01T05:20:00.12345Z",
+    "owner": {
         "id": "7c5dae5552338874e5053f2534d2767a",
         "email": "user@example.com",
         "owner_type": "user"
-      },
-      "permissions": [
+    },
+    "permissions": [
         "#zone:read",
         "#zone:edit"
-      ],
-      "plan": {
+    ],
+    "plan": {
         "id": "e592fd9519420ba7405e1307bff33214",
         "name": "Pro Plan",
         "price": 20,
@@ -268,8 +434,8 @@ class ListZonesResultTest extends AbstractTestClass
         "legacy_id": "pro",
         "is_subscribed": true,
         "can_subscribe": true
-      },
-      "plan_pending": {
+    },
+    "plan_pending": {
         "id": "e592fd9519420ba7405e1307bff33214",
         "name": "Pro Plan",
         "price": 20,
@@ -278,22 +444,14 @@ class ListZonesResultTest extends AbstractTestClass
         "legacy_id": "pro",
         "is_subscribed": true,
         "can_subscribe": true
-      },
-      "status": "active",
-      "paused": false,
-      "type": "full",
-      "name_servers": [
+    },
+    "status": "active",
+    "paused": false,
+    "type": "full",
+    "name_servers": [
         "tony.ns.cloudflare.com",
         "woz.ns.cloudflare.com"
-      ]
-    }
-  ],
-  "result_info": {
-    "page": 1,
-    "per_page": 20,
-    "count": 1,
-    "total_count": 2000
-  }
+    ]
 }
 JSON;
 

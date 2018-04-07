@@ -33,6 +33,22 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class ListZonesResult
 {
+    const COMPLEX_PROPERTIES = ['owner', 'plan', 'plan_pending'];
+    const SIMPLE_PROPERTIES  = [
+        'id',
+        'name',
+        'development_mode',
+        'original_name_servers',
+        'original_registrar',
+        'original_dnshost',
+        'created_on',
+        'modified_on',
+        'permissions',
+        'status',
+        'paused',
+        'type',
+        'name_servers',
+    ];
     /**
      * @var string
      */
@@ -114,23 +130,19 @@ class ListZonesResult
         PlanFactory $planFactory,
         \stdClass $data
     ) {
-        $hydrator->setProperty($this, $data, 'id');
-        $hydrator->setProperty($this, $data, 'name');
-        $hydrator->setProperty($this, $data, 'development_mode');
-        $hydrator->setProperty($this, $data, 'original_name_servers');
-        $hydrator->setProperty($this, $data, 'original_registrar');
-        $hydrator->setProperty($this, $data, 'original_dnshost');
-        $hydrator->setProperty($this, $data, 'created_on');
-        $hydrator->setProperty($this, $data, 'modified_on');
-        $hydrator->setProperty($this, $data, 'permissions');
-        $hydrator->setProperty($this, $data, 'status');
-        $hydrator->setProperty($this, $data, 'paused');
-        $hydrator->setProperty($this, $data, 'type');
-        $hydrator->setProperty($this, $data, 'name_servers');
+        foreach (self::SIMPLE_PROPERTIES as $property) {
+            $hydrator->setProperty($this, $data, $property);
+        }
+        
+        foreach (self::COMPLEX_PROPERTIES as $property) {
+            if (!\property_exists($data, $property)) {
+                throw new LogicException("No $property node in the response");
+            }
+        }
 
-        $this->owner       = $ownerFactory->create($data->owner);
-        $this->plan        = $planFactory->create($data->plan);
-        $this->planPending = $planFactory->create($data->plan_pending);
+        $this->setOwner($ownerFactory->create($data->owner));
+        $this->setPlan($planFactory->create($data->plan));
+        $this->setPlanPending($planFactory->create($data->plan_pending));
     }
 
     /**
