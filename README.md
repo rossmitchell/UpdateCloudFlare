@@ -6,7 +6,7 @@ The original idea for this came from [Scott Helme CloudFlareDDNS repo](https://g
 
 I also wanted to play around with a couple of frameworks and this was as good a project for that as any.
 
-This is in the middle of being refactored at the moment, so won't work at all until that is complete
+This is in the middle of being refactored at the moment, so won't work at all until that is complete 
 
 Still need to do the following
 
