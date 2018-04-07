@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -51,10 +51,9 @@ class Config implements ConfigInterface
     {
         try {
             $config->load($configFile);
-        }
-        catch (\Error $error) {
+        } catch (\Error $error) {
             $code      = $error->getCode();
-            $exception = new MissingConfigException("Could not find config file $configFile: $code", $code, $error);
+            $exception = new MissingConfigException("Could not find config file $configFile", $code, $error);
             throw $exception;
 
         }
@@ -66,7 +65,7 @@ class Config implements ConfigInterface
      */
     public function getEmailAddress(): string
     {
-        return (string)$this->get(self::EMAIL_ADDRESS);
+        return (string) $this->get(self::EMAIL_ADDRESS);
     }
 
     /**
@@ -84,7 +83,7 @@ class Config implements ConfigInterface
      */
     public function getApiKey(): string
     {
-        return (string)$this->get(self::API_KEY);
+        return (string) $this->get(self::API_KEY);
     }
 
     /**
@@ -92,7 +91,7 @@ class Config implements ConfigInterface
      */
     public function getBaseUrl(): string
     {
-        return (string)$this->get(self::BASE_DOMAIN);
+        return (string) $this->get(self::BASE_DOMAIN);
     }
 
     /**
@@ -100,7 +99,7 @@ class Config implements ConfigInterface
      */
     public function getApiUrl(): string
     {
-        return (string)$this->get(self::API_URL);
+        return (string) $this->get(self::API_URL);
     }
 
     /**
