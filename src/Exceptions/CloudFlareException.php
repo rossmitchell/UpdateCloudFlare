@@ -1,5 +1,5 @@
 <?php
-declare(strict_types=1);
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -37,7 +37,7 @@ class CloudFlareException extends \Exception
     public function setDetails(\stdClass $details, string $call)
     {
         $errorDetail = $this->collectionErrors($details);
-        $message = "There was an error making the $call:" . \PHP_EOL . $errorDetail;
+        $message = "There was an error making the $call:".\PHP_EOL.$errorDetail;
         $this->message = $message;
     }
 
