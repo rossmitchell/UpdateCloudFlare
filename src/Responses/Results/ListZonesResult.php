@@ -123,8 +123,6 @@ class ListZonesResult
         $hydrator->setProperty($this, $data, 'created_on');
         $hydrator->setProperty($this, $data, 'modified_on');
         $hydrator->setProperty($this, $data, 'permissions');
-        $hydrator->setProperty($this, $data, 'plan');
-        $hydrator->setProperty($this, $data, 'plan_pending');
         $hydrator->setProperty($this, $data, 'status');
         $hydrator->setProperty($this, $data, 'paused');
         $hydrator->setProperty($this, $data, 'type');

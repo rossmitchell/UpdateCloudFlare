@@ -56,11 +56,11 @@ class Plan
      */
     private $legacyId;
     /**
-     * @var string
+     * @var bool
      */
     private $isSubscribed;
     /**
-     * @var string
+     * @var bool
      */
     private $canSubscribe;
 
@@ -181,33 +181,33 @@ class Plan
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getIsSubscribed(): string
+    public function getIsSubscribed(): bool
     {
         return $this->isSubscribed;
     }
 
     /**
-     * @param string $isSubscribed
+     * @param bool $isSubscribed
      */
-    public function setIsSubscribed(string $isSubscribed)
+    public function setIsSubscribed(bool $isSubscribed)
     {
         $this->isSubscribed = $isSubscribed;
     }
 
     /**
-     * @return string
+     * @return bool
      */
-    public function getCanSubscribe(): string
+    public function getCanSubscribe(): bool
     {
         return $this->canSubscribe;
     }
 
     /**
-     * @param string $canSubscribe
+     * @param bool $canSubscribe
      */
-    public function setCanSubscribe(string $canSubscribe)
+    public function setCanSubscribe(bool $canSubscribe)
     {
         $this->canSubscribe = $canSubscribe;
     }
