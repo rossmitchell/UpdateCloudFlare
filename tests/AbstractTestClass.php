@@ -68,6 +68,9 @@ abstract class AbstractTestClass extends TestCase
         return [];
     }
 
+    /**
+     * @return array
+     */
     public function getDefaultDiConfig(): array
     {
         return [
@@ -79,6 +82,9 @@ abstract class AbstractTestClass extends TestCase
         ];
     }
 
+    /**
+     * @return string
+     */
     public function getConfigFile(): string
     {
         return 'tests/_files/testConfig.json';

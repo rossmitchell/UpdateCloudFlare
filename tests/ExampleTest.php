@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -38,18 +39,24 @@ class ExampleTest extends AbstractTestClass
     private $ipType;
 
 
+    /**
+     *
+     */
     public function testCanRunABasicTest()
     {
         $this->assertEquals(1, 1);
     }
 
+    /**
+     *
+     */
     public function testCanInjectObjectsAsNeeded()
     {
         $plan = $this->ipType;
         $this->assertInstanceOf(IpType::class, $plan);
-        $testName = "AAAA";
-        $plan->setType($testName);
-        $this->assertEquals($testName, $plan->getType());
+        $testType = IpType::IP_V6;
+        $plan->setType($testType);
+        $this->assertEquals($testType, $plan->getType());
 
     }
 }

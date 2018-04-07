@@ -156,6 +156,8 @@ class SubDomainInfo
 
     /**
      * @param string $missingProperty
+     *
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     private function throwException(string $missingProperty)
     {

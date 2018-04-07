@@ -50,6 +50,7 @@ class ListZoneFactory
      * @param string $data
      *
      * @return ListZones
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     public function create(string $data): ListZones
     {

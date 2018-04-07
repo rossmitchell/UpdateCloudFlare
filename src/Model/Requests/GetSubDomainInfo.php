@@ -180,10 +180,10 @@ class GetSubDomainInfo implements RequestInterface
         $type        = 'A';
         $subDomain   = $this->getSubDomain();
         $domain      = $this->config->getBaseUrl();
-        $ddnsAddress = "${subDomain}.${domain}";
+        $fullDomain = "${subDomain}.${domain}";
 
 
-        return "${baseUrl}zones/${zoneID}/dns_records?type=$type&name=$ddnsAddress";
+        return "${baseUrl}zones/${zoneID}/dns_records?type=$type&name=$fullDomain";
     }
 
     /**

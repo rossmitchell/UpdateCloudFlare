@@ -107,6 +107,7 @@ class GetZoneId
 
     /**
      * @return ListZones
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     private function getResult(): ListZones
     {

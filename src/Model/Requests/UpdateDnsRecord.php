@@ -190,13 +190,13 @@ class UpdateDnsRecord implements RequestInterface
     {
         $subDomain   = $this->getSubDomain();
         $domain      = $this->config->getBaseUrl();
-        $ddnsAddress = "${subDomain}.${domain}";
+        $fullDomain = "${subDomain}.${domain}";
         $type        = 'A';
         $ip          = $this->getIpAddress();
 
         return [
             'type'    => $type,
-            'name'    => $ddnsAddress,
+            'name'    => $fullDomain,
             'content' => $ip,
         ];
     }

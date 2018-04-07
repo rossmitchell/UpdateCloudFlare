@@ -47,6 +47,8 @@ class ListZones extends CloudFlareResponse
      *
      * @param ListZoneResultsFactory $zoneResultsFactory
      * @param string                 $rawResult
+     *
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     public function __construct(ListZoneResultsFactory $zoneResultsFactory, string $rawResult)
     {

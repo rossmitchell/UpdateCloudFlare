@@ -23,7 +23,7 @@ declare(strict_types=1);
 namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
-use RossMitchell\UpdateCloudFlare\Data\Config;
+
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;

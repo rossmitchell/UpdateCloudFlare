@@ -25,6 +25,10 @@ namespace RossMitchell\UpdateCloudFlare\Responses\Results;
 use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class Plan
+ * @package RossMitchell\UpdateCloudFlare\Responses\Results
+ */
 class Plan
 {
     /**
@@ -179,7 +183,7 @@ class Plan
     /**
      * @return string
      */
-    public function getisSubscribed(): string
+    public function getIsSubscribed(): string
     {
         return $this->isSubscribed;
     }

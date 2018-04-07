@@ -113,6 +113,7 @@ abstract class CloudFlareResponse
      * @param bool      $required
      *
      * @return mixed
+     * @throws \Symfony\Component\Console\Exception\LogicException
      */
     private function getNode(\stdClass $result, string $node, $required = true)
     {
