@@ -1,0 +1,15 @@
+{
+    "api": {
+        "credentials": {
+            "email": "test@example.com",
+            "key": "123456789"
+        },
+        "url": "https://api.cloudflare.com/client/v4/"
+    },
+    "domain_details": {
+        "base_url": "example.com",
+        "sub_domains": [
+            "www"
+        ]
+    }
+}

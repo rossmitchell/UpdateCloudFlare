@@ -22,7 +22,9 @@ declare(strict_types=1);
 
 namespace RossMitchell\UpdateCloudFlare\Data;
 
+use RossMitchell\UpdateCloudFlare\Exceptions\MissingConfigException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class Config
@@ -42,10 +44,20 @@ class Config implements ConfigInterface
      *
      * @param \PHLAK\Config\Config $config
      * @param string               $configFile
+     *
+     * @throws MissingConfigException
      */
     public function __construct(\PHLAK\Config\Config $config, string $configFile)
     {
-        $config->load($configFile);
+        try {
+            $config->load($configFile);
+        }
+        catch (\Error $error) {
+            $code      = $error->getCode();
+            $exception = new MissingConfigException("Could not find config file $configFile: $code", $code, $error);
+            throw $exception;
+
+        }
         $this->configDetails = $config;
     }
 
@@ -54,7 +66,7 @@ class Config implements ConfigInterface
      */
     public function getEmailAddress(): string
     {
-        return (string) $this->get(self::EMAIL_ADDRESS);
+        return (string)$this->get(self::EMAIL_ADDRESS);
     }
 
     /**
@@ -72,7 +84,7 @@ class Config implements ConfigInterface
      */
     public function getApiKey(): string
     {
-        return (string) $this->get(self::API_KEY);
+        return (string)$this->get(self::API_KEY);
     }
 
     /**
@@ -80,7 +92,7 @@ class Config implements ConfigInterface
      */
     public function getBaseUrl(): string
     {
-        return (string) $this->get(self::BASE_DOMAIN);
+        return (string)$this->get(self::BASE_DOMAIN);
     }
 
     /**
@@ -88,17 +100,22 @@ class Config implements ConfigInterface
      */
     public function getApiUrl(): string
     {
-        return (string) $this->get(self::API_URL);
+        return (string)$this->get(self::API_URL);
     }
 
     /**
      * @return array
+     * @throws LogicException
      */
     public function getSubDomains(): array
     {
         $subDomains = $this->get(self::SUB_DOMAINS);
+        if (!\is_array($subDomains) && \is_string($subDomains)) {
+            $subDomains = [$subDomains];
+        }
+
         if (!\is_array($subDomains)) {
-            $subDomains = [];
+            throw new LogicException('The Sub Domains node must be a string or an array');
         }
 
         return $subDomains;
