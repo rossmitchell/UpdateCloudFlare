@@ -32,6 +32,23 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class ListZoneResultsFactory
 {
+    const COMPLEX_PROPERTIES = ['owner', 'plan', 'plan_pending'];
+    const SIMPLE_PROPERTIES  = [
+        'id',
+        'name',
+        'development_mode',
+        'original_name_servers',
+        'original_registrar',
+        'original_dnshost',
+        'created_on',
+        'modified_on',
+        'permissions',
+        'status',
+        'paused',
+        'type',
+        'name_servers',
+    ];
+
     /**
      * @var Hydrator
      */
@@ -54,9 +71,9 @@ class ListZoneResultsFactory
      */
     public function __construct(Hydrator $hydrator, OwnerFactory $ownerFactory, PlanFactory $planFactory)
     {
-        $this->hydrator = $hydrator;
+        $this->hydrator     = $hydrator;
         $this->ownerFactory = $ownerFactory;
-        $this->planFactory = $planFactory;
+        $this->planFactory  = $planFactory;
     }
 
     /**
@@ -67,6 +84,21 @@ class ListZoneResultsFactory
      */
     public function create(\stdClass $data): ListZonesResult
     {
-        return new ListZonesResult($this->hydrator, $this->ownerFactory, $this->planFactory, $data);
+        $listZone = new ListZonesResult();
+        foreach (self::SIMPLE_PROPERTIES as $property) {
+            $this->hydrator->setProperty($listZone, $data, $property);
+        }
+
+        foreach (self::COMPLEX_PROPERTIES as $property) {
+            if (!\property_exists($data, $property)) {
+                throw new LogicException("No $property node in the response");
+            }
+        }
+
+        $listZone->setOwner($this->ownerFactory->create($data->owner));
+        $listZone->setPlan($this->planFactory->create($data->plan));
+        $listZone->setPlanPending($this->planFactory->create($data->plan_pending));
+
+        return $listZone;
     }
 }

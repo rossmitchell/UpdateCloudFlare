@@ -33,22 +33,7 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class ListZonesResult
 {
-    const COMPLEX_PROPERTIES = ['owner', 'plan', 'plan_pending'];
-    const SIMPLE_PROPERTIES  = [
-        'id',
-        'name',
-        'development_mode',
-        'original_name_servers',
-        'original_registrar',
-        'original_dnshost',
-        'created_on',
-        'modified_on',
-        'permissions',
-        'status',
-        'paused',
-        'type',
-        'name_servers',
-    ];
+
     /**
      * @var string
      */
@@ -113,37 +98,6 @@ class ListZonesResult
      * @var array
      */
     private $nameServers;
-
-    /**
-     * ListZonesResult constructor.
-     *
-     * @param Hydrator     $hydrator
-     * @param OwnerFactory $ownerFactory
-     * @param PlanFactory  $planFactory
-     * @param \stdClass    $data
-     *
-     * @throws LogicException
-     */
-    public function __construct(
-        Hydrator $hydrator,
-        OwnerFactory $ownerFactory,
-        PlanFactory $planFactory,
-        \stdClass $data
-    ) {
-        foreach (self::SIMPLE_PROPERTIES as $property) {
-            $hydrator->setProperty($this, $data, $property);
-        }
-        
-        foreach (self::COMPLEX_PROPERTIES as $property) {
-            if (!\property_exists($data, $property)) {
-                throw new LogicException("No $property node in the response");
-            }
-        }
-
-        $this->setOwner($ownerFactory->create($data->owner));
-        $this->setPlan($planFactory->create($data->plan));
-        $this->setPlanPending($planFactory->create($data->plan_pending));
-    }
 
     /**
      * @return string
