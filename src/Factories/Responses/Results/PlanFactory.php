@@ -55,7 +55,7 @@ class PlanFactory
      */
     public function create(\stdClass $data): Plan
     {
-        $plan       = new Plan($this->hydrator, $data);
+        $plan       = new Plan();
         $properties = ['id', 'name', 'price', 'currency', 'frequency', 'legacy_id', 'is_subscribed', 'can_subscribe'];
         foreach ($properties as $property) {
             $this->hydrator->setProperty($plan, $data, $property);

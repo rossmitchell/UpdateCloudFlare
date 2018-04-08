@@ -55,7 +55,7 @@ class OwnerFactory
      */
     public function create(\stdClass $data): Owner
     {
-        $owner =  new Owner($this->hydrator, $data);
+        $owner = new Owner();
         foreach (['id', 'email', 'owner_type'] as $property) {
             $this->hydrator->setProperty($owner, $data, $property);
         }
