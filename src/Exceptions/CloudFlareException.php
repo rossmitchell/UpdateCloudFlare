@@ -22,6 +22,8 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Exceptions;
 
+use RossMitchell\UpdateCloudFlare\Abstracts\CloudFlareResponse;
+
 /**
  * Class CloudFlareException
  * @package RossMitchell\UpdateCloudFlare\Exceptions
@@ -31,12 +33,12 @@ class CloudFlareException extends \Exception
     /**
      * This will parse the result from Cloud Flare and try to produce a meaningful error message
      *
-     * @param \stdClass $details
-     * @param string    $call
+     * @param CloudFlareResponse $details
      */
-    public function setDetails(\stdClass $details, string $call)
+    public function setDetails(CloudFlareResponse $details)
     {
         $errorDetail = $this->collectionErrors($details);
+        $call = \get_class($details);
         $message = "There was an error making the $call:".\PHP_EOL.$errorDetail;
         $this->message = $message;
     }
@@ -44,23 +46,20 @@ class CloudFlareException extends \Exception
     /**
      * This actually loops over the response and fetches the errors
      *
-     * @param \stdClass $details
+     * @param CloudFlareResponse $details
      *
      * @return string
      */
-    private function collectionErrors(\stdClass $details): string
+    private function collectionErrors(CloudFlareResponse $details): string
     {
         $errorMessages = [];
-        if (!\property_exists($details, 'errors')) {
-            return 'No error node returned';
-        }
-        $errors = $details->errors;
-        if (!\is_array($errors)) {
-            return 'Error node is not an array';
+
+        foreach ($details->getErrors() as $error) {
+            $errorMessages[] = $error->getMessage();
         }
 
-        foreach ($errors as $error) {
-            $errorMessages[] = $error->message;
+        if (empty($errorMessages)) {
+            $errorMessages[] = 'No error details returned';
         }
 
         return \implode(PHP_EOL, $errorMessages);

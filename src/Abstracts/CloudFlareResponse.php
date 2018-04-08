@@ -22,6 +22,9 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Abstracts;
 
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
+use RossMitchell\UpdateCloudFlare\Factories\Responses\ErrorFactory;
+use RossMitchell\UpdateCloudFlare\Responses\Error;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
@@ -43,20 +46,32 @@ abstract class CloudFlareResponse
      */
     private $messages;
     private $resultInfo;
+    /**
+     * @var ErrorFactory
+     */
+    private $errorFactory;
 
     /**
      * CloudFlareResponse constructor.
      *
-     * @param \stdClass $result
+     * @param \stdClass    $result
+     * @param ErrorFactory $errorFactory
      *
-     * @throws LogicException
+     * @throws CloudFlareException
      */
-    public function __construct(\stdClass $result)
+    public function __construct(\stdClass $result, ErrorFactory $errorFactory)
     {
+        $this->errorFactory = $errorFactory;
         $this->success    = (bool) $this->getNode($result, 'success');
+        $this->setErrors($this->getNode($result, 'errors'));
+        if ($this->isSuccess() !== true) {
+            $exception = new CloudFlareException();
+            $exception->setDetails($this);
+
+            throw $exception;
+        }
         $this->resultInfo = $this->getNode($result, 'result_info', false);
         $this->setMessages($this->getNode($result, 'messages'));
-        $this->setErrors($this->getNode($result, 'errors'));
         $this->setResult($this->getNode($result, 'result'));
     }
 
@@ -79,7 +94,7 @@ abstract class CloudFlareResponse
     }
 
     /**
-     * @return array
+     * @return Error[]
      */
     public function getErrors(): array
     {
@@ -109,7 +124,7 @@ abstract class CloudFlareResponse
      */
     private function setErrors(array $errors)
     {
-        $this->errors = $this->stripEmptyObjectsFromArray($errors);
+        $this->errors = $this->errorFactory->create($errors);
     }
 
     /**

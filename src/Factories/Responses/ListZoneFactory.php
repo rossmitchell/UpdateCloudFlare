@@ -22,8 +22,10 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\ListZoneResultsFactory;
 use RossMitchell\UpdateCloudFlare\Responses\ListZones;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class ListZoneFactory
@@ -35,25 +37,32 @@ class ListZoneFactory
      * @var ListZoneResultsFactory
      */
     private $zoneResultsFactory;
+    /**
+     * @var ErrorFactory
+     */
+    private $errorFactory;
 
     /**
      * ListZoneFactory constructor.
      *
      * @param ListZoneResultsFactory $zoneResultsFactory
+     * @param ErrorFactory           $errorFactory
      */
-    public function __construct(ListZoneResultsFactory $zoneResultsFactory)
+    public function __construct(ListZoneResultsFactory $zoneResultsFactory, ErrorFactory $errorFactory)
     {
         $this->zoneResultsFactory = $zoneResultsFactory;
+        $this->errorFactory       = $errorFactory;
     }
 
     /**
      * @param \stdClass $data
      *
      * @return ListZones
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws CloudFlareException
+     * @throws LogicException
      */
     public function create(\stdClass $data): ListZones
     {
-        return new ListZones($this->zoneResultsFactory, $data);
+        return new ListZones($this->zoneResultsFactory, $this->errorFactory, $data);
     }
 }

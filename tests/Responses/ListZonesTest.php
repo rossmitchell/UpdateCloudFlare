@@ -21,6 +21,7 @@
 
 namespace RossMitchell\UpdateCloudFlare\Tests\Responses;
 
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\ListZoneFactory;
 use RossMitchell\UpdateCloudFlare\Responses\ListZones;
 use RossMitchell\UpdateCloudFlare\Responses\Results\ListZonesResult;
@@ -162,6 +163,16 @@ class ListZonesTest extends AbstractTestClass
     }
 
     /**
+     * @test
+     */
+    public function willThrowAnExceptionIfCloudFlareReportsAnError()
+    {
+        $json = $this->getErrorJson();
+        $this->expectException(CloudFlareException::class);
+        $this->createClass($json);
+    }
+
+    /**
      * @param \stdClass|null $json
      *
      * @return ListZones
@@ -246,6 +257,23 @@ class ListZonesTest extends AbstractTestClass
     "count": 1,
     "total_count": 2000
   }
+}
+JSON;
+
+        return \json_decode($json);
+    }
+
+    /**
+     * @return \stdClass
+     */
+    private function getErrorJson(): \stdClass
+    {
+        $json = <<<JSON
+{
+    "result": null,
+    "success": false,
+    "errors": [{"code":1003,"message":"Invalid or missing zone id."}],
+    "messages": []
 }
 JSON;
 
