@@ -31,7 +31,7 @@ interface CurlInterface
     /**
      * @param RequestInterface $request
      *
-     * @return mixed
+     * @return string
      */
-    public function makeRequest(RequestInterface $request);
+    public function makeRequest(RequestInterface $request): string;
 }

@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\OwnerFactory;
 use RossMitchell\UpdateCloudFlare\Responses\Results\Owner;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\ListZonesResponse;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
@@ -38,6 +39,12 @@ class OwnerTest extends AbstractTestClass
      * @var OwnerFactory
      */
     private $factory;
+
+    /**
+     * @Inject
+     * @var ListZonesResponse
+     */
+    private $rezponseHelper;
 
     /**
      * @test
@@ -129,13 +136,7 @@ class OwnerTest extends AbstractTestClass
      */
     private function getJson(): \stdClass
     {
-        $json = <<<JSON
-{
-    "id": "7c5dae5552338874e5053f2534d2767a",
-    "email": "user@example.com",
-    "owner_type": "user"
-}
-JSON;
+        $json = $this->rezponseHelper->getOwnerJson();
 
         return \json_decode($json);
     }

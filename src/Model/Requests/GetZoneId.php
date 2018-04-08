@@ -112,7 +112,7 @@ class GetZoneId
     private function getResult(): ListZones
     {
         if ($this->result === null) {
-            $rawResult    = $this->curl->makeRequest($this->request);
+            $rawResult    = \json_decode($this->curl->makeRequest($this->request));
             $this->result = $this->listZoneResults->create($rawResult);
         }
 

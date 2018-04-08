@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results\ListZoneResult;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\ListZoneResultsFactory;
 use RossMitchell\UpdateCloudFlare\Responses\Results\ListZonesResult;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\ListZonesResponse;
 
 /**
  * Class AbstractClass
@@ -37,6 +38,12 @@ class AbstractClass extends AbstractTestClass
      * @var ListZoneResultsFactory
      */
     private $factory;
+
+    /**
+     * @Inject
+     * @var ListZonesResponse
+     */
+    private $responseHelper;
 
     /**
      * @param \stdClass|null $json
@@ -58,57 +65,7 @@ class AbstractClass extends AbstractTestClass
      */
     protected function getExampleJson(): \stdClass
     {
-        $data = <<<JSON
-{
-    "id": "023e105f4ecef8ad9ca31a8372d0c353",
-    "name": "example.com",
-    "development_mode": 7200,
-    "original_name_servers": [
-        "ns1.originaldnshost.com",
-        "ns2.originaldnshost.com"
-    ],
-    "original_registrar": "GoDaddy",
-    "original_dnshost": "NameCheap",
-    "created_on": "2014-01-01T05:20:00.12345Z",
-    "modified_on": "2014-01-01T05:20:00.12345Z",
-    "owner": {
-        "id": "7c5dae5552338874e5053f2534d2767a",
-        "email": "user@example.com",
-        "owner_type": "user"
-    },
-    "permissions": [
-        "#zone:read",
-        "#zone:edit"
-    ],
-    "plan": {
-        "id": "e592fd9519420ba7405e1307bff33214",
-        "name": "Pro Plan",
-        "price": 20,
-        "currency": "USD",
-        "frequency": "monthly",
-        "legacy_id": "pro",
-        "is_subscribed": true,
-        "can_subscribe": true
-    },
-    "plan_pending": {
-        "id": "e592fd9519420ba7405e1307bff33214",
-        "name": "Pro Plan",
-        "price": 20,
-        "currency": "USD",
-        "frequency": "monthly",
-        "legacy_id": "pro",
-        "is_subscribed": true,
-        "can_subscribe": true
-    },
-    "status": "active",
-    "paused": false,
-    "type": "full",
-    "name_servers": [
-        "tony.ns.cloudflare.com",
-        "woz.ns.cloudflare.com"
-    ]
-}
-JSON;
+        $data   = $this->responseHelper->getResultJson();
 
         return \json_decode($data);
     }

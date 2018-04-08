@@ -37,11 +37,11 @@ class Curl implements CurlInterface
     /**
      * @param RequestInterface $request
      *
-     * @return mixed
+     * @return string
      * @throws LogicException
      * @throws \RuntimeException
      */
-    public function makeRequest(RequestInterface $request)
+    public function makeRequest(RequestInterface $request): string
     {
         $curl = \curl_init();
         $this->setRequiredCurlOptions($request, $curl);

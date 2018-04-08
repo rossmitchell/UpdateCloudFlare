@@ -30,7 +30,7 @@ use RossMitchell\UpdateCloudFlare\Data\Headers;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
-use RossMitchell\UpdateCloudFlare\Model\Curl;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\Curl;
 
 /**
  * Class AbstractTestClass

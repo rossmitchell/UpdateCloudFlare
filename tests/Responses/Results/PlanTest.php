@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\PlanFactory;
 use RossMitchell\UpdateCloudFlare\Responses\Results\Plan;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\ListZonesResponse;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
@@ -38,6 +39,12 @@ class PlanTest extends AbstractTestClass
      * @var PlanFactory
      */
     private $factory;
+
+    /**
+     * @Inject
+     * @var ListZonesResponse
+     */
+    private $responseHelper;
 
     /**
      * @test
@@ -227,18 +234,7 @@ class PlanTest extends AbstractTestClass
      */
     private function getJson(): \stdClass
     {
-        $json = <<<JSON
-{
-    "id": "e592fd9519420ba7405e1307bff33214",
-    "name": "Pro Plan",
-    "price": 20,
-    "currency": "USD",
-    "frequency": "monthly",
-    "legacy_id": "pro",
-    "is_subscribed": true,
-    "can_subscribe": true
-}
-JSON;
+        $json = $this->responseHelper->getPlanJson();
 
         return \json_decode($json);
     }

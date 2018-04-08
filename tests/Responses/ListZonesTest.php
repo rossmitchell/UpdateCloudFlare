@@ -26,6 +26,7 @@ use RossMitchell\UpdateCloudFlare\Factories\Responses\ListZoneFactory;
 use RossMitchell\UpdateCloudFlare\Responses\ListZones;
 use RossMitchell\UpdateCloudFlare\Responses\Results\ListZonesResult;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\ListZonesResponse;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
@@ -39,6 +40,12 @@ class ListZonesTest extends AbstractTestClass
      * @var ListZoneFactory
      */
     private $factory;
+
+    /**
+     * @Inject
+     * @var ListZonesResponse
+     */
+    private $responseHelper;
 
     /**
      * @test
@@ -167,7 +174,8 @@ class ListZonesTest extends AbstractTestClass
      */
     public function willThrowAnExceptionIfCloudFlareReportsAnError()
     {
-        $json = $this->getErrorJson();
+        $error = '{"code":1003,"message":"Invalid or missing zone id."}';
+        $json = $this->getJson('false', $error);
         $this->expectException(CloudFlareException::class);
         $this->createClass($json);
     }
@@ -187,95 +195,14 @@ class ListZonesTest extends AbstractTestClass
     }
 
     /**
+     * @param string $success
+     * @param string $error
+     *
      * @return \stdClass
      */
-    private function getJson(): \stdClass
+    private function getJson(string $success = 'true', string $error = '{}'): \stdClass
     {
-        $json = <<<JSON
-{
-  "success": true,
-  "errors": [
-    {}
-  ],
-  "messages": [
-    {}
-  ],
-  "result": [
-    {
-      "id": "023e105f4ecef8ad9ca31a8372d0c353",
-      "name": "example.com",
-      "development_mode": 7200,
-      "original_name_servers": [
-        "ns1.originaldnshost.com",
-        "ns2.originaldnshost.com"
-      ],
-      "original_registrar": "GoDaddy",
-      "original_dnshost": "NameCheap",
-      "created_on": "2014-01-01T05:20:00.12345Z",
-      "modified_on": "2014-01-01T05:20:00.12345Z",
-      "owner": {
-        "id": "7c5dae5552338874e5053f2534d2767a",
-        "email": "user@example.com",
-        "owner_type": "user"
-      },
-      "permissions": [
-        "#zone:read",
-        "#zone:edit"
-      ],
-      "plan": {
-        "id": "e592fd9519420ba7405e1307bff33214",
-        "name": "Pro Plan",
-        "price": 20,
-        "currency": "USD",
-        "frequency": "monthly",
-        "legacy_id": "pro",
-        "is_subscribed": true,
-        "can_subscribe": true
-      },
-      "plan_pending": {
-        "id": "e592fd9519420ba7405e1307bff33214",
-        "name": "Pro Plan",
-        "price": 20,
-        "currency": "USD",
-        "frequency": "monthly",
-        "legacy_id": "pro",
-        "is_subscribed": true,
-        "can_subscribe": true
-      },
-      "status": "active",
-      "paused": false,
-      "type": "full",
-      "name_servers": [
-        "tony.ns.cloudflare.com",
-        "woz.ns.cloudflare.com"
-      ]
-    }
-  ],
-  "result_info": {
-    "page": 1,
-    "per_page": 20,
-    "count": 1,
-    "total_count": 2000
-  }
-}
-JSON;
-
-        return \json_decode($json);
-    }
-
-    /**
-     * @return \stdClass
-     */
-    private function getErrorJson(): \stdClass
-    {
-        $json = <<<JSON
-{
-    "result": null,
-    "success": false,
-    "errors": [{"code":1003,"message":"Invalid or missing zone id."}],
-    "messages": []
-}
-JSON;
+        $json = $this->responseHelper->getFullJson($success, $error);
 
         return \json_decode($json);
     }
