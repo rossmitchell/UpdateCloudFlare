@@ -50,7 +50,7 @@ class ErrorFactory
     {
         $actualErrors = [];
         foreach ($errors as $error) {
-            if(!\property_exists($error, 'code')) {
+            if (!\property_exists($error, 'code')) {
                 continue;
             }
             $actualErrors[] = $this->createError($error);
@@ -67,7 +67,7 @@ class ErrorFactory
     private function createError(\stdClass $error): Error
     {
         $errorObject = new Error();
-        foreach(['code', 'message'] as $property) {
+        foreach (['code', 'message'] as $property) {
             $this->hydrator->setProperty($errorObject, $error, $property);
         }
 

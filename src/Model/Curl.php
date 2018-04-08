@@ -52,7 +52,7 @@ class Curl implements CurlInterface
 
     /**
      * @param RequestInterface $request
-     * @param                  $curl
+     * @param resource         $curl
      */
     private function setRequiredCurlOptions(RequestInterface $request, $curl): void
     {
@@ -64,7 +64,7 @@ class Curl implements CurlInterface
 
     /**
      * @param RequestInterface $request
-     * @param                  $curl
+     * @param resource         $curl
      *
      * @throws LogicException
      */
@@ -83,7 +83,7 @@ class Curl implements CurlInterface
     }
 
     /**
-     * @param $curl
+     * @param resource $curl
      *
      * @return mixed
      * @throws \RuntimeException

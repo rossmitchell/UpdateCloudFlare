@@ -62,7 +62,7 @@ abstract class CloudFlareResponse
     public function __construct(\stdClass $result, ErrorFactory $errorFactory)
     {
         $this->errorFactory = $errorFactory;
-        $this->success    = (bool) $this->getNode($result, 'success');
+        $this->success      = (bool) $this->getNode($result, 'success');
         $this->setErrors($this->getNode($result, 'errors'));
         if ($this->isSuccess() !== true) {
             $exception = new CloudFlareException();
@@ -76,7 +76,7 @@ abstract class CloudFlareResponse
     }
 
     /**
-     * @param $result
+     * @param mixed $result
      */
     abstract public function setResult($result);
 

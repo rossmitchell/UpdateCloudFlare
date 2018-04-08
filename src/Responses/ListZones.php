@@ -71,7 +71,7 @@ class ListZones extends CloudFlareResponse
     }
 
     /**
-     * @param $result
+     * @param mixed $result
      *
      * @throws LogicException
      */

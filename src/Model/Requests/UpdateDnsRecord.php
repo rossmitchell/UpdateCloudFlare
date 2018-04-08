@@ -20,7 +20,7 @@ declare(strict_types = 1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Data;
+namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;

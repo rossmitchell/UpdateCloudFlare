@@ -75,11 +75,11 @@ class InvalidConfigTest extends AbstractTestClass
     }
 
     /**
-     * @param $configFile
+     * @param string $configFile
      *
      * @return Config
      */
-    private function getConfigClass($configFile): Config
+    private function getConfigClass(string $configFile): Config
     {
         $configLoader = $this->configLoader;
 
