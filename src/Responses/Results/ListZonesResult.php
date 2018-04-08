@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -21,11 +20,6 @@ declare(strict_types = 1);
  */
 
 namespace RossMitchell\UpdateCloudFlare\Responses\Results;
-
-use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\OwnerFactory;
-use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\PlanFactory;
-use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
-use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class ListZones

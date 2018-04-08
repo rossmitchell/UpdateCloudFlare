@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -22,6 +22,7 @@
 namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results\ListZoneResult;
 
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\ListZoneResultsFactory;
+use RossMitchell\UpdateCloudFlare\Responses\Results\ListZonesResult;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 
 /**
@@ -37,7 +38,12 @@ class AbstractClass extends AbstractTestClass
      */
     private $factory;
 
-    protected function createClass(\stdClass $json = null)
+    /**
+     * @param \stdClass|null $json
+     *
+     * @return ListZonesResult
+     */
+    protected function createClass(\stdClass $json = null): ListZonesResult
     {
         if ($json === null) {
             $json = $this->getExampleJson();

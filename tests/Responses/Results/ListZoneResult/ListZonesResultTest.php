@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -75,8 +75,8 @@ class ListZonesResultTest extends AbstractClass
     {
         $class       = $this->createClass();
         $expected    = [
-            "ns1.originaldnshost.com",
-            "ns2.originaldnshost.com",
+            'ns1.originaldnshost.com',
+            'ns2.originaldnshost.com',
         ];
         $nameServers = $class->getOriginalNameServers();
         $this->assertInternalType('array', $nameServers);
@@ -135,8 +135,8 @@ class ListZonesResultTest extends AbstractClass
     {
         $class       = $this->createClass();
         $expected    = [
-            "#zone:read",
-            "#zone:edit",
+            '#zone:read',
+            '#zone:edit',
         ];
         $permissions = $class->getPermissions();
         $this->assertInternalType('array', $permissions);
@@ -195,8 +195,8 @@ class ListZonesResultTest extends AbstractClass
     {
         $class       = $this->createClass();
         $expected    = [
-            "tony.ns.cloudflare.com",
-            "woz.ns.cloudflare.com",
+            'tony.ns.cloudflare.com',
+            'woz.ns.cloudflare.com',
         ];
         $nameServers = $class->getNameServers();
         $this->assertInternalType('array', $nameServers);

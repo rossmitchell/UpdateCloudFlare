@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -22,9 +21,6 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Responses\Results;
 
-use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
-use Symfony\Component\Console\Exception\LogicException;
-
 /**
  * Class Owner
  * @package RossMitchell\UpdateCloudFlare\Responses\Results
@@ -43,21 +39,6 @@ class Owner
      * @var string
      */
     private $ownerType;
-
-    /**
-     * Owner constructor.
-     *
-     * @param Hydrator  $hydrator
-     * @param \stdClass $data
-     *
-     * @throws LogicException
-     */
-    public function __construct(Hydrator $hydrator, \stdClass $data)
-    {
-        $hydrator->setProperty($this, $data, 'id');
-        $hydrator->setProperty($this, $data, 'email');
-        $hydrator->setProperty($this, $data, 'owner_type');
-    }
 
     /**
      * @return string

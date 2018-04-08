@@ -22,9 +22,6 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Responses\Results;
 
-use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
-use Symfony\Component\Console\Exception\LogicException;
-
 /**
  * Class Plan
  * @package RossMitchell\UpdateCloudFlare\Responses\Results
@@ -63,26 +60,6 @@ class Plan
      * @var bool
      */
     private $canSubscribe;
-
-    /**
-     * Plan constructor.
-     *
-     * @param Hydrator  $hydrator
-     * @param \stdClass $data
-     *
-     * @throws LogicException
-     */
-    public function __construct(Hydrator $hydrator, \stdClass $data)
-    {
-        $hydrator->setProperty($this, $data, 'id');
-        $hydrator->setProperty($this, $data, 'name');
-        $hydrator->setProperty($this, $data, 'price');
-        $hydrator->setProperty($this, $data, 'currency');
-        $hydrator->setProperty($this, $data, 'frequency');
-        $hydrator->setProperty($this, $data, 'legacy_id');
-        $hydrator->setProperty($this, $data, 'is_subscribed');
-        $hydrator->setProperty($this, $data, 'can_subscribe');
-    }
 
     /**
      * @return string
