@@ -21,29 +21,27 @@
 
 namespace RossMitchell\UpdateCloudFlare\Tests\Requests;
 
-use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
-use RossMitchell\UpdateCloudFlare\Requests\ZoneInfo;
-use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
+use RossMitchell\UpdateCloudFlare\Requests\IfConfig;
 
 /**
- * Class ZoneInfoTest
- * @testdox RossMitchell\UpdateCloudFlare\Requests\ZoneInfo
+ * Class IfConfigTest
+ * @testdox RossMitchell\UpdateCloudFlare\Requests\IfConfig
  * @package RossMitchell\UpdateCloudFlare\Tests\Requests
  */
-class ZoneInfoTest extends AbstractRequest
+class IfConfigTest extends AbstractRequest
 {
     /**
      * @Inject
-     * @var ZoneInfo
+     * @var IfConfig
      */
-    private $zoneInfo;
+    private $request;
 
     /**
-     * @return mixed
+     * @return IfConfig
      */
     public function getRequest()
     {
-        return $this->zoneInfo;
+        return $this->request;
     }
 
     /**
@@ -51,11 +49,7 @@ class ZoneInfoTest extends AbstractRequest
      */
     public function getHeaders(): array
     {
-        return [
-            'X-Auth-Email: test@example.com',
-            'X-Auth-Key: 123456789',
-            'Content-Type: application/json',
-        ];
+        return [];
     }
 
     /**
@@ -79,6 +73,6 @@ class ZoneInfoTest extends AbstractRequest
      */
     public function getUrl(): string
     {
-        return 'https://api.cloudflare.com/client/v4/zones?name=example.com';
+        return 'http://ifconfig.co';
     }
 }
