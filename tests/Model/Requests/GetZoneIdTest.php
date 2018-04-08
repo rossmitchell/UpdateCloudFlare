@@ -26,6 +26,7 @@ use RossMitchell\UpdateCloudFlare\Model\Requests\GetZoneId;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Curl;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\ListZonesResponse;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class GetZoneIdTest
@@ -72,6 +73,17 @@ class GetZoneIdTest extends AbstractTestClass
         $this->curl->setResponse($mockResponse);
         $this->expectException(CloudFlareException::class);
         $this->getZoneId->getZoneId();
+    }
+
+    /**
+     * @test
+     */
+    public function willThrowAnExceptionIfAnUndefinedZoneIsRequested()
+    {
+        $mockResponse = $this->getJson();
+        $this->curl->setResponse($mockResponse);
+        $this->expectException(LogicException::class);
+        $this->getZoneId->getZoneId(3);
     }
 
     /**

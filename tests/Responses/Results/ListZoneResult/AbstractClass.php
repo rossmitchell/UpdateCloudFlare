@@ -65,7 +65,7 @@ class AbstractClass extends AbstractTestClass
      */
     protected function getExampleJson(): \stdClass
     {
-        $data   = $this->responseHelper->getResultJson();
+        $data = $this->responseHelper->getResultJson();
 
         return \json_decode($data);
     }

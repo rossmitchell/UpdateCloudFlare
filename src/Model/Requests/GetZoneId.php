@@ -94,9 +94,6 @@ class GetZoneId
     {
         $result = $this->getResult();
         $zones  = $result->getResult();
-        if (empty($zones)) {
-            throw new LogicException('No Zones Defined');
-        }
         if (!isset($zones[$index])) {
             throw new LogicException("Zone $index is not defined");
         }

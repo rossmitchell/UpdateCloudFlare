@@ -51,7 +51,7 @@ class ZoneInfoTest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectHeadersArray()
     {
-        $headers = $this->zoneInfo->getHeaders();
+        $headers  = $this->zoneInfo->getHeaders();
         $expected = [
             'X-Auth-Email: test@example.com',
             'X-Auth-Key: 123456789',
@@ -84,7 +84,7 @@ class ZoneInfoTest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectUrl()
     {
-       $expectedUrl = 'https://api.cloudflare.com/client/v4/zones?name=example.com';
-       $this->assertEquals($expectedUrl, $this->zoneInfo->getUrl());
+        $expectedUrl = 'https://api.cloudflare.com/client/v4/zones?name=example.com';
+        $this->assertEquals($expectedUrl, $this->zoneInfo->getUrl());
     }
 }
