@@ -46,14 +46,22 @@ class ListZones extends CloudFlareResponse
      * ListZones constructor.
      *
      * @param ListZoneResultsFactory $zoneResultsFactory
-     * @param string                 $rawResult
+     * @param \stdClass              $rawResult
      *
      * @throws \Symfony\Component\Console\Exception\LogicException
      */
-    public function __construct(ListZoneResultsFactory $zoneResultsFactory, string $rawResult)
+    public function __construct(ListZoneResultsFactory $zoneResultsFactory, \stdClass $rawResult)
     {
-        parent::__construct($rawResult);
         $this->zoneResultsFactory = $zoneResultsFactory;
+        parent::__construct($rawResult);
+    }
+
+    /**
+     * @return ListZonesResult[]
+     */
+    public function getResult(): array
+    {
+        return $this->result;
     }
 
     /**
@@ -74,13 +82,5 @@ class ListZones extends CloudFlareResponse
             $results[] = $this->zoneResultsFactory->create($data);
         }
         $this->result = $results;
-    }
-
-    /**
-     * @return ListZonesResult[]
-     */
-    public function getResult(): array
-    {
-        return $this->result;
     }
 }

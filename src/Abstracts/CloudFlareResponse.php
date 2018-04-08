@@ -47,20 +47,16 @@ abstract class CloudFlareResponse
     /**
      * CloudFlareResponse constructor.
      *
-     * @param string $rawResult
+     * @param \stdClass $result
      *
      * @throws LogicException
      */
-    public function __construct(string $rawResult)
+    public function __construct(\stdClass $result)
     {
-        $result = \json_decode($rawResult);
-        if ($result === false) {
-            throw new LogicException('Could not decode the result');
-        }
         $this->success    = (bool) $this->getNode($result, 'success');
-        $this->errors     = $this->getNode($result, 'errors');
-        $this->messages   = $this->getNode($result, 'messages');
         $this->resultInfo = $this->getNode($result, 'result_info', false);
+        $this->setMessages($this->getNode($result, 'messages'));
+        $this->setErrors($this->getNode($result, 'errors'));
         $this->setResult($this->getNode($result, 'result'));
     }
 
@@ -99,13 +95,51 @@ abstract class CloudFlareResponse
     }
 
     /**
-     * @return null
+     * @return mixed
      */
     public function getResultInfo()
     {
         return $this->resultInfo;
     }
 
+    /**
+     *
+     *
+     * @param array $errors
+     */
+    private function setErrors(array $errors)
+    {
+        $this->errors = $this->stripEmptyObjectsFromArray($errors);
+    }
+
+    /**
+     * @param array $messages
+     */
+    private function setMessages(array $messages)
+    {
+        $this->messages = $this->stripEmptyObjectsFromArray($messages);
+    }
+
+    /**
+     * The example JSON returns an array of empty classes. I don't want that to pollute the arrays, so we'll remove
+     * them here.
+     *
+     * @param array $array
+     *
+     * @return array
+     */
+    private function stripEmptyObjectsFromArray(array $array): array
+    {
+        $cleanedArray = [];
+        foreach ($array as $item) {
+            if (\json_encode($item) === '{}') {
+                continue;
+            }
+            $cleanedArray[] = $item;
+        }
+
+        return $cleanedArray;
+    }
 
     /**
      * @param \stdClass $result

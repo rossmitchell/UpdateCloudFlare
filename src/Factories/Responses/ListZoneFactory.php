@@ -47,12 +47,12 @@ class ListZoneFactory
     }
 
     /**
-     * @param string $data
+     * @param \stdClass $data
      *
      * @return ListZones
      * @throws \Symfony\Component\Console\Exception\LogicException
      */
-    public function create(string $data): ListZones
+    public function create(\stdClass $data): ListZones
     {
         return new ListZones($this->zoneResultsFactory, $data);
     }
