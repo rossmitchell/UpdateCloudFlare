@@ -25,7 +25,7 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers;
  * Class ListZonesResponse - Provides a standard response for the List Zones call
  * @package RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers
  */
-class ListZonesResponse
+class ListZonesResponse extends AbstractCloudFlareResponse
 {
     /**
      * @return string
@@ -97,38 +97,5 @@ JSON;
     ]
 }
 JSON;
-    }
-
-    /**
-     * @param string $success
-     * @param string $errors
-     *
-     * @return string
-     */
-    public function getFullJson(string $success = 'true', string $errors = '{}'): string
-    {
-        $result = $this->getResultJson();
-
-        return <<<JSON
-{
-  "success": $success,
-  "errors": [
-    $errors
-  ],
-  "messages": [
-    {}
-  ],
-  "result": [
-    $result
-  ],
-  "result_info": {
-    "page": 1,
-    "per_page": 20,
-    "count": 1,
-    "total_count": 2000
-  }
-}
-JSON;
-
     }
 }

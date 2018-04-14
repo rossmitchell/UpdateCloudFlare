@@ -44,7 +44,7 @@ class OwnerTest extends AbstractTestClass
      * @Inject
      * @var ListZonesResponse
      */
-    private $rezponseHelper;
+    private $responseHelper;
 
     /**
      * @test
@@ -136,7 +136,7 @@ class OwnerTest extends AbstractTestClass
      */
     private function getJson(): \stdClass
     {
-        $json = $this->rezponseHelper->getOwnerJson();
+        $json = $this->responseHelper->getOwnerJson();
 
         return \json_decode($json);
     }

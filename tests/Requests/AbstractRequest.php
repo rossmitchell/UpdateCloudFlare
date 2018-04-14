@@ -69,11 +69,10 @@ abstract class AbstractRequest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectHeadersArray()
     {
-        $headers  = $this->getRequest()
-                         ->getHeaders();
-        $expected = $this->getHeaders();
+        $request = $this->getRequest();
+        $headers = $request->getHeaders();
         $this->assertInternalType('array', $headers);
-        $this->assertEquals($expected, $headers);
+        $this->assertEquals($this->getHeaders(), $headers);
     }
 
     /**
@@ -81,10 +80,9 @@ abstract class AbstractRequest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectRequestType()
     {
-        $this->assertEquals($this->getRequestType(),
-                            $this->getRequest()
-                                 ->getRequestType()
-        );
+        $request     = $this->getRequest();
+        $requestType = $request->getRequestType();
+        $this->assertEquals($this->getRequestType(), $requestType);
     }
 
     /**
@@ -92,11 +90,10 @@ abstract class AbstractRequest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectFields()
     {
-        $fields   = $this->getRequest()
-                         ->getFields();
-        $expected = $this->getFields();
+        $request = $this->getRequest();
+        $fields  = $request->getFields();
         $this->assertInternalType('array', $fields);
-        $this->assertEquals($expected, $fields);
+        $this->assertEquals($this->getFields(), $fields);
     }
 
     /**
@@ -104,10 +101,8 @@ abstract class AbstractRequest extends AbstractTestClass
      */
     public function theClassReturnsTheCorrectUrl()
     {
-        $expectedUrl = $this->getUrl();
-        $this->assertEquals($expectedUrl,
-                            $this->getRequest()
-                                 ->getUrl()
-        );
+        $request   = $this->getRequest();
+        $actualUrl = $request->getUrl();
+        $this->assertEquals($this->getUrl(), $actualUrl);
     }
 }
