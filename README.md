@@ -1,4 +1,4 @@
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/?branch=master)
+[![Build Status](https://travis-ci.org/rossmitchell/UpdateCloudFlare.svg?branch=master)](https://travis-ci.org/rossmitchell/UpdateCloudFlare) [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/?branch=master) [![Code Coverage](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/rossmitchell/UpdateCloudFlare/?branch=master)
 
 This is a small repo that will allow cloudflare to be used as a dynamic DNS.
 
