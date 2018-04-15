@@ -161,6 +161,18 @@ class ListZonesTest extends AbstractTestClass
     /**
      * @test
      */
+    public function canHandleAResponseWhenTheResultIsEmpty()
+    {
+        $json = $this->getJson();
+        $json->result = null;
+        $class = $this->createClass($json);
+        $this->assertInternalType('array', $class->getResult());
+        $this->assertCount(0, $class->getResult());
+    }
+
+    /**
+     * @test
+     */
     public function willNotThrowAnExceptionIfTheResultInfoIsMissing()
     {
         $json = $this->getJson();
