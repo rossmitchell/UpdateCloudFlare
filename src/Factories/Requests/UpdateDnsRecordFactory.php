@@ -21,17 +21,13 @@
 
 namespace RossMitchell\UpdateCloudFlare\Factories\Requests;
 
-use RossMitchell\UpdateCloudFlare\Factories\Data\SubDomainInfoFactory;
+use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
-use RossMitchell\UpdateCloudFlare\Requests\DnsRecords;
+use RossMitchell\UpdateCloudFlare\Requests\UpdateDnsRecords;
 
-class DnsRecordsFactory
+class UpdateDnsRecordFactory
 {
-    /**
-     * @var SubDomainInfoFactory
-     */
-    private $subDomainInfoFactory;
     /**
      * @var ConfigInterface
      */
@@ -42,36 +38,30 @@ class DnsRecordsFactory
     private $headers;
 
     /**
-     * DnsRecordsFactory constructor.
+     * UpdateDnsRecordFactory constructor.
      *
-     * @param SubDomainInfoFactory $subDomainInfoFactory
-     * @param ConfigInterface      $config
-     * @param HeadersInterface     $headers
+     * @param ConfigInterface  $config
+     * @param HeadersInterface $headers
      */
     public function __construct(
-        SubDomainInfoFactory $subDomainInfoFactory,
         ConfigInterface $config,
         HeadersInterface $headers
     ) {
-        $this->subDomainInfoFactory = $subDomainInfoFactory;
-        $this->config               = $config;
-        $this->headers              = $headers;
+
+        $this->config  = $config;
+        $this->headers = $headers;
     }
 
     /**
-     * @param string $subDomain
-     * @param string $type
-     * @param string $zoneId
+     * @param SubDomainInfo $subDomainInfo
      *
-     * @return DnsRecords
+     * @return UpdateDnsRecords
      */
-    public function create(string $subDomain, string $type, string $zoneId): DnsRecords
+    public function create(SubDomainInfo $subDomainInfo): UpdateDnsRecords
     {
-        $subDomainInfo = $this->subDomainInfoFactory->get($subDomain, $type);
-        $dnsRecord     = new DnsRecords($this->config, $this->headers);
-        $subDomainInfo->setZoneId($zoneId);
-        $dnsRecord->setSubDomainInfo($subDomainInfo);
+        $request = new UpdateDnsRecords($this->config, $this->headers);
+        $request->setSubDomainInfo($subDomainInfo);
 
-        return $dnsRecord;
+        return $request;
     }
 }

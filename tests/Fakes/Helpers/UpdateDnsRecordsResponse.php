@@ -21,46 +21,35 @@
 
 namespace RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers;
 
-abstract class AbstractCloudFlareResponse
+/**
+ * Class DnsRecordsResponse
+ * @package RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers
+ */
+class UpdateDnsRecordsResponse extends AbstractCloudFlareResponse
 {
-    protected $resultIsArray = true;
+    protected $resultIsArray = false;
 
     /**
-     * @param string $success
-     * @param string $errors
-     *
      * @return string
      */
-    public function getFullJson(string $success = 'true', string $errors = '{}'): string
+    public function getResultJson(): string
     {
-        $result = $this->getResultJson();
-        if ($this->resultIsArray === true) {
-            $result = "[ $result ]";
-        }
-
         return <<<JSON
 {
-  "success": $success,
-  "errors": [
-    $errors
-  ],
-  "messages": [
-    {}
-  ],
-  "result": $result,
-  "result_info": {
-    "page": 1,
-    "per_page": 20,
-    "count": 1,
-    "total_count": 2000
-  }
+    "id": "372e67954025e0ba6aaa6d586b9e0b59",
+    "type": "A",
+    "name": "example.com",
+    "content": "9.8.7.6",
+    "proxiable": true,
+    "proxied": false,
+    "ttl": 120,
+    "locked": false,
+    "zone_id": "023e105f4ecef8ad9ca31a8372d0c353",
+    "zone_name": "example.com",
+    "created_on": "2014-01-01T05:20:00.12345Z",
+    "modified_on": "2014-01-01T05:20:00.12345Z",
+    "data": {}
 }
 JSON;
-
     }
-
-    /**
-     * @return string
-     */
-    abstract public function getResultJson(): string;
 }
