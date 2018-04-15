@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -19,32 +19,17 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results;
+namespace RossMitchell\UpdateCloudFlare\Tests\Responses\Results\DnsRecord;
 
-use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
 use RossMitchell\UpdateCloudFlare\Responses\Results\DnsRecord;
-use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
-use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\DnsRecordsResponse;
 
 /**
  * Class DnsRecordTest
  * @testdox RossMitchell\UpdateCloudFlare\Responses\Results\DnsRecord
- * @package RossMitchell\UpdateCloudFlare\Tests\Responses\Results
+ * @package RossMitchell\UpdateCloudFlare\Tests\Responses\Results\DnsRecord
  */
-class DnsRecordTest extends AbstractTestClass
+class DnsRecordTest extends AbstractClass
 {
-    /**
-     * @Inject
-     * @var DnsRecordFactory
-     */
-    private $factory;
-
-    /**
-     * @Inject
-     * @var DnsRecordsResponse
-     */
-    private $responseHelper;
-
     /**
      * @test
      */
@@ -59,7 +44,7 @@ class DnsRecordTest extends AbstractTestClass
      */
     public function canReturnTheId()
     {
-        $class = $this->createClass();
+        $class      = $this->createClass();
         $expectedId = '372e67954025e0ba6aaa6d586b9e0b59';
         $this->assertEquals($expectedId, $class->getId());
     }
@@ -69,33 +54,33 @@ class DnsRecordTest extends AbstractTestClass
      */
     public function canReturnTheType()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = 'A';
         $this->assertEquals($expected, $class->getType());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheName()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = 'example.com';
         $this->assertEquals($expected, $class->getName());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheContent()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = '1.2.3.4';
         $this->assertEquals($expected, $class->getContent());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheProxiable()
     {
@@ -104,7 +89,7 @@ class DnsRecordTest extends AbstractTestClass
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheProxied()
     {
@@ -113,17 +98,17 @@ class DnsRecordTest extends AbstractTestClass
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheTtl()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = '120';
         $this->assertEquals($expected, $class->getTtl());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheLocked()
     {
@@ -132,74 +117,51 @@ class DnsRecordTest extends AbstractTestClass
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheZoneId()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = '023e105f4ecef8ad9ca31a8372d0c353';
         $this->assertEquals($expected, $class->getZoneId());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheZoneName()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = 'example.com';
         $this->assertEquals($expected, $class->getZoneName());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheCreatedOn()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = '2014-01-01T05:20:00.12345Z';
         $this->assertEquals($expected, $class->getCreatedOn());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheModifiedOn()
     {
-        $class = $this->createClass();
+        $class    = $this->createClass();
         $expected = '2014-01-01T05:20:00.12345Z';
         $this->assertEquals($expected, $class->getModifiedOn());
     }
 
     /**
-        * @test
+     * @test
      */
     public function canReturnTheData()
     {
         $class = $this->createClass();
         $this->assertNull($class->getData());
-    }
-
-
-    /**
-     * @param \stdClass|null $json
-     *
-     * @return DnsRecord
-     */
-    private function createClass(\stdClass $json = null): DnsRecord
-    {
-        if ($json === null) {
-            $json = $this->getJson();
-        }
-
-        return $this->factory->create($json);
-    }
-
-    /**
-     * @return \stdClass
-     */
-    private function getJson(): \stdClass
-    {
-        return \json_decode($this->responseHelper->getResultJson());
     }
 }
