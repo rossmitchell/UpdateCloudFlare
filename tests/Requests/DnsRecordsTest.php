@@ -84,7 +84,7 @@ class DnsRecordsTest extends AbstractRequest
     {
         $zoneId = $this->zoneId;
         $type = $this->type;
-        $domain = $this->subDomain . '.example.com';
+        $domain = $this->subDomain.'.example.com';
         return "https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records?type=${type}&name=${domain}";
     }
 }

@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
