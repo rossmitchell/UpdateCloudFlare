@@ -39,9 +39,8 @@ class IpTypeTest extends AbstractTestClass
      */
     public function canSetIpv4Type()
     {
-        $type = $this->getClass();
         $ip4 = IpType::IP_V4;
-        $type->setType($ip4);
+        $type = $this->getClass($ip4);
         $this->assertEquals($ip4, $type->getType());
     }
 
@@ -50,9 +49,8 @@ class IpTypeTest extends AbstractTestClass
      */
     public function canSetIPv6Type()
     {
-        $type = $this->getClass();
         $ip6 = IpType::IP_V6;
-        $type->setType($ip6);
+        $type = $this->getClass($ip6);
         $this->assertEquals($ip6, $type->getType());
     }
 
@@ -61,27 +59,16 @@ class IpTypeTest extends AbstractTestClass
      */
     public function willThrowAnExceptionIfAnUnknownTypeIsSet()
     {
-        $type = $this->getClass();
+        $this->expectException(LogicException::class);
         $unknownType = 'Unknown';
-        $this->expectException(LogicException::class);
-        $type->setType($unknownType);
-    }
-
-    /**
-     * @test
-     */
-    public function willThrowAnExceptionIfNoTypeIsSet()
-    {
-        $type = $this->getClass();
-        $this->expectException(LogicException::class);
-        $type->getType();
+        $this->getClass($unknownType);
     }
 
     /**
      * @return IpType
      */
-    private function getClass(): IpType
+    private function getClass(string $type): IpType
     {
-        return new IpType();
+        return new IpType($type);
     }
 }

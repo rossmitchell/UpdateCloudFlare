@@ -39,25 +39,31 @@ class IpType
     private $type;
 
     /**
+     * IpType constructor.
+     *
+     * @param string $type
+     */
+    public function __construct(string $type)
+    {
+        $this->setType($type);
+    }
+
+    /**
      * @return string
      * @throws LogicException
      */
     public function getType(): string
     {
-        if ($this->type === null) {
-            throw new LogicException('You must set the type');
-        }
-
         return $this->type;
     }
 
     /**
      * @param string $type
      *
-     * @return IpType
+     * @return void
      * @throws LogicException
      */
-    public function setType(string $type): IpType
+    private function setType(string $type): void
     {
         switch ($type) {
             case self::IP_V4:
@@ -67,8 +73,6 @@ class IpType
             default:
                 throw new LogicException('IP Type must be either '.self::IP_V4.' or '.self::IP_V6);
         }
-
-        return $this;
     }
 
 }

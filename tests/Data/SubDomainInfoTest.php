@@ -159,9 +159,6 @@ class SubDomainInfoTest extends AbstractTestClass
      */
     private function getIpType(string $ipType = IpType::IP_V4): IpType
     {
-        $type = new IpType();
-        $type->setType($ipType);
-
-        return $type;
+        return new IpType($ipType);
     }
 }
