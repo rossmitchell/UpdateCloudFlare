@@ -58,7 +58,7 @@ class Curl implements CurlInterface
      */
     public function makeRequest(RequestInterface $request): string
     {
-        $curl = \curl_init();
+        $curl = $this->curlResource->curlInit();
         $this->setRequiredCurlOptions($request, $curl);
         $this->setOptionalCurlOptions($request, $curl);
 
