@@ -200,7 +200,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
             $this->createClass($json);
             $this->fail('Exception was not thrown');
         } catch (CloudFlareException $exception) {
-            $expectedError = 'There was an error making the '.UpdateDnsRecords::class.':'.PHP_EOL.$message;
+            $expectedError = 'There was an error making the ' . UpdateDnsRecords::class . ':' . PHP_EOL . $message;
 
             $this->assertEquals($expectedError, $exception->getMessage());
         }

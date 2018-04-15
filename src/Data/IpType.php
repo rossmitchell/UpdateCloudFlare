@@ -70,7 +70,7 @@ class IpType
                 $this->type = $type;
                 break;
             default:
-                throw new LogicException('IP Type must be either '.self::IP_V4.' or '.self::IP_V6);
+                throw new LogicException('IP Type must be either ' . self::IP_V4 . ' or ' . self::IP_V6);
         }
     }
 

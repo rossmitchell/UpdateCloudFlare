@@ -54,6 +54,14 @@ class Request implements RequestInterface
     }
 
     /**
+     * @param array $headers
+     */
+    public function setHeaders(array $headers)
+    {
+        $this->headers = $headers;
+    }
+
+    /**
      * They type of request that is going to be made
      *
      * @return string
@@ -61,6 +69,14 @@ class Request implements RequestInterface
     public function getRequestType(): string
     {
         return $this->requestType;
+    }
+
+    /**
+     * @param string $requestType
+     */
+    public function setRequestType(string $requestType)
+    {
+        $this->requestType = $requestType;
     }
 
     /**
@@ -74,6 +90,14 @@ class Request implements RequestInterface
     }
 
     /**
+     * @param array $fields
+     */
+    public function setFields(array $fields)
+    {
+        $this->fields = $fields;
+    }
+
+    /**
      * Return the URL that the request should be made to
      *
      * @return string
@@ -81,30 +105,6 @@ class Request implements RequestInterface
     public function getUrl(): string
     {
         return $this->url;
-    }
-
-    /**
-     * @param array $headers
-     */
-    public function setHeaders(array $headers)
-    {
-        $this->headers = $headers;
-    }
-
-    /**
-     * @param string $requestType
-     */
-    public function setRequestType(string $requestType)
-    {
-        $this->requestType = $requestType;
-    }
-
-    /**
-     * @param array $fields
-     */
-    public function setFields(array $fields)
-    {
-        $this->fields = $fields;
     }
 
     /**

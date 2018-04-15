@@ -52,8 +52,8 @@ class Headers implements HeadersInterface
     public function getHeadersArray(): array
     {
         return [
-            'X-Auth-Email: '.$this->config->getEmailAddress(),
-            'X-Auth-Key: '.$this->config->getApiKey(),
+            'X-Auth-Email: ' . $this->config->getEmailAddress(),
+            'X-Auth-Key: ' . $this->config->getApiKey(),
             'Content-Type: application/json',
         ];
     }

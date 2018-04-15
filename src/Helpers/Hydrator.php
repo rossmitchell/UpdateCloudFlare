@@ -47,10 +47,10 @@ class Hydrator
             $data->$node = null;
         }
 
-        $settor = 'set'.str_replace('_', '', ucwords($node, '_'));
+        $settor = 'set' . str_replace('_', '', ucwords($node, '_'));
 
         if (!\method_exists($class, $settor)) {
-            throw new LogicException("method $settor does not exist in class ".\get_class($class));
+            throw new LogicException("method $settor does not exist in class " . \get_class($class));
         }
 
         $class->$settor($data->$node);

@@ -74,7 +74,7 @@ class DnsRecords extends CloudFlareResponse
     public function setResult($result)
     {
         $results = [];
-        $result  = (array)$result;
+        $result  = (array) $result;
 
         foreach ($result as $data) {
             $results[] = $this->dnsRecordFactory->create($data);

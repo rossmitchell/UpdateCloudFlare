@@ -98,7 +98,7 @@ class UpdateDnsRecordTest extends AbstractRequest
     {
         return [
             'type'    => $this->type,
-            'name'    => $this->subDomain.'.example.com',
+            'name'    => $this->subDomain . '.example.com',
             'content' => $this->ipAddress,
         ];
     }
