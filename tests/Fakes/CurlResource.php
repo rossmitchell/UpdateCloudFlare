@@ -62,6 +62,11 @@ class CurlResource implements CurlResourceInterface
         $this->options[$option] = $value;
     }
 
+    /**
+     * @param $option
+     *
+     * @return mixed
+     */
     public function getOption($option)
     {
         if (!isset($this->options[$option])) {
@@ -111,6 +116,9 @@ class CurlResource implements CurlResourceInterface
 
     }
 
+    /**
+     * @param string $error
+     */
     public function setError(string $error)
     {
         $this->error = $error;
