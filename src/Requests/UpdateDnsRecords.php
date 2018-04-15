@@ -30,7 +30,7 @@ use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class UpdateDnsRecord
- * @package RossMitchell\UpdateCloudFlare\Data
+ * @package RossMitchell\UpdateCloudFlare\Request
  */
 class UpdateDnsRecords implements RequestInterface
 {

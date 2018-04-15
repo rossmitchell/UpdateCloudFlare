@@ -22,9 +22,15 @@
 namespace RossMitchell\UpdateCloudFlare\Tests\Requests;
 
 use RossMitchell\UpdateCloudFlare\Data\IpType;
+use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
 use RossMitchell\UpdateCloudFlare\Factories\Data\SubDomainInfoFactory;
 use RossMitchell\UpdateCloudFlare\Factories\Requests\UpdateDnsRecordFactory;
 
+/**
+ * Class UpdateDnsRecordTest
+ * @testdox RossMitchell\UpdateCloudFlare\Model\Requests\UpdateDnsRecord
+ * @package RossMitchell\UpdateCloudFlare\Tests\Requests
+ */
 class UpdateDnsRecordTest extends AbstractRequest
 {
     /**
@@ -112,5 +118,14 @@ class UpdateDnsRecordTest extends AbstractRequest
         $subDomainId = $this->subDomainId;
 
         return "https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records/${subDomainId}";
+    }
+
+    /**
+     * @test
+     */
+    public function itCanReturnTheSubDomainInfo()
+    {
+        $request = $this->getRequest();
+        $this->assertInstanceOf(SubDomainInfo::class, $request->getSubDomainInfo());
     }
 }

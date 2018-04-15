@@ -21,4 +21,4 @@ before_script:
 
 script:
     - vendor/bin/phpunit
-    - vendor/bin/infection --min-covered-msi=95 --only-covered
+    - vendor/bin/infection --min-covered-msi=95 --only-covered --threads=4
