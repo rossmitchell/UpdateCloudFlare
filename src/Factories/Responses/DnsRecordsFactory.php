@@ -1,5 +1,4 @@
-<?php
-declare(strict_types = 1);
+<?php declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -20,65 +19,50 @@ declare(strict_types = 1);
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
-namespace RossMitchell\UpdateCloudFlare\Responses;
+namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 
-use RossMitchell\UpdateCloudFlare\Abstracts\CloudFlareResponse;
-use RossMitchell\UpdateCloudFlare\Factories\Responses\ErrorFactory;
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
-use RossMitchell\UpdateCloudFlare\Responses\Results\DnsRecord;
+use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\ListZoneResultsFactory;
+use RossMitchell\UpdateCloudFlare\Responses\DnsRecords;
+use RossMitchell\UpdateCloudFlare\Responses\ListZones;
 use Symfony\Component\Console\Exception\LogicException;
 
 /**
- * Class DnsRecords
- * @package RossMitchell\UpdateCloudFlare\Responses
+ * Class DnsRecordsFactory
+ * @package RossMitchell\UpdateCloudFlare\Factories\Responses
  */
-class DnsRecords extends CloudFlareResponse
+class DnsRecordsFactory
 {
-    /**
-     * @var DnsRecord[]
-     */
-    private $result;
     /**
      * @var DnsRecordFactory
      */
     private $dnsRecordFactory;
+    /**
+     * @var ErrorFactory
+     */
+    private $errorFactory;
 
     /**
-     * DnsRecords constructor.
+     * ListZoneFactory constructor.
      *
      * @param DnsRecordFactory $dnsRecordFactory
      * @param ErrorFactory     $errorFactory
-     * @param \stdClass        $rawResult
-     *
-     * @throws \RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException
      */
-    public function __construct(DnsRecordFactory $dnsRecordFactory, ErrorFactory $errorFactory, \stdClass $rawResult)
+    public function __construct(DnsRecordFactory $dnsRecordFactory, ErrorFactory $errorFactory)
     {
         $this->dnsRecordFactory = $dnsRecordFactory;
-        parent::__construct($rawResult, $errorFactory);
+        $this->errorFactory     = $errorFactory;
     }
 
     /**
-     * @return DnsRecord[]
-     */
-    public function getResult(): array
-    {
-        return $this->result;
-    }
-
-    /**
-     * @param mixed $result
+     * @param \stdClass $data
      *
-     * @throws LogicException
+     * @return DnsRecords
+     * @throws CloudFlareException
      */
-    public function setResult($result)
+    public function create(\stdClass $data): DnsRecords
     {
-        $results = [];
-        $result  = (array) $result;
-
-        foreach ($result as $data) {
-            $results[] = $this->dnsRecordFactory->create($data);
-        }
-        $this->result = $results;
+        return new DnsRecords($this->dnsRecordFactory, $this->errorFactory, $data);
     }
 }
