@@ -92,7 +92,7 @@ class GetZoneId
      * @throws LogicException
      * @throws CloudFlareException
      */
-    private function getIdFromResult(int $index = 0): string
+    private function getIdFromResult(int $index): string
     {
         $result = $this->getResult();
         $zones  = $result->getResult();
