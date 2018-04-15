@@ -72,7 +72,10 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     public function theResultContainsTheNewIpAddress()
     {
         $class = $this->createClass();
-        $this->assertEquals('9.8.7.6', $class->getResult()->getContent());
+        $this->assertEquals('9.8.7.6',
+                            $class->getResult()
+                                  ->getContent()
+        );
     }
 
     /**
@@ -181,9 +184,44 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     public function willThrowAnExceptionIfCloudFlareReportsAnError()
     {
         $error = '{"code":1003,"message":"Invalid or missing zone id."}';
-        $json = $this->getJson('false', $error);
+        $json  = $this->getJson('false', $error);
         $this->expectException(CloudFlareException::class);
         $this->createClass($json);
+    }
+
+    /**
+     * @test
+     */
+    public function willReturnAMeaningfulExceptionIfCloudFlareReportsAnError()
+    {
+        $code    = 1003;
+        $message = 'Invalid or missing zone id.';
+        $error   = "{\"code\":$code,\"message\":\"$message\"}";
+        $json    = $this->getJson('false', $error);
+        try {
+            $this->createClass($json);
+            $this->fail('Exception was not thrown');
+        }
+        catch (CloudFlareException $exception) {
+            $expectedError = 'There was an error making the ' . UpdateDnsRecords::class. ':' . PHP_EOL . $message;
+
+            $this->assertEquals($expectedError, $exception->getMessage());
+        }
+    }
+
+    /**
+     * @test
+     */
+    public function willReturnMultipleMessage()
+    {
+        $json = $this->getJson();
+        $messages = '[{}, {"message": "A Different Message"}]';
+        $json->messages = \json_decode($messages);
+        $class = $this->createClass($json);
+        $actualMessages = $class->getMessages();
+        $this->assertInternalType('array', $actualMessages);
+        $this->assertCount(1, $actualMessages);
+        $this->assertEquals("A Different Message", $actualMessages[0]->message);
     }
 
     /**
@@ -192,7 +230,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
      * @return UpdateDnsRecords
      * @throws CloudFlareException
      */
-    private function createClass(\stdClass $json = null) :UpdateDnsRecords
+    private function createClass(\stdClass $json = null): UpdateDnsRecords
     {
         if ($json === null) {
             $json = $this->getJson();
