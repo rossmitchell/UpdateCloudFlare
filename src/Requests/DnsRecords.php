@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -52,11 +52,13 @@ class DnsRecords implements RequestInterface
      *
      * @param ConfigInterface  $config
      * @param HeadersInterface $headers
+     * @param SubDomainInfo    $subDomainInfo
      */
-    public function __construct(ConfigInterface $config, HeadersInterface $headers)
+    public function __construct(ConfigInterface $config, HeadersInterface $headers, SubDomainInfo $subDomainInfo)
     {
-        $this->config  = $config;
-        $this->headers = $headers;
+        $this->config        = $config;
+        $this->headers       = $headers;
+        $this->subDomainInfo = $subDomainInfo;
     }
 
     /**
@@ -111,26 +113,9 @@ class DnsRecords implements RequestInterface
 
     /**
      * @return SubDomainInfo
-     * @throws LogicException
      */
     public function getSubDomainInfo(): SubDomainInfo
     {
-        if ($this->subDomainInfo === null) {
-            throw new LogicException('You must set the sub domain info object');
-        }
-
         return $this->subDomainInfo;
-    }
-
-    /**
-     * @param SubDomainInfo $subDomainInfo
-     *
-     * @return DnsRecords
-     */
-    public function setSubDomainInfo(SubDomainInfo $subDomainInfo): DnsRecords
-    {
-        $this->subDomainInfo = $subDomainInfo;
-
-        return $this;
     }
 }

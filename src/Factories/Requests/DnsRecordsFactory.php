@@ -68,10 +68,8 @@ class DnsRecordsFactory
     public function create(string $subDomain, string $type, string $zoneId): DnsRecords
     {
         $subDomainInfo = $this->subDomainInfoFactory->get($subDomain, $type);
-        $dnsRecord     = new DnsRecords($this->config, $this->headers);
         $subDomainInfo->setZoneId($zoneId);
-        $dnsRecord->setSubDomainInfo($subDomainInfo);
 
-        return $dnsRecord;
+        return new DnsRecords($this->config, $this->headers, $subDomainInfo);
     }
 }

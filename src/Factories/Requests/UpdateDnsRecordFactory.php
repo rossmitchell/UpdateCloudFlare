@@ -59,9 +59,6 @@ class UpdateDnsRecordFactory
      */
     public function create(SubDomainInfo $subDomainInfo): UpdateDnsRecords
     {
-        $request = new UpdateDnsRecords($this->config, $this->headers);
-        $request->setSubDomainInfo($subDomainInfo);
-
-        return $request;
+        return new UpdateDnsRecords($this->config, $this->headers, $subDomainInfo);
     }
 }
