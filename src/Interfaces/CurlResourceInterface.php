@@ -34,8 +34,8 @@ interface CurlResourceInterface
      * Used to set a curl option
      *
      * @param resource $curl
-     * @param int $option
-     * @param mixed $value
+     * @param int      $option
+     * @param mixed    $value
      *
      * @return void
      */

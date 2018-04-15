@@ -52,7 +52,7 @@ class CurrentIpAddress
      */
     public function __construct(CurlInterface $curl, IfConfig $request)
     {
-        $this->curl = $curl;
+        $this->curl    = $curl;
         $this->request = $request;
     }
 
@@ -62,7 +62,7 @@ class CurrentIpAddress
     public function getCurrentIpAddress(): string
     {
         if ($this->ipAddress === null) {
-            $rawResult = $this->curl->makeRequest($this->request);
+            $rawResult       = $this->curl->makeRequest($this->request);
             $this->ipAddress = \trim($rawResult);
         }
 

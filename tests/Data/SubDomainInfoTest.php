@@ -47,7 +47,7 @@ class SubDomainInfoTest extends AbstractTestClass
     public function canGetTheIpAddress()
     {
         $ipAddress = '1.2.3.4';
-        $class = $this->getClass();
+        $class     = $this->getClass();
         $class->setIpAddress($ipAddress);
 
         $this->assertEquals($ipAddress, $class->getIpAddress());
@@ -58,7 +58,7 @@ class SubDomainInfoTest extends AbstractTestClass
      */
     public function canGetTheSubDomain()
     {
-        $class = $this->getClass();
+        $class     = $this->getClass();
         $subDomain = 'www';
         $this->assertEquals($subDomain, $class->getSubDomain());
     }
@@ -79,7 +79,7 @@ class SubDomainInfoTest extends AbstractTestClass
     public function canGetTheSubDomainId()
     {
         $subDomainId = '1234';
-        $class = $this->getClass();
+        $class       = $this->getClass();
         $class->setSubDomainId($subDomainId);
 
         $this->assertEquals($subDomainId, $class->getSubDomainId());
@@ -91,7 +91,7 @@ class SubDomainInfoTest extends AbstractTestClass
     public function canGetTheZoneId()
     {
         $zoneId = '4567';
-        $class = $this->getClass();
+        $class  = $this->getClass();
         $class->setZoneId($zoneId);
 
         $this->assertEquals($zoneId, $class->getZoneId());

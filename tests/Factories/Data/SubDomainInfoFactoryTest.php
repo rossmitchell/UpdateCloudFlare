@@ -64,7 +64,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     public function callingGetWhenTheClassHasAlreadyBeenCreatedWillReturnIt()
     {
         $createdClass = $this->createClass();
-        $gotClass = $this->getClass();
+        $gotClass     = $this->getClass();
         $this->assertEquals($createdClass, $gotClass);
     }
 
@@ -74,7 +74,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     public function callingGetWhenTheClassHasNotAlreadyBeenCreatedWillReturnADifferentClass()
     {
         $createdClass = $this->createClass();
-        $gotClass = $this->getClass('example');
+        $gotClass     = $this->getClass('example');
         $this->assertNotEquals($createdClass, $gotClass);
     }
 

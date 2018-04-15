@@ -23,7 +23,6 @@ namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
-use RossMitchell\UpdateCloudFlare\Responses\DnsRecords;
 use RossMitchell\UpdateCloudFlare\Responses\UpdateDnsRecords;
 
 /**

@@ -178,7 +178,7 @@ class DnsRecordsTest extends AbstractTestClass
     public function willThrowAnExceptionIfCloudFlareReportsAnError()
     {
         $error = '{"code":1003,"message":"Invalid or missing zone id."}';
-        $json = $this->getJson('false', $error);
+        $json  = $this->getJson('false', $error);
         $this->expectException(CloudFlareException::class);
         $this->createClass($json);
     }

@@ -21,9 +21,7 @@
 
 namespace RossMitchell\UpdateCloudFlare\Tests\Requests;
 
-use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 use RossMitchell\UpdateCloudFlare\Requests\ZoneInfo;
-use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 
 /**
  * Class ZoneInfoTest

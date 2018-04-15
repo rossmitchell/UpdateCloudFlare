@@ -108,8 +108,8 @@ class Curl implements CurlInterface
     private function sendRequest($curl)
     {
         $resource = $this->curlResource;
-        $result = $resource->curlExec($curl);
-        $error = $resource->curlError($curl);
+        $result   = $resource->curlExec($curl);
+        $error    = $resource->curlError($curl);
         if ($error !== false) {
             throw new \RuntimeException($error);
         }

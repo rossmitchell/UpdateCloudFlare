@@ -37,8 +37,8 @@ class DnsRecordsTest extends AbstractRequest
     private $dnsRecords;
 
     private $subDomain = 'www';
-    private $type = IpType::IP_V4;
-    private $zoneId = '12345';
+    private $type      = IpType::IP_V4;
+    private $zoneId    = '12345';
 
 
     /**
@@ -83,8 +83,9 @@ class DnsRecordsTest extends AbstractRequest
     public function getUrl(): string
     {
         $zoneId = $this->zoneId;
-        $type = $this->type;
+        $type   = $this->type;
         $domain = $this->subDomain.'.example.com';
+
         return "https://api.cloudflare.com/client/v4/zones/${zoneId}/dns_records?type=${type}&name=${domain}";
     }
 }

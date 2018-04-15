@@ -42,6 +42,7 @@ class Request implements RequestInterface
      * @var string
      */
     private $url;
+
     /**
      * If headers need to be sent through then they can be returned with this method. If not return an empty array
      *

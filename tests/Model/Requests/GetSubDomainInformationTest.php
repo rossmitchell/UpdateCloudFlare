@@ -66,7 +66,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
         $response = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
         $request = $this->getRequest();
-        $class = $this->subDomainInfo;
+        $class   = $this->subDomainInfo;
         $class->collectionInformation($request);
         $this->assertEquals('1.2.3.4', $class->getSubDomainIpAddress());
     }
@@ -79,7 +79,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
         $response = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
         $request = $this->getRequest();
-        $class = $this->subDomainInfo;
+        $class   = $this->subDomainInfo;
         $class->collectionInformation($request);
         $this->assertEquals('372e67954025e0ba6aaa6d586b9e0b59', $class->getSubDomainId());
     }

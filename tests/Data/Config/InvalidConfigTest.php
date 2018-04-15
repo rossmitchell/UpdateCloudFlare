@@ -66,10 +66,10 @@ class InvalidConfigTest extends AbstractTestClass
      */
     public function canHandleASingleSubDomainInTheConfig()
     {
-        $configFile = 'tests/_files/singleSubDomain.json';
+        $configFile  = 'tests/_files/singleSubDomain.json';
         $configClass = $this->getConfigClass($configFile);
-        $expected = ['www'];
-        $actual = $configClass->getSubDomains();
+        $expected    = ['www'];
+        $actual      = $configClass->getSubDomains();
         $this->assertInternalType('array', $actual);
         $this->assertEquals($expected, $actual);
     }

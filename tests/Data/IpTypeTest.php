@@ -39,7 +39,7 @@ class IpTypeTest extends AbstractTestClass
      */
     public function canSetIpv4Type()
     {
-        $ip4 = IpType::IP_V4;
+        $ip4  = IpType::IP_V4;
         $type = $this->getClass($ip4);
         $this->assertEquals($ip4, $type->getType());
     }
@@ -49,7 +49,7 @@ class IpTypeTest extends AbstractTestClass
      */
     public function canSetIPv6Type()
     {
-        $ip6 = IpType::IP_V6;
+        $ip6  = IpType::IP_V6;
         $type = $this->getClass($ip6);
         $this->assertEquals($ip6, $type->getType());
     }

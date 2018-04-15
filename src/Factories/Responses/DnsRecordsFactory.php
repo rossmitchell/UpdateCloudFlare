@@ -23,10 +23,7 @@ namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
-use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\ListZoneResultsFactory;
 use RossMitchell\UpdateCloudFlare\Responses\DnsRecords;
-use RossMitchell\UpdateCloudFlare\Responses\ListZones;
-use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class DnsRecordsFactory

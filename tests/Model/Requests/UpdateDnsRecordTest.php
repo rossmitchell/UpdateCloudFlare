@@ -104,7 +104,7 @@ class UpdateDnsRecordTest extends AbstractTestClass
     public function itWillThrowAnExceptionIfTheChangedIpAddressIsNotWhatIsExcepted()
     {
         $this->ipAddress = '1.2.3.4';
-        $response = $this->responseHelper->getFullJson();
+        $response        = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
         $class   = $this->updateDnsRecord;
         $request = $this->getRequest();

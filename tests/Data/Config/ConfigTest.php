@@ -60,7 +60,7 @@ class ConfigTest extends AbstractTestClass
     public function canReadTheSubDomainsFromTheConfigFile()
     {
         $expectedSubDomains = ['www'];
-        $actualSubDomains = $this->config->getSubDomains();
+        $actualSubDomains   = $this->config->getSubDomains();
         $this->assertInternalType('array', $actualSubDomains);
         $this->assertEquals($expectedSubDomains, $actualSubDomains);
     }

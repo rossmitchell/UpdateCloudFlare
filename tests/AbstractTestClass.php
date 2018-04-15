@@ -77,10 +77,8 @@ abstract class AbstractTestClass extends TestCase
     {
         return [
             'config.file'                => $this->getConfigFile(),
-            Config::class                => \DI\create()->constructor(
-                \DI\get(ConfigReader::class),
-                \DI\get('config.file')
-            ),
+            Config::class                => \DI\create()->constructor(\DI\get(ConfigReader::class),
+                \DI\get('config.file')),
             CurlInterface::class         => \DI\get(Curl::class),
             ConfigInterface::class       => \DI\get(Config::class),
             HeadersInterface::class      => \DI\get(Headers::class),

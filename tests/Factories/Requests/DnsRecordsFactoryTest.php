@@ -54,9 +54,12 @@ class DnsRecordsFactoryTest extends AbstractTestClass
     public function itSetsTheRequiredParameters()
     {
         $class = $this->createClass();
-        $this->assertEquals('www', $class->getSubDomainInfo()->getSubDomain());
-        $this->assertEquals(IpType::IP_V4, $class->getSubDomainInfo()->getIpType());
-        $this->assertEquals('12345', $class->getSubDomainInfo()->getZoneId());
+        $this->assertEquals('www', $class->getSubDomainInfo()
+                                         ->getSubDomain());
+        $this->assertEquals(IpType::IP_V4, $class->getSubDomainInfo()
+                                                 ->getIpType());
+        $this->assertEquals('12345', $class->getSubDomainInfo()
+                                           ->getZoneId());
     }
 
     private function createClass(string $subDomain = 'www', string $type = IpType::IP_V4, string $zoneId = '12345')

@@ -73,7 +73,7 @@ class HydratorTest extends AbstractTestClass
     public function itWillThrowAnExceptionIfThePropertyIsRequired()
     {
         $testClass = $this->testClass;
-        $rawData = '{}';
+        $rawData   = '{}';
         $this->expectException(LogicException::class);
         $this->hydrator->setProperty($testClass, \json_decode($rawData), 'url');
     }
@@ -81,7 +81,7 @@ class HydratorTest extends AbstractTestClass
     public function itWillThrowAnExceptionIfThereIsNoSetter()
     {
         $testClass = $this->testClass;
-        $rawData = '{"test":"test"}';
+        $rawData   = '{"test":"test"}';
         $this->expectException(LogicException::class);
         $this->hydrator->setProperty($testClass, \json_decode($rawData), 'test');
     }

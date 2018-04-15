@@ -37,9 +37,9 @@ class CloudFlareException extends \Exception
      */
     public function setDetails(CloudFlareResponse $details)
     {
-        $errorDetail = $this->collectionErrors($details);
-        $call = \get_class($details);
-        $message = "There was an error making the $call:".\PHP_EOL.$errorDetail;
+        $errorDetail   = $this->collectionErrors($details);
+        $call          = \get_class($details);
+        $message       = "There was an error making the $call:".\PHP_EOL.$errorDetail;
         $this->message = $message;
     }
 

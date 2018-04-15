@@ -163,9 +163,9 @@ class ListZonesTest extends AbstractTestClass
      */
     public function canHandleAResponseWhenTheResultIsEmpty()
     {
-        $json = $this->getJson();
+        $json         = $this->getJson();
         $json->result = null;
-        $class = $this->createClass($json);
+        $class        = $this->createClass($json);
         $this->assertInternalType('array', $class->getResult());
         $this->assertCount(0, $class->getResult());
     }
@@ -187,7 +187,7 @@ class ListZonesTest extends AbstractTestClass
     public function willThrowAnExceptionIfCloudFlareReportsAnError()
     {
         $error = '{"code":1003,"message":"Invalid or missing zone id."}';
-        $json = $this->getJson('false', $error);
+        $json  = $this->getJson('false', $error);
         $this->expectException(CloudFlareException::class);
         $this->createClass($json);
     }

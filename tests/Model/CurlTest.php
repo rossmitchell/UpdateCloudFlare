@@ -114,7 +114,7 @@ class CurlTest extends AbstractTestClass
     public function itWillThrowAnExceptionWhenThereIsACurlError()
     {
         $request = $this->getRequest();
-        $curl = $this->getClass();
+        $curl    = $this->getClass();
         $this->resource->setError('An error has occurred');
         $this->expectException(\RuntimeException::class);
         $curl->makeRequest($request);

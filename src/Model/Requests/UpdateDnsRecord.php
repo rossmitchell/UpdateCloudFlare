@@ -64,10 +64,12 @@ class UpdateDnsRecord
      */
     public function changeIpAddress(UpdateDnsRecords $request): bool
     {
-        $rawResult = \json_decode($this->curl->makeRequest($request));
-        $result = $this->responseFactory->create($rawResult);
-        $expectedIpAddress = $request->getSubDomainInfo()->getIpAddress();
-        $newIpAddress = $result->getResult()->getContent();
+        $rawResult         = \json_decode($this->curl->makeRequest($request));
+        $result            = $this->responseFactory->create($rawResult);
+        $expectedIpAddress = $request->getSubDomainInfo()
+                                     ->getIpAddress();
+        $newIpAddress      = $result->getResult()
+                                    ->getContent();
         if ($newIpAddress !== $expectedIpAddress) {
             throw new LogicException('Ip Address has not been Updated');
         }

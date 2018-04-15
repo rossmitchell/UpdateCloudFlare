@@ -72,10 +72,8 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     public function theResultContainsTheNewIpAddress()
     {
         $class = $this->createClass();
-        $this->assertEquals('9.8.7.6',
-                            $class->getResult()
-                                    ->getContent()
-        );
+        $this->assertEquals('9.8.7.6', $class->getResult()
+                                             ->getContent());
     }
 
     /**
@@ -201,8 +199,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
         try {
             $this->createClass($json);
             $this->fail('Exception was not thrown');
-        }
-        catch (CloudFlareException $exception) {
+        } catch (CloudFlareException $exception) {
             $expectedError = 'There was an error making the '.UpdateDnsRecords::class.':'.PHP_EOL.$message;
 
             $this->assertEquals($expectedError, $exception->getMessage());
@@ -214,10 +211,10 @@ class UpdateDnsRecordsTest extends AbstractTestClass
      */
     public function willReturnMultipleMessage()
     {
-        $json = $this->getJson();
-        $messages = '[{}, {"message": "A Different Message"}]';
+        $json           = $this->getJson();
+        $messages       = '[{}, {"message": "A Different Message"}]';
         $json->messages = \json_decode($messages);
-        $class = $this->createClass($json);
+        $class          = $this->createClass($json);
         $actualMessages = $class->getMessages();
         $this->assertInternalType('array', $actualMessages);
         $this->assertCount(1, $actualMessages);

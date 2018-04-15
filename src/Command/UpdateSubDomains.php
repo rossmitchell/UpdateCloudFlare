@@ -23,7 +23,6 @@ declare(strict_types = 1);
 namespace RossMitchell\UpdateCloudFlare\Command;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\Command;
-
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Model\UpdateSubDomain;
@@ -60,7 +59,7 @@ class UpdateSubDomains extends Command
     {
         parent::__construct($name);
         $this->subDomain = $subDomain;
-        $this->config = $config;
+        $this->config    = $config;
     }
 
     /**
