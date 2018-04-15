@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Model;
 
 
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlResourceInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 use Symfony\Component\Console\Exception\LogicException;
 
@@ -33,6 +34,20 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class Curl implements CurlInterface
 {
+    /**
+     * @var CurlResourceInterface
+     */
+    private $curlResource;
+
+    /**
+     * Curl constructor.
+     *
+     * @param CurlResourceInterface $curlResource
+     */
+    public function __construct(CurlResourceInterface $curlResource)
+    {
+        $this->curlResource = $curlResource;
+    }
 
     /**
      * @param RequestInterface $request
@@ -56,10 +71,11 @@ class Curl implements CurlInterface
      */
     private function setRequiredCurlOptions(RequestInterface $request, $curl): void
     {
-        \curl_setopt($curl, \CURLOPT_URL, $request->getUrl());
-        \curl_setopt($curl, \CURLOPT_USERAGENT, 'curl');
-        \curl_setopt($curl, \CURLOPT_CUSTOMREQUEST, $request->getRequestType());
-        \curl_setopt($curl, \CURLOPT_RETURNTRANSFER, true);
+        $resource = $this->curlResource;
+        $resource->setOption($curl, \CURLOPT_URL, $request->getUrl());
+        $resource->setOption($curl, \CURLOPT_USERAGENT, 'curl');
+        $resource->setOption($curl, \CURLOPT_CUSTOMREQUEST, $request->getRequestType());
+        $resource->setOption($curl, \CURLOPT_RETURNTRANSFER, true);
     }
 
     /**
@@ -72,13 +88,14 @@ class Curl implements CurlInterface
     {
         $fields     = $request->getFields();
         $headers    = $request->getHeaders();
+        $resource   = $this->curlResource;
         $hasFields  = \count($fields) > 0;
         $hasHeaders = \count($headers) > 0;
         if ($hasFields === true) {
-            \curl_setopt($curl, \CURLOPT_POSTFIELDS, $this->getFieldsString($fields));
+            $resource->setOption($curl, \CURLOPT_POSTFIELDS, $this->getFieldsString($fields));
         }
         if ($hasHeaders === true) {
-            \curl_setopt($curl, \CURLOPT_HTTPHEADER, $headers);
+            $resource->setOption($curl, \CURLOPT_HTTPHEADER, $headers);
         }
     }
 
@@ -90,12 +107,13 @@ class Curl implements CurlInterface
      */
     private function sendRequest($curl)
     {
-        $result = \curl_exec($curl);
-
-        if (\curl_error($curl)) {
-            throw new \RuntimeException(\curl_error($curl));
+        $resource = $this->curlResource;
+        $result = $resource->curlExec($curl);
+        $error = $resource->curlError($curl);
+        if ($error !== false) {
+            throw new \RuntimeException($error);
         }
-        \curl_close($curl);
+        $resource->curlClose($curl);
 
         return $result;
     }
@@ -110,11 +128,6 @@ class Curl implements CurlInterface
      */
     private function getFieldsString(array $fields): string
     {
-        $fieldsString = \json_encode($fields);
-        if ($fieldsString === false) {
-            throw new LogicException('Unable to encode the fields');
-        }
-
-        return $fieldsString;
+        return \json_encode($fields);
     }
 }

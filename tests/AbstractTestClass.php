@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -29,8 +29,10 @@ use RossMitchell\UpdateCloudFlare\Data\Config;
 use RossMitchell\UpdateCloudFlare\Data\Headers;
 use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
+use RossMitchell\UpdateCloudFlare\Interfaces\CurlResourceInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Curl;
+use RossMitchell\UpdateCloudFlare\Tests\Fakes\CurlResource;
 
 /**
  * Class AbstractTestClass
@@ -74,11 +76,15 @@ abstract class AbstractTestClass extends TestCase
     public function getDefaultDiConfig(): array
     {
         return [
-            'config.file'           => $this->getConfigFile(),
-            Config::class           => \DI\create()->constructor(\DI\get(ConfigReader::class), \DI\get('config.file')),
-            CurlInterface::class    => \DI\get(Curl::class),
-            ConfigInterface::class  => \DI\get(Config::class),
-            HeadersInterface::class => \DI\get(Headers::class),
+            'config.file'                => $this->getConfigFile(),
+            Config::class                => \DI\create()->constructor(
+                \DI\get(ConfigReader::class),
+                \DI\get('config.file')
+            ),
+            CurlInterface::class         => \DI\get(Curl::class),
+            ConfigInterface::class       => \DI\get(Config::class),
+            HeadersInterface::class      => \DI\get(Headers::class),
+            CurlResourceInterface::class => \DI\get(CurlResource::class),
         ];
     }
 
