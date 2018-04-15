@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Data;
 
 use RossMitchell\UpdateCloudFlare\Data\IpType;
 use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
+use RossMitchell\UpdateCloudFlare\Factories\Data\SubDomainInfoFactory;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use Symfony\Component\Console\Exception\LogicException;
 
@@ -34,6 +35,12 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class SubDomainInfoTest extends AbstractTestClass
 {
+    /**
+     * @Inject
+     * @var SubDomainInfoFactory
+     */
+    private $factory;
+
     /**
      * @test
      */
@@ -51,10 +58,8 @@ class SubDomainInfoTest extends AbstractTestClass
      */
     public function canGetTheSubDomain()
     {
-        $subDomain = 'www';
         $class = $this->getClass();
-        $class->setSubDomain($subDomain);
-
+        $subDomain = 'www';
         $this->assertEquals($subDomain, $class->getSubDomain());
     }
 
@@ -63,9 +68,7 @@ class SubDomainInfoTest extends AbstractTestClass
      */
     public function canGetTheIpType()
     {
-        $ipType = $this->getIpType();
         $class = $this->getClass();
-        $class->setIpType($ipType);
 
         $this->assertEquals(IpType::IP_V4, $class->getIpType());
     }
@@ -107,26 +110,6 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfIpTypeIsNotSet()
-    {
-        $class = $this->getClass();
-        $this->expectException(LogicException::class);
-        $class->getIpType();
-    }
-
-    /**
-     * @test
-     */
-    public function willThrowAnExceptionIfSubDomainIsNotSet()
-    {
-        $class = $this->getClass();
-        $this->expectException(LogicException::class);
-        $class->getSubDomain();
-    }
-
-    /**
-     * @test
-     */
     public function willThrowAnExceptionIfSubDomainIdIsNotSet()
     {
         $class = $this->getClass();
@@ -145,11 +128,14 @@ class SubDomainInfoTest extends AbstractTestClass
     }
 
     /**
+     * @param string $subDomain
+     * @param string $type
+     *
      * @return SubDomainInfo
      */
-    private function getClass(): SubDomainInfo
+    private function getClass(string $subDomain = 'www', string $type = IpType::IP_V4): SubDomainInfo
     {
-        return new SubDomainInfo();
+        return $this->factory->create($subDomain, $type);
     }
 
     /**

@@ -50,7 +50,6 @@ class IpType
 
     /**
      * @return string
-     * @throws LogicException
      */
     public function getType(): string
     {

@@ -1,5 +1,5 @@
 <?php
-declare(strict_types = 1);
+declare(strict_types=1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -52,6 +52,18 @@ class SubDomainInfo
     private $zoneId;
 
     /**
+     * SubDomainInfo constructor.
+     *
+     * @param string $subDomain
+     * @param IpType $ipType
+     */
+    public function __construct(string $subDomain, IpType $ipType)
+    {
+        $this->subDomain = $subDomain;
+        $this->ipType    = $ipType;
+    }
+
+    /**
      * @return string
      * @throws LogicException
      */
@@ -74,44 +86,18 @@ class SubDomainInfo
 
     /**
      * @return string
-     * @throws LogicException
      */
     public function getSubDomain(): string
     {
-        if ($this->subDomain === null) {
-            $this->throwException('sub domain');
-        }
-
         return $this->subDomain;
     }
 
     /**
-     * @param string $subDomain
-     */
-    public function setSubDomain(string $subDomain)
-    {
-        $this->subDomain = $subDomain;
-    }
-
-    /**
      * @return string
-     * @throws LogicException
      */
     public function getIpType(): string
     {
-        if ($this->ipType === null) {
-            $this->throwException('IP Type');
-        }
-
         return $this->ipType->getType();
-    }
-
-    /**
-     * @param IpType $ipType
-     */
-    public function setIpType(IpType $ipType)
-    {
-        $this->ipType = $ipType;
     }
 
     /**
@@ -123,6 +109,7 @@ class SubDomainInfo
         if ($this->subDomainId === null) {
             $this->throwException('sub domain ID');
         }
+
         return $this->subDomainId;
     }
 
@@ -143,6 +130,7 @@ class SubDomainInfo
         if ($this->zoneId === null) {
             $this->throwException('Zone ID');
         }
+
         return $this->zoneId;
     }
 
