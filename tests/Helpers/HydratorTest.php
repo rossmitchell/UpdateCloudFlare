@@ -78,6 +78,9 @@ class HydratorTest extends AbstractTestClass
         $this->hydrator->setProperty($testClass, \json_decode($rawData), 'url');
     }
 
+    /**
+     * @test
+     */
     public function itWillThrowAnExceptionIfThereIsNoSetter()
     {
         $testClass = $this->testClass;
