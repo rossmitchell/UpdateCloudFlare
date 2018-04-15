@@ -17,7 +17,7 @@ cache:
 
 before_script:
   - composer self-update
-  - composer update
+  - composer update ${COMPOSER_OPTS}
 
 script:
     - vendor/bin/phpunit
