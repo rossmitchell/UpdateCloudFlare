@@ -49,7 +49,7 @@ class ErrorFactoryTest extends AbstractTestClass
     {"code": $code, "message": "$message"}
 ]
 JSON;
-        $errorArray  = \json_decode($errorString);
+        $errorArray = \json_decode($errorString);
 
         $errors = $this->factory->create($errorArray);
         $this->assertInternalType('array', $errors);

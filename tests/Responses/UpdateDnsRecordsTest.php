@@ -74,7 +74,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
         $class = $this->createClass();
         $this->assertEquals('9.8.7.6',
                             $class->getResult()
-                                  ->getContent()
+                                    ->getContent()
         );
     }
 
@@ -203,7 +203,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
             $this->fail('Exception was not thrown');
         }
         catch (CloudFlareException $exception) {
-            $expectedError = 'There was an error making the ' . UpdateDnsRecords::class. ':' . PHP_EOL . $message;
+            $expectedError = 'There was an error making the '.UpdateDnsRecords::class.':'.PHP_EOL.$message;
 
             $this->assertEquals($expectedError, $exception->getMessage());
         }
