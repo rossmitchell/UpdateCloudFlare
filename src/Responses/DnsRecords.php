@@ -67,7 +67,7 @@ class DnsRecords extends CloudFlareResponse
     }
 
     /**
-     * @param array $result
+     * @param mixed $result
      *
      * @throws LogicException
      */

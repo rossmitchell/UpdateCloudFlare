@@ -149,7 +149,7 @@ class UpdateDnsRecord implements RequestInterface
         $result = \json_decode($this->curl->makeRequest($this));
         if ($result->success === false) {
             $error = new CloudFlareException();
-            $error->setDetails($result, self::class);
+            $error->setDetails($result);
             throw $error;
         }
 

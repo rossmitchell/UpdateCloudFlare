@@ -57,6 +57,7 @@ abstract class CloudFlareResponse
      * @param \stdClass    $result
      * @param ErrorFactory $errorFactory
      *
+     * @throws \Symfony\Component\Console\Exception\LogicException
      * @throws CloudFlareException
      */
     public function __construct(\stdClass $result, ErrorFactory $errorFactory)

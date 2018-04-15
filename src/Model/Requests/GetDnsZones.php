@@ -27,6 +27,7 @@ use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * This is used to get the zone information for the base domain
@@ -68,7 +69,7 @@ class GetDnsZones implements RequestInterface
 
     /**
      * @return string
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      * @throws \RuntimeException
      * @throws CloudFlareException
      */
@@ -78,7 +79,7 @@ class GetDnsZones implements RequestInterface
 
         if ($result->success !== true) {
             $error = new CloudFlareException();
-            $error->setDetails($result, self::class);
+            $error->setDetails($result);
             throw $error;
         }
 

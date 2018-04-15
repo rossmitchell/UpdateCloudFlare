@@ -22,6 +22,7 @@ declare(strict_types = 1);
 
 namespace RossMitchell\UpdateCloudFlare\Model\Requests;
 
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\ListZoneFactory;
 use RossMitchell\UpdateCloudFlare\Interfaces\CurlInterface;
 use RossMitchell\UpdateCloudFlare\Requests\ZoneInfo;
@@ -89,6 +90,7 @@ class GetZoneId
      *
      * @return string
      * @throws LogicException
+     * @throws CloudFlareException
      */
     private function getIdFromResult(int $index = 0): string
     {
@@ -104,7 +106,8 @@ class GetZoneId
 
     /**
      * @return ListZones
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
+     * @throws CloudFlareException
      */
     private function getResult(): ListZones
     {
