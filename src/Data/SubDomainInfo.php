@@ -79,7 +79,7 @@ class SubDomainInfo
     /**
      * @param string $ipAddress
      */
-    public function setIpAddress(string $ipAddress)
+    public function setIpAddress(string $ipAddress): void
     {
         $this->ipAddress = $ipAddress;
     }
@@ -116,7 +116,7 @@ class SubDomainInfo
     /**
      * @param string $subDomainId
      */
-    public function setSubDomainId(string $subDomainId)
+    public function setSubDomainId(string $subDomainId): void
     {
         $this->subDomainId = $subDomainId;
     }
@@ -137,7 +137,7 @@ class SubDomainInfo
     /**
      * @param string $zoneId
      */
-    public function setZoneId(string $zoneId)
+    public function setZoneId(string $zoneId): void
     {
         $this->zoneId = $zoneId;
     }
@@ -147,7 +147,7 @@ class SubDomainInfo
      *
      * @throws \Symfony\Component\Console\Exception\LogicException
      */
-    private function throwException(string $missingProperty)
+    private function throwException(string $missingProperty): void
     {
         throw new LogicException("You must set the $missingProperty");
     }

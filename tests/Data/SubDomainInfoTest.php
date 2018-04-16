@@ -44,7 +44,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canGetTheIpAddress()
+    public function canGetTheIpAddress(): void
     {
         $ipAddress = '1.2.3.4';
         $class     = $this->getClass();
@@ -56,7 +56,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canGetTheSubDomain()
+    public function canGetTheSubDomain(): void
     {
         $class     = $this->getClass();
         $subDomain = 'www';
@@ -66,7 +66,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canGetTheIpType()
+    public function canGetTheIpType(): void
     {
         $class = $this->getClass();
 
@@ -76,7 +76,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canGetTheSubDomainId()
+    public function canGetTheSubDomainId(): void
     {
         $subDomainId = '1234';
         $class       = $this->getClass();
@@ -88,7 +88,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canGetTheZoneId()
+    public function canGetTheZoneId(): void
     {
         $zoneId = '4567';
         $class  = $this->getClass();
@@ -100,7 +100,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfIpAddressIsNotSet()
+    public function willThrowAnExceptionIfIpAddressIsNotSet(): void
     {
         $class = $this->getClass();
         $this->expectException(LogicException::class);
@@ -110,7 +110,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfSubDomainIdIsNotSet()
+    public function willThrowAnExceptionIfSubDomainIdIsNotSet(): void
     {
         $class = $this->getClass();
         $this->expectException(LogicException::class);
@@ -120,7 +120,7 @@ class SubDomainInfoTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfZoneIdIsNotSet()
+    public function willThrowAnExceptionIfZoneIdIsNotSet(): void
     {
         $class = $this->getClass();
         $this->expectException(LogicException::class);
@@ -136,15 +136,5 @@ class SubDomainInfoTest extends AbstractTestClass
     private function getClass(string $subDomain = 'www', string $type = IpType::IP_V4): SubDomainInfo
     {
         return $this->factory->create($subDomain, $type);
-    }
-
-    /**
-     * @param string $ipType
-     *
-     * @return IpType
-     */
-    private function getIpType(string $ipType = IpType::IP_V4): IpType
-    {
-        return new IpType($ipType);
     }
 }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -23,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Factories\Data;
 
 use RossMitchell\UpdateCloudFlare\Data\IpType;
 use RossMitchell\UpdateCloudFlare\Data\SubDomainInfo;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class SubDomainInfoFactory
@@ -40,6 +42,7 @@ class SubDomainInfoFactory
      * @param string $type
      *
      * @return SubDomainInfo
+     * @throws LogicException
      */
     public function create(string $subDomain, string $type): SubDomainInfo
     {
@@ -56,6 +59,7 @@ class SubDomainInfoFactory
      * @param string $type
      *
      * @return SubDomainInfo
+     * @throws LogicException
      */
     public function get(string $subDomain, string $type): SubDomainInfo
     {

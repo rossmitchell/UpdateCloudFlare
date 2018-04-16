@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -24,6 +25,10 @@ namespace RossMitchell\UpdateCloudFlare\Tests\Fakes;
 
 use RossMitchell\UpdateCloudFlare\Interfaces\RequestInterface;
 
+/**
+ * Class Request
+ * @package RossMitchell\UpdateCloudFlare\Tests\Fakes
+ */
 class Request implements RequestInterface
 {
     /**
@@ -56,7 +61,7 @@ class Request implements RequestInterface
     /**
      * @param array $headers
      */
-    public function setHeaders(array $headers)
+    public function setHeaders(array $headers): void
     {
         $this->headers = $headers;
     }
@@ -74,7 +79,7 @@ class Request implements RequestInterface
     /**
      * @param string $requestType
      */
-    public function setRequestType(string $requestType)
+    public function setRequestType(string $requestType): void
     {
         $this->requestType = $requestType;
     }
@@ -92,7 +97,7 @@ class Request implements RequestInterface
     /**
      * @param array $fields
      */
-    public function setFields(array $fields)
+    public function setFields(array $fields): void
     {
         $this->fields = $fields;
     }
@@ -110,7 +115,7 @@ class Request implements RequestInterface
     /**
      * @param string $url
      */
-    public function setUrl(string $url)
+    public function setUrl(string $url): void
     {
         $this->url = $url;
     }

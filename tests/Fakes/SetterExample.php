@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -43,7 +44,7 @@ class SetterExample
     /**
      * @param string $url
      */
-    public function setUrl(?string $url)
+    public function setUrl(?string $url): void
     {
         $this->url = $url;
     }

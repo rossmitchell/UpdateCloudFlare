@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -21,6 +22,10 @@
 
 namespace RossMitchell\UpdateCloudFlare\Interfaces;
 
+/**
+ * Interface CurlResourceInterface
+ * @package RossMitchell\UpdateCloudFlare\Interfaces
+ */
 interface CurlResourceInterface
 {
     /**

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -40,7 +41,7 @@ class ErrorFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canCreateAnErrorArrayFromTheResponse()
+    public function canCreateAnErrorArrayFromTheResponse(): void
     {
         $code        = 123;
         $message     = 'An Error Happened';
@@ -62,7 +63,7 @@ JSON;
     /**
      * @test
      */
-    public function canHandleMultipleErrors()
+    public function canHandleMultipleErrors(): void
     {
         $firstCode     = 123;
         $firstMessage  = 'An Error Happened';
@@ -86,7 +87,7 @@ JSON;
     /**
      * @test
      */
-    public function canHandleMalformedErrors()
+    public function canHandleMalformedErrors(): void
     {
         $firstMessage  = 'An Error Happened';
         $secondCode    = 345;

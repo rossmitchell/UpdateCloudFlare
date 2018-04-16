@@ -55,7 +55,7 @@ class Curl implements CurlInterface
     /**
      * @param $response
      */
-    public function setResponse($response)
+    public function setResponse($response): void
     {
         $this->response = $response;
     }

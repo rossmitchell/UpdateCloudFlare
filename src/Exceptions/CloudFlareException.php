@@ -35,7 +35,7 @@ class CloudFlareException extends \Exception
      *
      * @param CloudFlareResponse $details
      */
-    public function setDetails(CloudFlareResponse $details)
+    public function setDetails(CloudFlareResponse $details): void
     {
         $errorDetail   = $this->collectionErrors($details);
         $call          = \get_class($details);

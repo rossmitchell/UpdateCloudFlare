@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -26,6 +27,10 @@ use RossMitchell\UpdateCloudFlare\Interfaces\ConfigInterface;
 use RossMitchell\UpdateCloudFlare\Interfaces\HeadersInterface;
 use RossMitchell\UpdateCloudFlare\Requests\UpdateDnsRecords;
 
+/**
+ * Class UpdateDnsRecordFactory
+ * @package RossMitchell\UpdateCloudFlare\Factories\Requests
+ */
 class UpdateDnsRecordFactory
 {
     /**

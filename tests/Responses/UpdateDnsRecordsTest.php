@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -50,7 +51,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canCreateTheClassUsingTheFactory()
+    public function canCreateTheClassUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(UpdateDnsRecords::class, $class);
@@ -59,7 +60,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itReturnsASingleResult()
+    public function itReturnsASingleResult(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(DnsRecord::class, $class->getResult());
@@ -69,7 +70,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function theResultContainsTheNewIpAddress()
+    public function theResultContainsTheNewIpAddress(): void
     {
         $class = $this->createClass();
         $this->assertEquals('9.8.7.6', $class->getResult()
@@ -79,7 +80,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheSuccess()
+    public function canReturnTheSuccess(): void
     {
         $class = $this->createClass();
         $this->assertTrue($class->isSuccess());
@@ -88,7 +89,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheErrors()
+    public function canReturnTheErrors(): void
     {
         $class  = $this->createClass();
         $errors = $class->getErrors();
@@ -99,7 +100,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheMessages()
+    public function canReturnTheMessages(): void
     {
         $class    = $this->createClass();
         $messages = $class->getMessages();
@@ -110,7 +111,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheResultInfo()
+    public function canReturnTheResultInfo(): void
     {
         $class      = $this->createClass();
         $resultInfo = $class->getResultInfo();
@@ -124,7 +125,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheSuccessIsMissing()
+    public function willThrowAnExceptionIfTheSuccessIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->success);
@@ -135,7 +136,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheErrorsAreMissing()
+    public function willThrowAnExceptionIfTheErrorsAreMissing(): void
     {
         $json = $this->getJson();
         unset($json->errors);
@@ -146,7 +147,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheMessagesAreMissing()
+    public function willThrowAnExceptionIfTheMessagesAreMissing(): void
     {
         $json = $this->getJson();
         unset($json->messages);
@@ -157,7 +158,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheResultIsMissing()
+    public function willThrowAnExceptionIfTheResultIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->result);
@@ -168,7 +169,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willNotThrowAnExceptionIfTheResultInfoIsMissing()
+    public function willNotThrowAnExceptionIfTheResultInfoIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->result_info);
@@ -179,7 +180,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfCloudFlareReportsAnError()
+    public function willThrowAnExceptionIfCloudFlareReportsAnError(): void
     {
         $error = '{"code":1003,"message":"Invalid or missing zone id."}';
         $json  = $this->getJson('false', $error);
@@ -190,7 +191,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willReturnAMeaningfulExceptionIfCloudFlareReportsAnError()
+    public function willReturnAMeaningfulExceptionIfCloudFlareReportsAnError(): void
     {
         $code    = 1003;
         $message = 'Invalid or missing zone id.';
@@ -209,7 +210,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willReturnMultipleMessage()
+    public function willReturnMultipleMessage(): void
     {
         $json           = $this->getJson();
         $messages       = '[{}, {"message": "A Different Message"}]';
@@ -218,7 +219,7 @@ class UpdateDnsRecordsTest extends AbstractTestClass
         $actualMessages = $class->getMessages();
         $this->assertInternalType('array', $actualMessages);
         $this->assertCount(1, $actualMessages);
-        $this->assertEquals("A Different Message", $actualMessages[0]->message);
+        $this->assertEquals('A Different Message', $actualMessages[0]->message);
     }
 
     /**

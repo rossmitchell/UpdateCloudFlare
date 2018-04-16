@@ -104,7 +104,7 @@ class ListZonesResult
     /**
      * @param string $id
      */
-    public function setId(string $id)
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -120,7 +120,7 @@ class ListZonesResult
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -136,7 +136,7 @@ class ListZonesResult
     /**
      * @param int $developmentMode
      */
-    public function setDevelopmentMode(int $developmentMode)
+    public function setDevelopmentMode(int $developmentMode): void
     {
         $this->developmentMode = $developmentMode;
     }
@@ -152,7 +152,7 @@ class ListZonesResult
     /**
      * @param array $originalNameServers
      */
-    public function setOriginalNameServers(array $originalNameServers)
+    public function setOriginalNameServers(array $originalNameServers): void
     {
         $this->originalNameServers = $originalNameServers;
     }
@@ -168,7 +168,7 @@ class ListZonesResult
     /**
      * @param string $originalRegistrar
      */
-    public function setOriginalRegistrar(string $originalRegistrar)
+    public function setOriginalRegistrar(string $originalRegistrar): void
     {
         $this->originalRegistrar = $originalRegistrar;
     }
@@ -184,7 +184,7 @@ class ListZonesResult
     /**
      * @param string $originalDnsHost
      */
-    public function setOriginalDnsHost(string $originalDnsHost)
+    public function setOriginalDnsHost(string $originalDnsHost): void
     {
         $this->originalDnsHost = $originalDnsHost;
     }
@@ -200,7 +200,7 @@ class ListZonesResult
     /**
      * @param string $createdOn
      */
-    public function setCreatedOn(string $createdOn)
+    public function setCreatedOn(string $createdOn): void
     {
         $this->createdOn = $createdOn;
     }
@@ -216,7 +216,7 @@ class ListZonesResult
     /**
      * @param string $modifiedOn
      */
-    public function setModifiedOn(string $modifiedOn)
+    public function setModifiedOn(string $modifiedOn): void
     {
         $this->modifiedOn = $modifiedOn;
     }
@@ -232,7 +232,7 @@ class ListZonesResult
     /**
      * @param Owner $owner
      */
-    public function setOwner(Owner $owner)
+    public function setOwner(Owner $owner): void
     {
         $this->owner = $owner;
     }
@@ -248,7 +248,7 @@ class ListZonesResult
     /**
      * @param array $permissions
      */
-    public function setPermissions(array $permissions)
+    public function setPermissions(array $permissions): void
     {
         $this->permissions = $permissions;
     }
@@ -264,7 +264,7 @@ class ListZonesResult
     /**
      * @param Plan $plan
      */
-    public function setPlan(Plan $plan)
+    public function setPlan(Plan $plan): void
     {
         $this->plan = $plan;
     }
@@ -280,7 +280,7 @@ class ListZonesResult
     /**
      * @param Plan $planPending
      */
-    public function setPlanPending(Plan $planPending)
+    public function setPlanPending(Plan $planPending): void
     {
         $this->planPending = $planPending;
     }
@@ -296,7 +296,7 @@ class ListZonesResult
     /**
      * @param string $status
      */
-    public function setStatus(string $status)
+    public function setStatus(string $status): void
     {
         $this->status = $status;
     }
@@ -312,7 +312,7 @@ class ListZonesResult
     /**
      * @param bool $paused
      */
-    public function setPaused(bool $paused)
+    public function setPaused(bool $paused): void
     {
         $this->paused = $paused;
     }
@@ -328,7 +328,7 @@ class ListZonesResult
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType(string $type): void
     {
         $this->type = $type;
     }
@@ -344,7 +344,7 @@ class ListZonesResult
     /**
      * @param array $nameServers
      */
-    public function setNameServers(array $nameServers)
+    public function setNameServers(array $nameServers): void
     {
         $this->nameServers = $nameServers;
     }

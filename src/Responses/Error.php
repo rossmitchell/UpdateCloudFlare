@@ -48,7 +48,7 @@ class Error
     /**
      * @param int $code
      */
-    public function setCode(int $code)
+    public function setCode(int $code): void
     {
         $this->code = $code;
     }
@@ -64,7 +64,7 @@ class Error
     /**
      * @param string $message
      */
-    public function setMessage(string $message)
+    public function setMessage(string $message): void
     {
         $this->message = $message;
     }

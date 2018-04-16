@@ -38,7 +38,7 @@ class Hydrator
      *
      * @throws LogicException
      */
-    public function setProperty($class, \stdClass $data, string $node, $required = true)
+    public function setProperty($class, \stdClass $data, string $node, $required = true): void
     {
         if (!\property_exists($data, $node)) {
             if ($required === true) {

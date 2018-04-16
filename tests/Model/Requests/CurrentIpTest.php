@@ -25,6 +25,10 @@ use RossMitchell\UpdateCloudFlare\Model\Requests\CurrentIpAddress;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Curl;
 
+/**
+ * Class CurrentIpTest
+ * @package RossMitchell\UpdateCloudFlare\Tests\Model\Requests
+ */
 class CurrentIpTest extends AbstractTestClass
 {
     /**
@@ -42,7 +46,7 @@ class CurrentIpTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheCurrentIpAddress()
+    public function canReturnTheCurrentIpAddress(): void
     {
         $expectedIpAddress = '1.2.3.4';
         $this->curl->setResponse($expectedIpAddress);

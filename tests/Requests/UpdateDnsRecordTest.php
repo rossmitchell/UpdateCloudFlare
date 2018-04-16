@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -123,7 +124,7 @@ class UpdateDnsRecordTest extends AbstractRequest
     /**
      * @test
      */
-    public function itCanReturnTheSubDomainInfo()
+    public function itCanReturnTheSubDomainInfo(): void
     {
         $request = $this->getRequest();
         $this->assertInstanceOf(SubDomainInfo::class, $request->getSubDomainInfo());

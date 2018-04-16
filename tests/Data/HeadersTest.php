@@ -41,7 +41,7 @@ class HeadersTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willReturnValidHeaders()
+    public function willReturnValidHeaders(): void
     {
         $headers         = $this->headers;
         $expectedHeaders = [

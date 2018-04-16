@@ -32,8 +32,8 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class ListZoneResultsFactory
 {
-    const COMPLEX_PROPERTIES = ['owner', 'plan', 'plan_pending'];
-    const SIMPLE_PROPERTIES  = [
+    public const COMPLEX_PROPERTIES = ['owner', 'plan', 'plan_pending'];
+    public const SIMPLE_PROPERTIES  = [
         'id',
         'name',
         'development_mode',

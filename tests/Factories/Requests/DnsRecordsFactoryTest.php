@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -42,7 +43,7 @@ class DnsRecordsFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canCreateTheClassUsingTheFactory()
+    public function canCreateTheClassUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(DnsRecords::class, $class);
@@ -51,7 +52,7 @@ class DnsRecordsFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itSetsTheRequiredParameters()
+    public function itSetsTheRequiredParameters(): void
     {
         $class = $this->createClass();
         $this->assertEquals('www', $class->getSubDomainInfo()
@@ -62,8 +63,18 @@ class DnsRecordsFactoryTest extends AbstractTestClass
                                            ->getZoneId());
     }
 
-    private function createClass(string $subDomain = 'www', string $type = IpType::IP_V4, string $zoneId = '12345')
-    {
+    /**
+     * @param string $subDomain
+     * @param string $type
+     * @param string $zoneId
+     *
+     * @return DnsRecords
+     */
+    private function createClass(
+        string $subDomain = 'www',
+        string $type = IpType::IP_V4,
+        string $zoneId = '12345'
+    ): DnsRecords {
         return $this->factory->create($subDomain, $type, $zoneId);
     }
 }

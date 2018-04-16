@@ -32,7 +32,7 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class DnsRecordFactory
 {
-    const SIMPLE_FIELDS = [
+    public const SIMPLE_FIELDS = [
         'id',
         'type',
         'name',

@@ -51,6 +51,7 @@ class ListZones extends CloudFlareResponse
      * @param ErrorFactory           $errorFactory
      * @param \stdClass              $rawResult
      *
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function __construct(
@@ -75,7 +76,7 @@ class ListZones extends CloudFlareResponse
      *
      * @throws LogicException
      */
-    public function setResult($result)
+    public function setResult($result): void
     {
         $results = [];
         if (!\is_array($result)) {

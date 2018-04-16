@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -26,6 +27,10 @@ use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\SetterExample;
 use Symfony\Component\Console\Exception\LogicException;
 
+/**
+ * Class HydratorTest
+ * @package RossMitchell\UpdateCloudFlare\Tests\Helpers
+ */
 class HydratorTest extends AbstractTestClass
 {
     /**
@@ -42,7 +47,7 @@ class HydratorTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itCanSetAPropertyThatExistsInTheRawData()
+    public function itCanSetAPropertyThatExistsInTheRawData(): void
     {
         $url       = 'http://www.example.com';
         $node      = 'url';
@@ -56,7 +61,7 @@ class HydratorTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWontThrowAnExceptionIfThePropertyIsOptional()
+    public function itWontThrowAnExceptionIfThePropertyIsOptional(): void
     {
         $testClass = $this->testClass;
         $oldUrl    = 'http://www.example.com';
@@ -70,7 +75,7 @@ class HydratorTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillThrowAnExceptionIfThePropertyIsRequired()
+    public function itWillThrowAnExceptionIfThePropertyIsRequired(): void
     {
         $testClass = $this->testClass;
         $rawData   = '{}';
@@ -81,7 +86,7 @@ class HydratorTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillThrowAnExceptionIfThereIsNoSetter()
+    public function itWillThrowAnExceptionIfThereIsNoSetter(): void
     {
         $testClass = $this->testClass;
         $rawData   = '{"test":"test"}';

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -25,6 +26,7 @@ use RossMitchell\UpdateCloudFlare\Data\IpType;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Requests\DnsRecordsFactory;
 use RossMitchell\UpdateCloudFlare\Model\Requests\GetSubDomainInfo;
+use RossMitchell\UpdateCloudFlare\Requests\DnsRecords;
 use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Curl;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers\DnsRecordsResponse;
@@ -61,7 +63,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itReturnsTheCorrectIpAddress()
+    public function itReturnsTheCorrectIpAddress(): void
     {
         $response = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
@@ -74,7 +76,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itReturnsTheCorrectSubDomainId()
+    public function itReturnsTheCorrectSubDomainId(): void
     {
         $response = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
@@ -87,7 +89,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itThrowsAnExceptionIfYouTryToGetTheIpAddressEarly()
+    public function itThrowsAnExceptionIfYouTryToGetTheIpAddressEarly(): void
     {
         $this->expectException(LogicException::class);
         $this->subDomainInfo->getSubDomainIpAddress();
@@ -96,7 +98,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itThrowsAnExceptionIfYouTryToGetTheIdEarly()
+    public function itThrowsAnExceptionIfYouTryToGetTheIdEarly(): void
     {
         $this->expectException(LogicException::class);
         $this->subDomainInfo->getSubDomainId();
@@ -105,7 +107,7 @@ class GetSubDomainInformationTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfThereIsAnError()
+    public function willThrowAnExceptionIfThereIsAnError(): void
     {
         $mockResponse = $this->responseHelper->getFullJson('false');
         $this->curl->setResponse($mockResponse);
@@ -114,7 +116,14 @@ class GetSubDomainInformationTest extends AbstractTestClass
         $this->subDomainInfo->collectionInformation($request);
     }
 
-    private function getRequest(string $subDomain = 'www', string $type = IpType::IP_V4, $zoneId = '12345')
+    /**
+     * @param string $subDomain
+     * @param string $type
+     * @param string $zoneId
+     *
+     * @return DnsRecords
+     */
+    private function getRequest(string $subDomain = 'www', string $type = IpType::IP_V4, $zoneId = '12345'): DnsRecords
     {
         return $this->requestFactory->create($subDomain, $type, $zoneId);
     }

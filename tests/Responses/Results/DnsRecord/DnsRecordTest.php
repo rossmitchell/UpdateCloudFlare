@@ -33,7 +33,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canBeCreatedUsingTheFactory()
+    public function canBeCreatedUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(DnsRecord::class, $class);
@@ -42,7 +42,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheId()
+    public function canReturnTheId(): void
     {
         $class      = $this->createClass();
         $expectedId = '372e67954025e0ba6aaa6d586b9e0b59';
@@ -52,7 +52,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheType()
+    public function canReturnTheType(): void
     {
         $class    = $this->createClass();
         $expected = 'A';
@@ -62,7 +62,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheName()
+    public function canReturnTheName(): void
     {
         $class    = $this->createClass();
         $expected = 'example.com';
@@ -72,7 +72,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheContent()
+    public function canReturnTheContent(): void
     {
         $class    = $this->createClass();
         $expected = '1.2.3.4';
@@ -82,7 +82,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheProxiable()
+    public function canReturnTheProxiable(): void
     {
         $class = $this->createClass();
         $this->assertTrue($class->isProxiable());
@@ -91,7 +91,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheProxied()
+    public function canReturnTheProxied(): void
     {
         $class = $this->createClass();
         $this->assertFalse($class->isProxied());
@@ -100,7 +100,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheTtl()
+    public function canReturnTheTtl(): void
     {
         $class    = $this->createClass();
         $expected = '120';
@@ -110,7 +110,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheLocked()
+    public function canReturnTheLocked(): void
     {
         $class = $this->createClass();
         $this->assertFalse($class->isLocked());
@@ -119,7 +119,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheZoneId()
+    public function canReturnTheZoneId(): void
     {
         $class    = $this->createClass();
         $expected = '023e105f4ecef8ad9ca31a8372d0c353';
@@ -129,7 +129,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheZoneName()
+    public function canReturnTheZoneName(): void
     {
         $class    = $this->createClass();
         $expected = 'example.com';
@@ -139,7 +139,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheCreatedOn()
+    public function canReturnTheCreatedOn(): void
     {
         $class    = $this->createClass();
         $expected = '2014-01-01T05:20:00.12345Z';
@@ -149,7 +149,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheModifiedOn()
+    public function canReturnTheModifiedOn(): void
     {
         $class    = $this->createClass();
         $expected = '2014-01-01T05:20:00.12345Z';
@@ -159,7 +159,7 @@ class DnsRecordTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheData()
+    public function canReturnTheData(): void
     {
         $class = $this->createClass();
         $this->assertNull($class->getData());

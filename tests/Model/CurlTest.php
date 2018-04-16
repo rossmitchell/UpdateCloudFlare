@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -26,6 +27,10 @@ use RossMitchell\UpdateCloudFlare\Tests\AbstractTestClass;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\CurlResource;
 use RossMitchell\UpdateCloudFlare\Tests\Fakes\Request;
 
+/**
+ * Class CurlTest
+ * @package RossMitchell\UpdateCloudFlare\Tests\Model
+ */
 class CurlTest extends AbstractTestClass
 {
     /**
@@ -37,7 +42,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itCanSetTheRequiredOptions()
+    public function itCanSetTheRequiredOptions(): void
     {
         $request = $this->getRequest();
         $curl    = $this->getClass();
@@ -56,7 +61,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillSetTheHeadersWhenPresent()
+    public function itWillSetTheHeadersWhenPresent(): void
     {
         $request         = $this->getRequest();
         $expectedHeaders = ['testHeader: test'];
@@ -72,7 +77,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillNotSetTheHeadersWhenTheyAreNotPresent()
+    public function itWillNotSetTheHeadersWhenTheyAreNotPresent(): void
     {
         $request = $this->getRequest();
         $curl    = $this->getClass();
@@ -84,7 +89,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillSetTheFieldsWhenPresent()
+    public function itWillSetTheFieldsWhenPresent(): void
     {
         $request        = $this->getRequest();
         $expectedFields = ['testHeader: test'];
@@ -99,7 +104,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillNotSetTheFieldsWhenTheyAreNotPresent()
+    public function itWillNotSetTheFieldsWhenTheyAreNotPresent(): void
     {
         $request = $this->getRequest();
         $curl    = $this->getClass();
@@ -111,7 +116,7 @@ class CurlTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillThrowAnExceptionWhenThereIsACurlError()
+    public function itWillThrowAnExceptionWhenThereIsACurlError(): void
     {
         $request = $this->getRequest();
         $curl    = $this->getClass();

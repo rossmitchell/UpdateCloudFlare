@@ -90,7 +90,7 @@ class DnsRecord
     /**
      * @param string $id
      */
-    public function setId(string $id)
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -106,7 +106,7 @@ class DnsRecord
     /**
      * @param string $type
      */
-    public function setType(string $type)
+    public function setType(string $type): void
     {
         $this->type = $type;
     }
@@ -122,7 +122,7 @@ class DnsRecord
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -138,7 +138,7 @@ class DnsRecord
     /**
      * @param string $content
      */
-    public function setContent(string $content)
+    public function setContent(string $content): void
     {
         $this->content = $content;
     }
@@ -154,7 +154,7 @@ class DnsRecord
     /**
      * @param bool $proxiable
      */
-    public function setProxiable(bool $proxiable)
+    public function setProxiable(bool $proxiable): void
     {
         $this->proxiable = $proxiable;
     }
@@ -170,7 +170,7 @@ class DnsRecord
     /**
      * @param bool $proxied
      */
-    public function setProxied(bool $proxied)
+    public function setProxied(bool $proxied): void
     {
         $this->proxied = $proxied;
     }
@@ -186,7 +186,7 @@ class DnsRecord
     /**
      * @param int $ttl
      */
-    public function setTtl(int $ttl)
+    public function setTtl(int $ttl): void
     {
         $this->ttl = $ttl;
     }
@@ -202,7 +202,7 @@ class DnsRecord
     /**
      * @param bool $locked
      */
-    public function setLocked(bool $locked)
+    public function setLocked(bool $locked): void
     {
         $this->locked = $locked;
     }
@@ -218,7 +218,7 @@ class DnsRecord
     /**
      * @param string $zoneId
      */
-    public function setZoneId(string $zoneId)
+    public function setZoneId(string $zoneId): void
     {
         $this->zoneId = $zoneId;
     }
@@ -234,7 +234,7 @@ class DnsRecord
     /**
      * @param string $zoneName
      */
-    public function setZoneName(string $zoneName)
+    public function setZoneName(string $zoneName): void
     {
         $this->zoneName = $zoneName;
     }
@@ -250,7 +250,7 @@ class DnsRecord
     /**
      * @param string $createdOn
      */
-    public function setCreatedOn(string $createdOn)
+    public function setCreatedOn(string $createdOn): void
     {
         $this->createdOn = $createdOn;
     }
@@ -266,7 +266,7 @@ class DnsRecord
     /**
      * @param string $modifiedOn
      */
-    public function setModifiedOn(string $modifiedOn)
+    public function setModifiedOn(string $modifiedOn): void
     {
         $this->modifiedOn = $modifiedOn;
     }
@@ -282,7 +282,7 @@ class DnsRecord
     /**
      * @param mixed $data
      */
-    public function setData($data)
+    public function setData($data): void
     {
         if (\json_encode($data) === '{}') {
             $data = null;

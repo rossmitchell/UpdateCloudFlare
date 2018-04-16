@@ -56,7 +56,7 @@ class GetZoneIdTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheExpectedZoneId()
+    public function canReturnTheExpectedZoneId(): void
     {
         $mockResponse = $this->getJson();
         $this->curl->setResponse($mockResponse);
@@ -67,7 +67,7 @@ class GetZoneIdTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfThereIsAnError()
+    public function willThrowAnExceptionIfThereIsAnError(): void
     {
         $mockResponse = $this->getJson('false');
         $this->curl->setResponse($mockResponse);
@@ -78,7 +78,7 @@ class GetZoneIdTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfAnUndefinedZoneIsRequested()
+    public function willThrowAnExceptionIfAnUndefinedZoneIsRequested(): void
     {
         $mockResponse = $this->getJson();
         $this->curl->setResponse($mockResponse);

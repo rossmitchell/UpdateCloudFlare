@@ -21,6 +21,10 @@
 
 namespace RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers;
 
+/**
+ * Class AbstractCloudFlareResponse
+ * @package RossMitchell\UpdateCloudFlare\Tests\Fakes\Helpers
+ */
 abstract class AbstractCloudFlareResponse
 {
     protected $resultIsArray = true;

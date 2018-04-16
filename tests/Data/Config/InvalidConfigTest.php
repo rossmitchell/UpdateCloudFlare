@@ -44,7 +44,7 @@ class InvalidConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfConfigFileDoesNotExist()
+    public function willThrowAnExceptionIfConfigFileDoesNotExist(): void
     {
         $this->expectException(MissingConfigException::class);
 
@@ -54,7 +54,7 @@ class InvalidConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfInvalidSubDomainPassed()
+    public function willThrowAnExceptionIfInvalidSubDomainPassed(): void
     {
         $configClass = $this->getConfigClass('tests/_files/nonArraySubDomain.json');
         $this->expectException(LogicException::class);
@@ -64,7 +64,7 @@ class InvalidConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canHandleASingleSubDomainInTheConfig()
+    public function canHandleASingleSubDomainInTheConfig(): void
     {
         $configFile  = 'tests/_files/singleSubDomain.json';
         $configClass = $this->getConfigClass($configFile);

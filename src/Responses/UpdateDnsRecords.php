@@ -23,6 +23,7 @@ declare(strict_types = 1);
 namespace RossMitchell\UpdateCloudFlare\Responses;
 
 use RossMitchell\UpdateCloudFlare\Abstracts\CloudFlareResponse;
+use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\ErrorFactory;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
 use RossMitchell\UpdateCloudFlare\Responses\Results\DnsRecord;
@@ -50,7 +51,8 @@ class UpdateDnsRecords extends CloudFlareResponse
      * @param ErrorFactory     $errorFactory
      * @param \stdClass        $rawResult
      *
-     * @throws \RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException
+     * @throws LogicException
+     * @throws CloudFlareException
      */
     public function __construct(DnsRecordFactory $dnsRecordFactory, ErrorFactory $errorFactory, \stdClass $rawResult)
     {
@@ -71,7 +73,7 @@ class UpdateDnsRecords extends CloudFlareResponse
      *
      * @throws LogicException
      */
-    public function setResult($result)
+    public function setResult($result): void
     {
         $results = $this->dnsRecordFactory->create($result);
 

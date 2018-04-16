@@ -41,7 +41,7 @@ class ConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReadTheEmailAddressFromTheConfigFile()
+    public function canReadTheEmailAddressFromTheConfigFile(): void
     {
         $this->assertEquals('test@example.com', $this->config->getEmailAddress());
     }
@@ -49,7 +49,7 @@ class ConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReadTheBaseUrlFromTheConfigFile()
+    public function canReadTheBaseUrlFromTheConfigFile(): void
     {
         $this->assertEquals('example.com', $this->config->getBaseUrl());
     }
@@ -57,7 +57,7 @@ class ConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReadTheSubDomainsFromTheConfigFile()
+    public function canReadTheSubDomainsFromTheConfigFile(): void
     {
         $expectedSubDomains = ['www'];
         $actualSubDomains   = $this->config->getSubDomains();
@@ -68,7 +68,7 @@ class ConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReadTheApiKeyFromTheConfigFile()
+    public function canReadTheApiKeyFromTheConfigFile(): void
     {
         $this->assertEquals('123456789', $this->config->getApiKey());
     }
@@ -76,7 +76,7 @@ class ConfigTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReadTheApiUrlFromTheConfigFile()
+    public function canReadTheApiUrlFromTheConfigFile(): void
     {
         $this->assertEquals('https://api.cloudflare.com/client/v4/', $this->config->getApiUrl());
     }

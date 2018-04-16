@@ -51,7 +51,7 @@ class Owner
     /**
      * @param string $id
      */
-    public function setId(string $id)
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -67,7 +67,7 @@ class Owner
     /**
      * @param string $email
      */
-    public function setEmail(string $email)
+    public function setEmail(string $email): void
     {
         $this->email = $email;
     }
@@ -83,7 +83,7 @@ class Owner
     /**
      * @param string $ownerType
      */
-    public function setOwnerType(string $ownerType)
+    public function setOwnerType(string $ownerType): void
     {
         $this->ownerType = $ownerType;
     }

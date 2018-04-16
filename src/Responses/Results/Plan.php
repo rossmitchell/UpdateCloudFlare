@@ -72,7 +72,7 @@ class Plan
     /**
      * @param string $id
      */
-    public function setId(string $id)
+    public function setId(string $id): void
     {
         $this->id = $id;
     }
@@ -88,7 +88,7 @@ class Plan
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName(string $name): void
     {
         $this->name = $name;
     }
@@ -104,7 +104,7 @@ class Plan
     /**
      * @param float $price
      */
-    public function setPrice(float $price)
+    public function setPrice(float $price): void
     {
         $this->price = $price;
     }
@@ -120,7 +120,7 @@ class Plan
     /**
      * @param string $currency
      */
-    public function setCurrency(string $currency)
+    public function setCurrency(string $currency): void
     {
         $this->currency = $currency;
     }
@@ -136,7 +136,7 @@ class Plan
     /**
      * @param string $frequency
      */
-    public function setFrequency(string $frequency)
+    public function setFrequency(string $frequency): void
     {
         $this->frequency = $frequency;
     }
@@ -152,7 +152,7 @@ class Plan
     /**
      * @param string $legacyId
      */
-    public function setLegacyId(string $legacyId)
+    public function setLegacyId(string $legacyId): void
     {
         $this->legacyId = $legacyId;
     }
@@ -168,7 +168,7 @@ class Plan
     /**
      * @param bool $isSubscribed
      */
-    public function setIsSubscribed(bool $isSubscribed)
+    public function setIsSubscribed(bool $isSubscribed): void
     {
         $this->isSubscribed = $isSubscribed;
     }
@@ -184,7 +184,7 @@ class Plan
     /**
      * @param bool $canSubscribe
      */
-    public function setCanSubscribe(bool $canSubscribe)
+    public function setCanSubscribe(bool $canSubscribe): void
     {
         $this->canSubscribe = $canSubscribe;
     }

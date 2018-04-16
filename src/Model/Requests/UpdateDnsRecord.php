@@ -60,6 +60,7 @@ class UpdateDnsRecord
      * @param UpdateDnsRecords $request
      *
      * @return bool
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function changeIpAddress(UpdateDnsRecords $request): bool

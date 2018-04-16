@@ -32,11 +32,11 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class Config implements ConfigInterface
 {
-    const API_KEY       = 'api.credentials.key';
-    const API_URL       = 'api.url';
-    const BASE_DOMAIN   = 'domain_details.base_url';
-    const EMAIL_ADDRESS = 'api.credentials.email';
-    const SUB_DOMAINS   = 'domain_details.sub_domains';
+    public const API_KEY       = 'api.credentials.key';
+    public const API_URL       = 'api.url';
+    public const BASE_DOMAIN   = 'domain_details.base_url';
+    public const EMAIL_ADDRESS = 'api.credentials.email';
+    public const SUB_DOMAINS   = 'domain_details.sub_domains';
     private $configDetails;
 
     /**

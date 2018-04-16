@@ -49,7 +49,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canCreateTheClassUsingTheFactory()
+    public function canCreateTheClassUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(Plan::class, $class);
@@ -58,7 +58,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheId()
+    public function canReturnTheId(): void
     {
         $class = $this->createClass();
         $this->assertEquals('e592fd9519420ba7405e1307bff33214', $class->getId());
@@ -67,7 +67,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheName()
+    public function canReturnTheName(): void
     {
         $class = $this->createClass();
         $this->assertEquals('Pro Plan', $class->getName());
@@ -76,7 +76,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnThePrice()
+    public function canReturnThePrice(): void
     {
         $class = $this->createClass();
         $this->assertEquals(20, $class->getPrice());
@@ -85,7 +85,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheCurrency()
+    public function canReturnTheCurrency(): void
     {
         $class = $this->createClass();
         $this->assertEquals('USD', $class->getCurrency());
@@ -94,7 +94,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheFrequency()
+    public function canReturnTheFrequency(): void
     {
         $class = $this->createClass();
         $this->assertEquals('monthly', $class->getFrequency());
@@ -103,7 +103,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheLegacyId()
+    public function canReturnTheLegacyId(): void
     {
         $class = $this->createClass();
         $this->assertEquals('pro', $class->getLegacyId());
@@ -112,7 +112,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheIsSubscribed()
+    public function canReturnTheIsSubscribed(): void
     {
         $class = $this->createClass();
         $this->assertTrue($class->getIsSubscribed());
@@ -121,7 +121,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheCanSubscribe()
+    public function canReturnTheCanSubscribe(): void
     {
         $class = $this->createClass();
         $this->assertTrue($class->getCanSubscribe());
@@ -130,7 +130,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheIdIsMissing()
+    public function willThrowAnExceptionIfTheIdIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->id);
@@ -141,7 +141,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheNameIsMissing()
+    public function willThrowAnExceptionIfTheNameIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->name);
@@ -152,7 +152,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfThePriceIsMissing()
+    public function willThrowAnExceptionIfThePriceIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->price);
@@ -163,7 +163,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheCurrencyIsMissing()
+    public function willThrowAnExceptionIfTheCurrencyIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->currency);
@@ -174,7 +174,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheFrequencyIsMissing()
+    public function willThrowAnExceptionIfTheFrequencyIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->frequency);
@@ -185,7 +185,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheLegacyIdIsMissing()
+    public function willThrowAnExceptionIfTheLegacyIdIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->legacy_id);
@@ -196,7 +196,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheIsSubscribedIsMissing()
+    public function willThrowAnExceptionIfTheIsSubscribedIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->is_subscribed);
@@ -207,7 +207,7 @@ class PlanTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheCanSubscribeIsMissing()
+    public function willThrowAnExceptionIfTheCanSubscribeIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->can_subscribe);

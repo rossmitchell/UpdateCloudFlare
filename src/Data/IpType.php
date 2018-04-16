@@ -30,8 +30,8 @@ use Symfony\Component\Console\Exception\LogicException;
  */
 class IpType
 {
-    const IP_V4 = 'A';
-    const IP_V6 = 'AAAA';
+    public const IP_V4 = 'A';
+    public const IP_V6 = 'AAAA';
 
     /**
      * @var string
@@ -42,6 +42,8 @@ class IpType
      * IpType constructor.
      *
      * @param string $type
+     *
+     * @throws LogicException
      */
     public function __construct(string $type)
     {

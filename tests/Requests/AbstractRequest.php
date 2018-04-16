@@ -59,7 +59,7 @@ abstract class AbstractRequest extends AbstractTestClass
     /**
      * @test
      */
-    public function checkClassImplementsRequestInterface()
+    public function checkClassImplementsRequestInterface(): void
     {
         $this->assertInstanceOf(RequestInterface::class, $this->getRequest());
     }
@@ -67,7 +67,7 @@ abstract class AbstractRequest extends AbstractTestClass
     /**
      * @test
      */
-    public function theClassReturnsTheCorrectHeadersArray()
+    public function theClassReturnsTheCorrectHeadersArray(): void
     {
         $request = $this->getRequest();
         $headers = $request->getHeaders();
@@ -78,7 +78,7 @@ abstract class AbstractRequest extends AbstractTestClass
     /**
      * @test
      */
-    public function theClassReturnsTheCorrectRequestType()
+    public function theClassReturnsTheCorrectRequestType(): void
     {
         $request     = $this->getRequest();
         $requestType = $request->getRequestType();
@@ -88,7 +88,7 @@ abstract class AbstractRequest extends AbstractTestClass
     /**
      * @test
      */
-    public function theClassReturnsTheCorrectFields()
+    public function theClassReturnsTheCorrectFields(): void
     {
         $request = $this->getRequest();
         $fields  = $request->getFields();
@@ -99,7 +99,7 @@ abstract class AbstractRequest extends AbstractTestClass
     /**
      * @test
      */
-    public function theClassReturnsTheCorrectUrl()
+    public function theClassReturnsTheCorrectUrl(): void
     {
         $request   = $this->getRequest();
         $actualUrl = $request->getUrl();

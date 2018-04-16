@@ -33,7 +33,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheIdIsMissing()
+    public function willThrowAnExceptionIfTheIdIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->id);
@@ -44,7 +44,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheTypeIsMissing()
+    public function willThrowAnExceptionIfTheTypeIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->type);
@@ -55,7 +55,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheNameIsMissing()
+    public function willThrowAnExceptionIfTheNameIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->name);
@@ -66,7 +66,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheContentIsMissing()
+    public function willThrowAnExceptionIfTheContentIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->content);
@@ -77,7 +77,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheProxiableIsMissing()
+    public function willThrowAnExceptionIfTheProxiableIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->proxiable);
@@ -88,7 +88,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheProxiedIsMissing()
+    public function willThrowAnExceptionIfTheProxiedIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->proxied);
@@ -99,7 +99,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheTtlIsMissing()
+    public function willThrowAnExceptionIfTheTtlIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->ttl);
@@ -110,7 +110,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheLockedIsMissing()
+    public function willThrowAnExceptionIfTheLockedIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->locked);
@@ -121,7 +121,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheZoneIdIsMissing()
+    public function willThrowAnExceptionIfTheZoneIdIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->zone_id);
@@ -132,7 +132,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheZoneNameIsMissing()
+    public function willThrowAnExceptionIfTheZoneNameIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->zone_name);
@@ -143,7 +143,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheCreatedOnIsMissing()
+    public function willThrowAnExceptionIfTheCreatedOnIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->created_on);
@@ -154,7 +154,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheModifiedOnIsMissing()
+    public function willThrowAnExceptionIfTheModifiedOnIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->modified_on);
@@ -165,7 +165,7 @@ class ThrowExceptionTest extends AbstractClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheDataIsMissing()
+    public function willThrowAnExceptionIfTheDataIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->data);

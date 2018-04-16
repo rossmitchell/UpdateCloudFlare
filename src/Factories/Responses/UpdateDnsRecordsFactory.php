@@ -24,6 +24,7 @@ namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 use RossMitchell\UpdateCloudFlare\Exceptions\CloudFlareException;
 use RossMitchell\UpdateCloudFlare\Factories\Responses\Results\DnsRecordFactory;
 use RossMitchell\UpdateCloudFlare\Responses\UpdateDnsRecords;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class DnsRecordsFactory
@@ -56,6 +57,7 @@ class UpdateDnsRecordsFactory
      * @param \stdClass $data
      *
      * @return UpdateDnsRecords
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function create(\stdClass $data): UpdateDnsRecords

@@ -23,6 +23,7 @@ namespace RossMitchell\UpdateCloudFlare\Factories\Responses;
 
 use RossMitchell\UpdateCloudFlare\Helpers\Hydrator;
 use RossMitchell\UpdateCloudFlare\Responses\Error;
+use Symfony\Component\Console\Exception\LogicException;
 
 /**
  * Class ErrorFactory
@@ -49,6 +50,7 @@ class ErrorFactory
      * @param array $errors
      *
      * @return Error[]
+     * @throws LogicException
      */
     public function create(array $errors): array
     {
@@ -67,7 +69,7 @@ class ErrorFactory
      * @param \stdClass $error
      *
      * @return Error
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      */
     private function createError(\stdClass $error): Error
     {

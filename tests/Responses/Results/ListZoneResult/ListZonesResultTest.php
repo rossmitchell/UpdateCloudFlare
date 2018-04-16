@@ -35,7 +35,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canBeCreatedUsingTheFactory()
+    public function canBeCreatedUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(ListZonesResult::class, $class);
@@ -44,7 +44,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheId()
+    public function canReturnTheId(): void
     {
         $class = $this->createClass();
         $this->assertEquals('023e105f4ecef8ad9ca31a8372d0c353', $class->getId());
@@ -53,7 +53,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheName()
+    public function canReturnTheName(): void
     {
         $class = $this->createClass();
         $this->assertEquals('example.com', $class->getName());
@@ -62,7 +62,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheDevelopmentMode()
+    public function canReturnTheDevelopmentMode(): void
     {
         $class = $this->createClass();
         $this->assertEquals(7200, $class->getDevelopmentMode());
@@ -71,7 +71,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheOriginalNameServers()
+    public function canReturnTheOriginalNameServers(): void
     {
         $class       = $this->createClass();
         $expected    = [
@@ -86,7 +86,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheOriginalRegistrar()
+    public function canReturnTheOriginalRegistrar(): void
     {
         $class = $this->createClass();
         $this->assertEquals('GoDaddy', $class->getOriginalRegistrar());
@@ -95,7 +95,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheOriginalDnsHost()
+    public function canReturnTheOriginalDnsHost(): void
     {
         $class = $this->createClass();
         $this->assertEquals('NameCheap', $class->getOriginalDnsHost());
@@ -104,7 +104,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheCreatedOn()
+    public function canReturnTheCreatedOn(): void
     {
         $class = $this->createClass();
         $this->assertEquals('2014-01-01T05:20:00.12345Z', $class->getCreatedOn());
@@ -113,7 +113,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheModifiedOn()
+    public function canReturnTheModifiedOn(): void
     {
         $class = $this->createClass();
         $this->assertEquals('2014-01-01T05:20:00.12345Z', $class->getModifiedOn());
@@ -122,7 +122,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheOwner()
+    public function canReturnTheOwner(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(Owner::class, $class->getOwner());
@@ -131,7 +131,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnThePermissions()
+    public function canReturnThePermissions(): void
     {
         $class       = $this->createClass();
         $expected    = [
@@ -146,7 +146,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnThePlan()
+    public function canReturnThePlan(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(Plan::class, $class->getPlan());
@@ -155,7 +155,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnThePlanPending()
+    public function canReturnThePlanPending(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(Plan::class, $class->getPlanPending());
@@ -164,7 +164,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheStatus()
+    public function canReturnTheStatus(): void
     {
         $class = $this->createClass();
         $this->assertEquals('active', $class->getStatus());
@@ -173,7 +173,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnIsPaused()
+    public function canReturnIsPaused(): void
     {
         $class = $this->createClass();
         $this->assertFalse($class->isPaused());
@@ -182,7 +182,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheType()
+    public function canReturnTheType(): void
     {
         $class = $this->createClass();
         $this->assertEquals('full', $class->getType());
@@ -191,7 +191,7 @@ class ListZonesResultTest extends AbstractClass
     /**
      * @test
      */
-    public function canReturnTheNameServers()
+    public function canReturnTheNameServers(): void
     {
         $class       = $this->createClass();
         $expected    = [

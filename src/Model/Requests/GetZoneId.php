@@ -75,6 +75,7 @@ class GetZoneId
      *
      * @return string
      * @throws LogicException
+     * @throws CloudFlareException
      */
     public function getZoneId(int $index = 0): string
     {

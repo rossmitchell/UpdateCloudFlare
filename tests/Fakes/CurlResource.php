@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -37,13 +38,17 @@ class CurlResource implements CurlResourceInterface
      * @var array
      */
     private $options = [];
+    /**
+     * @var string
+     */
+    private $result = 'worked';
 
     /**
      * Used To initialise the curl resource
      *
      * @return bool
      */
-    public function curlInit()
+    public function curlInit(): bool
     {
         return true;
     }
@@ -83,9 +88,19 @@ class CurlResource implements CurlResourceInterface
      *
      * @return mixed
      */
-    public function curlExec($curl)
+    public function curlExec($curl): string
     {
-        return 'worked';
+        return $this->result;
+    }
+
+    /**
+     * Can be used to set a fake result
+     *
+     * @param string $result
+     */
+    public function setResult(string $result): void
+    {
+        $this->result = $result;
     }
 
     /**
@@ -119,7 +134,7 @@ class CurlResource implements CurlResourceInterface
     /**
      * @param string $error
      */
-    public function setError(string $error)
+    public function setError(string $error): void
     {
         $this->error = $error;
     }

@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -88,7 +89,7 @@ class UpdateDnsRecordTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itCanUpdateTheIpAddressSuccessfully()
+    public function itCanUpdateTheIpAddressSuccessfully(): void
     {
         $response = $this->responseHelper->getFullJson();
         $this->curl->setResponse($response);
@@ -101,7 +102,7 @@ class UpdateDnsRecordTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itWillThrowAnExceptionIfTheChangedIpAddressIsNotWhatIsExcepted()
+    public function itWillThrowAnExceptionIfTheChangedIpAddressIsNotWhatIsExcepted(): void
     {
         $this->ipAddress = '1.2.3.4';
         $response        = $this->responseHelper->getFullJson();
@@ -115,7 +116,7 @@ class UpdateDnsRecordTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfThereIsAnError()
+    public function willThrowAnExceptionIfThereIsAnError(): void
     {
         $mockResponse = $this->responseHelper->getFullJson('false');
         $this->curl->setResponse($mockResponse);

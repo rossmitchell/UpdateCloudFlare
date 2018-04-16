@@ -49,7 +49,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canBeCreatedUsingTheFactory()
+    public function canBeCreatedUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(Owner::class, $class);
@@ -58,7 +58,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheId()
+    public function canReturnTheId(): void
     {
         $class = $this->createClass();
         $this->assertEquals('7c5dae5552338874e5053f2534d2767a', $class->getId());
@@ -67,7 +67,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheEmail()
+    public function canReturnTheEmail(): void
     {
         $class = $this->createClass();
         $this->assertEquals('user@example.com', $class->getEmail());
@@ -76,7 +76,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheOwnerType()
+    public function canReturnTheOwnerType(): void
     {
         $class = $this->createClass();
         $this->assertEquals('user', $class->getOwnerType());
@@ -85,7 +85,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheIdIsMissing()
+    public function willThrowAnExceptionIfTheIdIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->id);
@@ -96,7 +96,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheEmailIsMissing()
+    public function willThrowAnExceptionIfTheEmailIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->email);
@@ -107,7 +107,7 @@ class OwnerTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheOwnerTypeIsMissing()
+    public function willThrowAnExceptionIfTheOwnerTypeIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->owner_type);

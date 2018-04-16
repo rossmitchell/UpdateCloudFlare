@@ -57,7 +57,7 @@ abstract class CloudFlareResponse
      * @param \stdClass    $result
      * @param ErrorFactory $errorFactory
      *
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      * @throws CloudFlareException
      */
     public function __construct(\stdClass $result, ErrorFactory $errorFactory)
@@ -79,7 +79,7 @@ abstract class CloudFlareResponse
     /**
      * @param mixed $result
      */
-    abstract public function setResult($result);
+    abstract public function setResult($result): void;
 
     /**
      * @return mixed
@@ -122,8 +122,10 @@ abstract class CloudFlareResponse
      *
      *
      * @param array $errors
+     *
+     * @throws LogicException
      */
-    private function setErrors(array $errors)
+    private function setErrors(array $errors): void
     {
         $this->errors = $this->errorFactory->create($errors);
     }
@@ -131,7 +133,7 @@ abstract class CloudFlareResponse
     /**
      * @param array $messages
      */
-    private function setMessages(array $messages)
+    private function setMessages(array $messages): void
     {
         $this->messages = $this->stripEmptyObjectsFromArray($messages);
     }
@@ -163,7 +165,7 @@ abstract class CloudFlareResponse
      * @param bool      $required
      *
      * @return mixed
-     * @throws \Symfony\Component\Console\Exception\LogicException
+     * @throws LogicException
      */
     private function getNode(\stdClass $result, string $node, $required = true)
     {

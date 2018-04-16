@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -43,7 +44,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itCanCreateTheClass()
+    public function itCanCreateTheClass(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(SubDomainInfo::class, $class);
@@ -52,7 +53,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function itCanCreateAClassWhenGetIsCalled()
+    public function itCanCreateAClassWhenGetIsCalled(): void
     {
         $class = $this->getClass();
         $this->assertInstanceOf(SubDomainInfo::class, $class);
@@ -61,7 +62,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function callingGetWhenTheClassHasAlreadyBeenCreatedWillReturnIt()
+    public function callingGetWhenTheClassHasAlreadyBeenCreatedWillReturnIt(): void
     {
         $createdClass = $this->createClass();
         $gotClass     = $this->getClass();
@@ -71,7 +72,7 @@ class SubDomainInfoFactoryTest extends AbstractTestClass
     /**
      * @test
      */
-    public function callingGetWhenTheClassHasNotAlreadyBeenCreatedWillReturnADifferentClass()
+    public function callingGetWhenTheClassHasNotAlreadyBeenCreatedWillReturnADifferentClass(): void
     {
         $createdClass = $this->createClass();
         $gotClass     = $this->getClass('example');

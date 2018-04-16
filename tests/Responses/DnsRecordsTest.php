@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 /**
  *
  * Copyright (C) 2018  Ross Mitchell
@@ -53,7 +54,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canCreateTheClassUsingTheFactory()
+    public function canCreateTheClassUsingTheFactory(): void
     {
         $class = $this->createClass();
         $this->assertInstanceOf(DnsRecords::class, $class);
@@ -62,7 +63,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheSuccess()
+    public function canReturnTheSuccess(): void
     {
         $class = $this->createClass();
         $this->assertTrue($class->isSuccess());
@@ -71,7 +72,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheErrors()
+    public function canReturnTheErrors(): void
     {
         $class  = $this->createClass();
         $errors = $class->getErrors();
@@ -82,7 +83,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheMessages()
+    public function canReturnTheMessages(): void
     {
         $class    = $this->createClass();
         $messages = $class->getMessages();
@@ -93,7 +94,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheResult()
+    public function canReturnTheResult(): void
     {
         $class  = $this->createClass();
         $result = $class->getResult();
@@ -106,7 +107,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function canReturnTheResultInfo()
+    public function canReturnTheResultInfo(): void
     {
         $class      = $this->createClass();
         $resultInfo = $class->getResultInfo();
@@ -120,7 +121,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheSuccessIsMissing()
+    public function willThrowAnExceptionIfTheSuccessIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->success);
@@ -131,7 +132,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheErrorsAreMissing()
+    public function willThrowAnExceptionIfTheErrorsAreMissing(): void
     {
         $json = $this->getJson();
         unset($json->errors);
@@ -142,7 +143,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheMessagesAreMissing()
+    public function willThrowAnExceptionIfTheMessagesAreMissing(): void
     {
         $json = $this->getJson();
         unset($json->messages);
@@ -153,7 +154,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfTheResultIsMissing()
+    public function willThrowAnExceptionIfTheResultIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->result);
@@ -164,7 +165,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willNotThrowAnExceptionIfTheResultInfoIsMissing()
+    public function willNotThrowAnExceptionIfTheResultInfoIsMissing(): void
     {
         $json = $this->getJson();
         unset($json->result_info);
@@ -175,7 +176,7 @@ class DnsRecordsTest extends AbstractTestClass
     /**
      * @test
      */
-    public function willThrowAnExceptionIfCloudFlareReportsAnError()
+    public function willThrowAnExceptionIfCloudFlareReportsAnError(): void
     {
         $error = '{"code":1003,"message":"Invalid or missing zone id."}';
         $json  = $this->getJson('false', $error);

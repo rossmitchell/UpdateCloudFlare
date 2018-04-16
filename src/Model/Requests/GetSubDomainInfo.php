@@ -92,9 +92,10 @@ class GetSubDomainInfo
     /**
      * @param DnsRecords $request
      *
+     * @throws LogicException
      * @throws CloudFlareException
      */
-    public function collectionInformation(DnsRecords $request)
+    public function collectionInformation(DnsRecords $request): void
     {
         $rawResult                = \json_decode($this->curl->makeRequest($request));
         $result                   = $this->dnsRecordsFactory->create($rawResult);
